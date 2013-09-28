@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    
+    <script src="js/dao/dao.js"></script>
+    <script src="js/model/model.js"></script>
+    <script src="js/global/jquery-1.10.2.min.js"></script>
+    <script>
+
+    var user1= new userProfile('Ken','Xu','xuyingken@gmail.com',100,'ken.jpg');
+    //user1.persist();
+    
+    var outp='$("#output").html(result[0].firstname);';
+    user1.getUser(outp);
+
+    // Creating new items
+    var items = new item(2);
+    items.persist();
+    items = new item(3);
+    items.persist();
+    items = new item(3);
+    items.persist();
+    items = new item(4);
+    items.persist();
+
+    // Creating new pets
+    var monster = new pet("", 0, new Date(), 3, 50, 50);
+    monster.persist();
+    </script>
+</head>
+<body>
+
+    <div id="output">
+        
+    </div>
+
+</body>
+</html>

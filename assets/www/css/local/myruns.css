@@ -1,0 +1,22 @@
+/*My Runs CSS*/
+.analytics-a.ui-block-a {
+  max-width:200px;
+  max-height:250px;
+  border-radius: 0.75em;
+  text-align: center;
+}
+
+.analytics-b {
+  max-width:200px;
+  float:right;
+  border-radius: 0.75em;
+  text-align: center;
+}
+
+.run-listing {
+  overflow:scroll;
+}
+
+.containing-element .ui-slider-switch { 
+  width: 100%; 
+}

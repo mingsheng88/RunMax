@@ -1,0 +1,95 @@
+/*Homepage CSS*/
+body, .content-holder {
+  overflow: hidden !important;
+}
+
+/*
+Pet info
+*/
+.pet-info {
+  overflow:hidden;
+}
+
+.pet-img-grid {
+  overflow: hidden;
+  border-radius: 4px;
+  background: ghostwhite;
+  text-align: center;
+  float: left;
+  margin-right:5%;
+}
+
+.pet-stats-grid {
+  overflow: hidden;
+  float: left;
+}
+
+.pets-stats-icon {
+  max-width:30px;
+  float:left;
+}
+
+.hunger-icon {
+  width:100%;
+  max-width:30px;
+  border-radius:10px;
+  float:left;
+}
+
+.fitness-icon {
+  width:100%;
+  max-width:30px;
+  border-radius:10px;
+  margin-top: 12px;
+  float:left;
+}
+
+/*Slider*/
+.progress-bar input[type=number], .ui-slider-handle {
+  display: none;
+}
+
+.progress-bar .ui-slider-track {
+  margin: 0px;
+}
+
+ .ui-disabled {
+  filter: Alpha(Opacity=0) !important; 
+  opacity: 0.8 !important;
+  zoom: 0.8 !important;
+}
+
+.slider-one, .slider-two {
+  font-size: 70% !important;
+  height:11px !important;
+  padding:1px !important;
+  line-height: 11px !important;
+}
+
+.ui-slider-track.ui-mini {
+  top: 1px !important;
+}
+
+.ui-slider-track, .ui-slider-switch {
+  margin-right: 0px !important;
+}
+
+.ui-slider.ui-mini {
+  height: 25px !important;
+}
+/*
+Pet info end
+*/
+
+.run-listing {
+  overflow:scroll;
+}
+
+
+.containing-element .ui-slider-switch { 
+  width: 100%; 
+}
+
+.containing-element .ui-slider-handle {
+  display: block !important;
+}

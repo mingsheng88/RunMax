@@ -1,0 +1,30 @@
+.relevant-image {
+  text-align: center;
+  margin-top:0.5%;
+}
+
+.skip {
+  margin-top: 5%;
+  margin-right: 10% !important;
+}
+
+.progress-bar input[type=number], .ui-slider-handle {
+  display: none;
+}
+
+.slider-a, .slider-b {
+  font-size: 100% !important;
+  height:11px !important;
+  padding:2.5px !important;
+  line-height: 21px !important;
+}
+
+.ui-disabled {
+  zoom: 0.8 !important;
+  opacity: 0.8 !important;
+  filter: Alpha(Opacity=0) !important; 
+}
+
+label.slider-font {
+  font-size:75% !important;
+}

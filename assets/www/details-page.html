@@ -1,0 +1,87 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <!-- Load everywhere -->
+  <meta name="viewport" content="user-scalable=no,width=device-width" />
+  <link rel="stylesheet" href="css/global/jquery.mobile-1.4.0.min.css" />
+  <link rel="stylesheet" href="css/global/overall.css" />
+  <script src="js/dao/dao.js"></script>
+  <script src="js/model/model.js"></script>
+  <script src="js/global/jquery-1.10.2.min.js"></script>
+  <script src="js/global/jquery.mobile-1.4.0.min.js"></script>
+  <script src="js/view/overall.js"></script>
+  <script src="js/global/cdv-plugin-fb-connect.js"></script>
+  <script src="js/global/facebook-js-sdk.js"></script>
+  <script src="js/global/cordova.js"></script>
+  <!-- Load everywhere end -->
+</head> 
+
+<body>
+  <div data-role="page" data-theme="c" class="ui-page">
+    <!-- Initialization script -->
+    <script>
+    $( document ).on( "pageinit", ".ui-page", function() {
+      initializeDetailsPage();
+    });
+    window.onresize = initializeDetailsPage;
+
+    loadCSS("css/local/details-page.css");
+    </script>
+    <!-- Initialization script end -->
+
+    
+    <!-- Header -->
+    <div data-role="header" class="primary-header" data-theme="b">
+      <!-- Text initialized in overall.js -->
+      <h1 class="primary-header-text">Details</h1>
+      <a href="#" data-role="button" data-rel="back" data-icon="arrow-l">Back</a>
+    </div>
+    <!-- Header end -->
+
+    <!-- Content -->
+    <div data-role="content" class="content-holder">
+      <!-- Image div -->
+      <div class="ui-grid-solo">
+        <div class="ui-block-a relevant-image">
+          <img src="css/global/images/logo.png" style="border-radius:20px;max-height:90px; max-width: 90px;"/>
+        </div>
+      </div>
+      <!-- Image div end -->
+
+      <!-- Descriptor -->
+      <p class="justify font-85">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur a quam temporibus fugit.</p>
+      <!-- Descriptor end -->
+
+      <!-- Stats div -->
+      <div class="ui-grid-solo">
+        <label for="slider-mini" class="slider-font">Lorem.</label>
+        <input type="range" name="slider-mini" id="slider-mini" value="45" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-a" />
+      </div>
+      <div class="ui-grid-solo pbottom-20">
+        <label for="slider-mini" class="slider-font">Lorem.</label>
+        <input type="range" name="slider-mini" id="slider-mini" value="86" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-b" />
+      </div>
+      <!-- Stats div end -->
+
+      <!-- Inventory data div -->
+      <div>
+      </div>
+      <!-- Inventory data div end -->
+
+      <!-- Buttons div -->
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <a href="home.html" data-role="button" data-mini="true" class="skip">Lorem ipsum.</a>
+        </div>
+        <div class="ui-block-b">
+          <a href="home.html" data-role="button" data-mini="true" class="skip">Lorem ipsum.</a>
+        </div>
+      </div>
+      <!-- Buttons div end -->
+
+    </div>
+  </div>
+  <!-- Content end -->
+</div>
+</body>
+</html>

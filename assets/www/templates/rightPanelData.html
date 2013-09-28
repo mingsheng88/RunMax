@@ -1,0 +1,36 @@
+<ul data-role="listview" data-theme="a" class="right-panel-data">
+  <li data-icon="false">Run Setup</li>
+</ul>
+<!-- Form -->
+<form action="running-map.html" method="post" id="setup-run">
+
+  <!-- Text -->
+  <p class="ptop-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur.</p>
+  <!-- Text end -->
+
+  <!-- Pet selection -->
+  <div data-role="fieldcontain">
+    <label for="pet-selection">Run with: </label>
+    <select data-native-menu="false" name="pet" id="pet-selection" data-theme="c">
+      <option value="a">Pet A</option>
+      <option value="b">Pet B</option>
+      <option value="c">Pet C</option>
+    </select>
+  </div>
+  <!-- Pet selection end -->
+
+  <!-- Additional option -->
+  <div data-role="fieldcontain" class="ptop-10">
+    <label for="events">Events?</label>
+    <select data-role="slider" id="events" data-theme="c">
+      <option value="no"> No </option>
+      <option value="yes"> Yes </option>
+    </select>
+  </div>
+  <!-- Additional option end -->
+
+  <div data-role="fieldcontain" class="ui-hide-label">
+    <input type="submit" value="Start run!"  data-theme="c" />
+  </div>
+</form>
+      <!-- Form end -->

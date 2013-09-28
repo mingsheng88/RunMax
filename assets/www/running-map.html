@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <!-- Load everywhere -->
+  <meta name="viewport" content="user-scalable=no,width=device-width" />
+  <link rel="stylesheet" href="css/global/jquery.mobile-1.4.0.min.css" />
+  <link rel="stylesheet" href="css/global/overall.css" />
+  <script src="js/dao/dao.js"></script>
+  <script src="js/model/model.js"></script>
+  <script src="js/global/jquery-1.10.2.min.js"></script>
+  <script src="js/global/jquery.mobile-1.4.0.min.js"></script>
+  <script src="js/view/overall.js"></script>
+  <script src="js/global/cdv-plugin-fb-connect.js"></script>
+  <script src="js/global/facebook-js-sdk.js"></script>
+  <script src="js/global/cordova.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry"></script>
+  
+  <!-- Load everywhere end -->
+</head> 
+
+<body>
+  <div data-role="page" data-theme="a" class="ui-page">
+    <!-- Initialization script -->
+    <script>
+    $( document ).on( "pageinit", ".ui-page", function() {
+     // initializeMap();
+    });
+    //window.onresize = initializeMap;
+    loadJS("js/view/run.js");
+    loadCSS("css/local/map.css");
+    </script>
+    <!-- Initialization script end -->
+    <!--<script type="text/javascript" src="js/global/jquery.timer.js"></script>-->
+    <!-- Header -->
+    <div data-role="header" class="primary-header" data-theme="b">
+      <h1>Run Ongoing</h1>
+      <a href="#" data-role="button" data-rel="back" data-icon="arrow-l">Back</a>
+    </div>
+    <!-- End Header -->
+
+
+    <!-- Content -->
+    <div data-role="content" class="content-holder" data-theme="a">
+      
+      <div id="myMap" class="map-position">
+        
+      </div>
+
+      <!-- Listing -->
+      <!-- <div>
+        <ul data-role="listview" data-theme="a">
+          <li data-theme="a" data-role="list-divider" class="sec-header-wording">Run Listing</li> 
+        </ul>
+      </div> -->
+      <div class="run-info">
+        <div class="pbottom-5 emphasis ptop-20">
+          <!-- <label class=""> --><b>Time Elapsed:</b><!-- </label> -->
+          <span class="info-generic" id="stopwatch">Loading...</span>
+        </div>
+        <div class="">
+          <!-- <label> --><b>Signal Strength:</b><!-- </label> -->
+          <span class="info-generic" id="singal">Loading...</span>
+        </div>
+        <div class="">
+          <!-- <label class=""> --><b>Distance:</b><!-- </label> -->
+          <span class="info-generic"id="totalDistance">Loading...</span>
+        </div>
+        <div class="">
+          <!-- <label> --><b>Pace:</b><!-- </label> -->
+          <span class="info-generic" id="pace">Loading...</span>
+        </div>
+        <div class="">
+          <!-- <label> --><b>Calories:</b><!-- </label> -->
+          <span class="info-generic">Loading...</span>
+        </div>
+        <div class="">
+          <!-- <label> --><b>Run With:</b><!-- </label> -->
+          <span class="info-generic" id="petSelection">Loading...</span>
+        </div>
+        <div class="">
+          <!-- <label> --><b>Items Obtained:</b><!-- </label> -->
+          <span class="info-generic" id="noItems">Loading...</span>
+        </div>
+         <div class="pbottom-10">
+          <!-- <label> --><b>Monster Captured:</b><!-- </label> -->
+          <span class="info-generic" id="monsterCaptured">No</span>
+        </div>
+      </div>
+      <div class="ui-grid-b">
+        <div class="ui-block-a">
+          <a data-role="button" data-mini="true" id="run_reset" data-theme="a">Reset</a>
+        </div>
+        <div class="ui-block-b">
+        </div>
+        <div class="ui-block-c">
+          <a data-role="button" data-mini="true" id="run_stop"  data-theme="a">Stop</a>
+        </div>
+      </div>
+      <!-- Listing end -->
+    </div>
+    <!-- Content end -->
+  </div>
+</body>
+</html>

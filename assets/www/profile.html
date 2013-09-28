@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <!-- Load everywhere -->
+  <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+  <link rel="stylesheet" href="css/global/jquery.mobile-1.4.0.min.css" />
+  <link rel="stylesheet" href="css/global/overall.css" />
+  <script src="js/dao/dao.js"></script>
+  <script src="js/model/model.js"></script>
+  <script src="js/global/jquery-1.10.2.min.js"></script>
+  <script src="js/global/jquery.mobile-1.4.0.min.js"></script>
+  <script src="js/view/overall.js"></script>
+  <script src="js/global/cdv-plugin-fb-connect.js"></script>
+  <script src="js/global/facebook-js-sdk.js"></script>
+  <script src="js/global/cordova.js"></script>
+  <!-- Load everywhere end -->
+</head> 
+
+<body>
+  <div data-role="page" data-theme="b" data-url="swipe-panel" id="swipe-panel" class="ui-page">
+    <!-- Initialization script -->
+    <script>
+    $( document ).on( "pageinit", ".ui-page", function() {
+      initializeProfile();
+    });
+    window.onresize = initializeProfile;
+    </script>
+    <!-- Initialization script end -->
+    
+
+    <!-- Header -->
+    <div data-role="header" class="primary-header">
+      <!-- Text initialized in overall.js -->
+      <h1 class="primary-header-text"></h1>
+      <a href="#" data-role="button" data-rel="back" data-icon="arrow-l">Back</a>
+    </div>
+    <!-- Header end -->
+
+
+    <!-- Content -->
+    <div data-role="content" class="content-holder" data-theme="a">
+
+      <!-- Form -->
+      <form action="home.html" method="post" data-ajax="false">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur.</p>
+        
+        <!-- Field -->
+        <div data-role="fieldcontain" class="ui-hide-label">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" value="" placeholder="Username"/>
+        </div>
+        <!-- Field end -->
+
+        <!-- Field -->
+        <div data-role="fieldcontain" class="ui-hide-label">
+          <label for="username">Email:</label>
+          <input type="text" name="email" id="email" value="" placeholder="email"/>
+        </div>
+        <!-- Field end -->
+
+        <!-- Field -->
+        <div data-role="fieldcontain" class="ui-hide-label">
+          <label for="weight">Weight:</label>
+          <input type="number" name="weight" id="weight" value="" placeholder="weight in kg"/>
+        </div>
+        <!-- Field end -->
+        
+        <input type="submit" value="Submit Button" data-ajax="false" />
+      </form>
+      <!-- Form end -->
+
+    </div>
+    <!-- Content end -->
+  </div>
+</body>
+</html>

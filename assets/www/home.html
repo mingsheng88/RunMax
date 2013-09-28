@@ -1,0 +1,163 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <!-- Load everywhere -->
+  <meta name="viewport" content="user-scalable=no,width=device-width" />
+  <link rel="stylesheet" href="css/global/jquery.mobile-1.4.0.min.css" />
+  <link rel="stylesheet" href="css/global/overall.css" />
+  <script src="js/dao/dao.js"></script>
+  <script src="js/model/model.js"></script>
+  <script src="js/global/jquery-1.10.2.min.js"></script>
+  <script src="js/global/jquery.mobile-1.4.0.min.js"></script>
+  <script src="js/view/overall.js"></script>
+  <script src="js/global/cdv-plugin-fb-connect.js"></script>
+  <script src="js/global/facebook-js-sdk.js"></script>
+  <script src="js/global/cordova.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry"></script>
+
+  <!-- Load everywhere end -->
+
+
+  <!-- Check Facebook login status -->
+  <script>
+  document.addEventListener('deviceready', function() {
+    // executes when HTML-Document is loaded and DOM is ready
+    try {
+      FB.init({ appId: "555859957794511", nativeInterface: CDV.FB, useCachedDialogs: false });
+      getName();
+    } catch (e) {
+      alert(e);
+    }
+  });
+  </script>
+  <!-- Check Facebook Login status end -->
+</head> 
+
+<body>
+  <div data-role="page" data-url="swipe-panel" id="swipe-panel" class="ui-page">
+    <!-- Initialization script -->
+    <script>
+    $( document ).on( "pageinit", ".ui-page", function() {
+      initializeHome();
+      // var pet = new pet();
+      // pet = pet.getActivePet();
+    });
+    window.onresize = initializeHome;
+    
+    loadCSS("css/local/home.css");
+    </script>
+    <!-- Initialization script end -->
+    
+
+
+    <!-- Header -->
+    <div data-role="header" class="primary-header" data-theme="b">
+      <h1>Home</h1>
+      <a href="#left-panel" data-theme="a" data-icon="arrow-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
+      <a href="#right-panel" data-theme="a" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open right panel</a>
+    </div>
+    <!-- Header end -->
+
+
+    <!-- Content -->
+    <div data-role="content" class="content-holder" data-theme="a">
+      <!-- Pet info -->
+      <div class="pet-info">
+        <div>
+          <img class="pet-img-grid" src="css/global/images/egg.png" style=""/>
+        </div>
+        <div class="pets-stats-icon">
+          <img class="hunger-icon ptop-5" src="css/global/images/hunger.jpg" style=""/>
+          <img class="fitness-icon ptop-5" src="css/global/images/fitness.jpg" style=""/>
+        </div>
+        <div class="pet-stats-grid pleft-10">
+          <!-- Progress bars -->
+          <label for="slider-mini" class="slider-font">Lorem.</label>
+          <input type="range" name="slider-mini" id="slider-mini" value="65" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />
+          <label for="slider-mini" class="slider-font mtop--5">Lorem ipsum.</label>
+          <input type="range" name="slider-mini" id="slider-mini" value="34" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />
+          <!-- Progress bars end -->
+        </div>
+      </div>
+      <!-- Pet info end -->
+
+      <!-- Listing -->
+      <div>
+        <ul data-role="listview" data-theme="d" class="run-listing">
+          <li data-theme="b" data-role="list-divider" class="sec-header-wording">Run Listing</li>
+          <li><a href="">
+            <h1>Lorem ipsum.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, magni.</p>
+          </a></li>
+          <li><a href="">
+            <h1>Lorem ipsum.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, possimus.</p>
+          </a></li>
+          <li><a href="">
+            <h1>Lorem ipsum.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, eaque!</p>
+          </a></li>
+          <li><a href="">
+            <h1>Lorem ipsum.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, optio?</p>
+          </a></li>
+        </ul>
+      </div>
+      <!-- Listing end -->
+    </div>
+    <!-- Content end -->
+
+
+    <!-- Left Panel -->
+    <div data-role="panel" id="left-panel" data-theme="b" class="ui-left-panel">
+      <!-- http://jquerymobile.com/demos/1.1.1/docs/lists/lists-themes.html -->
+      <ul data-role="listview" data-theme="b" class="left-panel-data">
+      </ul>
+      <span id="initialized" style="float:none; display:none;">n</span>
+    </div>
+    <!-- Left Panel end -->
+
+
+    <!-- Right Panel -->
+    <div data-role="panel" id="right-panel" data-position="right" data-theme="b" class="ui-right-panel">
+      <ul data-role="listview" data-theme="b" class="right-panel-data">
+        <li data-icon="false">Run Setup</li>
+      </ul>
+      <!-- Form -->
+      <form action="running-map.html" data-ajax="false" method="get" id="setup-run">
+
+        <!-- Text -->
+        <p class="ptop-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur.</p>
+        <!-- Text end -->
+
+        <!-- Pet selection -->
+        <div data-role="fieldcontain">
+          <label for="pet-selection">Run with: </label>
+          <select data-native-menu="false" id="pet-selection" name="petSelection" data-theme="c">
+            <option value="a">Pet A</option>
+            <option value="b">Pet B</option>
+            <option value="c">Pet C</option>
+          </select>
+        </div>
+        <!-- Pet selection end -->
+
+        <!-- Additional option -->
+        <div data-role="fieldcontain" class="containing-element ptop-10">
+          <label for="events">Events?</label>
+          <select data-role="slider" id="events" name="events" data-theme="c">
+            <option value="no"> No </option>
+            <option value="yes"> Yes </option>
+          </select>
+        </div>
+        <!-- Additional option end -->
+
+        <div data-role="fieldcontain" class="ui-hide-label">
+          <input type="submit" value="Start run!"  data-theme="c">
+        </div>
+      </form>
+      <!-- Form end -->
+    </div>
+    <!-- Right Panel end -->
+  </div>
+</body>
+</html>
