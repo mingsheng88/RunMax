@@ -3,7 +3,7 @@ function dao() {
     this.excute = excute;
     this.initItems = initItems;
     this.initMonsters = initMonsters;
-    this.excuteSelect = excuteSelect;
+    this.excuteQuery = excuteQuery;
 
     var dbSize = 5 * 1024 * 1024; // 5MB
     var db = openDatabase("RunningMonster", "1.0", "DB for RunningMonster", dbSize);
@@ -14,9 +14,10 @@ function dao() {
     this.initMonsters();
 
     function initDB() {
-
+    	/*
         var userProfileCreate = 'CREATE TABLE IF NOT EXISTS [userProfile] (' + '[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,' + '[firstname] TEXT  NULL,' + '[lastname] TEXT  NULL,' + '[email] TEXT  NULL,' + '[img] TEXT  NULL,' + '[coins] INTEGER DEFAULT 0 NULL,' +'[weight] REAL NULL,'+'[activepetid] INTEGER)';
         this.excute(userProfileCreate);
+        */
 
         var petCreate = 'CREATE TABLE IF NOT EXISTS [pet] ' + '([id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,' + '[petName] TEXT  NULL,' + '[age] INTEGER  NULL,' + '[lastMod] TEXT  NULL,' + '[type] INTEGER  NULL,' + '[energy] FLOAT  NULL,' + '[fitness] REAL  NULL,'+'[birthTime] TEXT  NULL,'+'[dead] INTEGER DEFAULT 0 NULL)';
         this.excute(petCreate);
@@ -30,6 +31,7 @@ function dao() {
         
         
         //check user exist, add a default user if not exist
+        /*
         var sql='SELECT * FROM userProfile';
         this.excuteSelect(sql,[], function(ret) {
             console.log("user exist ="+(ret.length>0));
@@ -42,11 +44,12 @@ function dao() {
                 excute(initPet);
             }
         });
+        */
         
     }
 
 
-    function excuteSelect(query,para,callBack){ // <-- extra param
+    function excuteQuery(query,para,callBack){ // <-- extra param
         if (para == 'undefined') {
             para = [];
         }

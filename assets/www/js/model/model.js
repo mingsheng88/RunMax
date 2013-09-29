@@ -1,4 +1,5 @@
 var dao = new dao();
+/*
 function userProfile(firstname, lastname, email,  coins, img, runs, pets, items, activepetid) {
     this.firstname = firstname;
     this.lastname = lastname;
@@ -8,7 +9,6 @@ function userProfile(firstname, lastname, email,  coins, img, runs, pets, items,
     this.items = items;
     this.coins = coins;
     this.activepetid = activepetid;
-
     this.persist = persist;
     this.getUser = getUser;
     function persist() {
@@ -23,7 +23,7 @@ function userProfile(firstname, lastname, email,  coins, img, runs, pets, items,
         });
    }
 }
-
+*/
 function pet(petName, age, lastMod, type, energy, fitness) {
     this.petName = petName;
     this.age = age;
