@@ -15,13 +15,13 @@ function dao() {
 
     function initDB() {
 
-        var userProfileCreate = 'CREATE TABLE IF NOT EXISTS [userProfile] (' + '[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,' + '[firstname] TEXT  NULL,' + '[lastname] TEXT  NULL,' + '[email] TEXT  NULL,' + '[img] TEXT  NULL,' + '[coins] INTEGER DEFAULT 0 NULL,' + '[activepetid] INTEGER)';
+        var userProfileCreate = 'CREATE TABLE IF NOT EXISTS [userProfile] (' + '[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,' + '[firstname] TEXT  NULL,' + '[lastname] TEXT  NULL,' + '[email] TEXT  NULL,' + '[img] TEXT  NULL,' + '[coins] INTEGER DEFAULT 0 NULL,' +'[weight] REAL NULL,'+'[activepetid] INTEGER)';
         this.excute(userProfileCreate);
 
-        var petCreate = 'CREATE TABLE IF NOT EXISTS [pet] ' + '([id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,' + '[petName] TEXT  NULL,' + '[age] INTEGER  NULL,' + '[lastMod] TEXT  NULL,' + '[type] INTEGER  NULL,' + '[energy] FLOAT  NULL,' + '[fitness] FLOAT  NULL,'+'[birthTime] TEXT  NULL,'+'[dead] BOOLEAN DEFAULT FALSE NULL)';
+        var petCreate = 'CREATE TABLE IF NOT EXISTS [pet] ' + '([id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,' + '[petName] TEXT  NULL,' + '[age] INTEGER  NULL,' + '[lastMod] TEXT  NULL,' + '[type] INTEGER  NULL,' + '[energy] FLOAT  NULL,' + '[fitness] REAL  NULL,'+'[birthTime] TEXT  NULL,'+'[dead] INTEGER DEFAULT 0 NULL)';
         this.excute(petCreate);
 
-        var runCreate = 'CREATE TABLE IF NOT EXISTS [run] (' + '[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,' + '[distance] FLOAT  NULL,' + '[coins] INTEGER  NULL,' + '[startTime] TEXT  NULL,' + '[endTime] TEXT  NULL,' + '[runWith] TEXT  NULL,' + '[calories] FLOAT  NULL,' + '[coordinates] TEXT  NULL)';
+        var runCreate = 'CREATE TABLE IF NOT EXISTS [run] (' + '[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,' + '[distance] REAL NULL,' + '[coins] INTEGER  NULL,' + '[startTime] TEXT  NULL,' + '[endTime] TEXT  NULL,' + '[runWith] TEXT  NULL,' + '[calories] REAL  NULL,' + '[coordinates] TEXT  NULL)';
         this.excute(runCreate);
 
         var ownedItemsCreate = 'CREATE TABLE IF NOT EXISTS [ownedItems] (' + '[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,' + '[itemId] INTEGER  NULL' + ')';
@@ -35,11 +35,11 @@ function dao() {
             console.log("user exist ="+(ret.length>0));
             if (ret.length === 0) {
                 //init user
-                var initUser = 'INSERT INTO userProfile (id, firstname, lastname, img, activepetid) VALUES (1,"first name", "last name", "nil", 1)';
-                this.excute(initUser);
+                var initUser = 'INSERT INTO userProfile (id, firstname, lastname, img, activepetid,weight) VALUES (1,"first name", "last name", "nil", 1,60.5)';
+                excute(initUser);
                 //init pet
                 var initPet = 'INSERT INTO pet (id, petName, age, type, energy, fitness) VALUES (1, "First", 0, 0, 50, 20)';
-                this.excute(initPet);
+                excute(initPet);
             }
         });
         

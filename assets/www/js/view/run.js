@@ -87,9 +87,11 @@ function captureEventInit(){
 	monsterSpotedTime=totalTime;
 	monsterSpotedLoc=(totalDistance*1000);
 	currentSpeed=(totalDistance*1000)/totalTime;
-	//30% faster than ur orginal speed
-	monsterSpeed= currentSpeed*1.1;
-	//monster 50m away
+	//10% faster than ur orginal speed
+	if(monsterSpeed==0){
+		monsterSpeed= currentSpeed*1.1;
+	}
+	//monster starts 50m away
 	monsterLoc=monsterSpotedLoc+50;
 	captureEventStarted=true;
 	
