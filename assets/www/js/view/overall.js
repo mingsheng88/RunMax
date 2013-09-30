@@ -41,7 +41,7 @@ $( document ).on( "pageinit", ".ui-page", function() {
   // Load left panel
   $(function() {
     var link1 = "'profile.html'";
-    var imageSrc1 = "image.png'";
+    var imageSrc1 = "profile.gif'";
     var title1 = 'Profile';
     var subtext1 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
@@ -76,11 +76,11 @@ subtext5 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link5 +"><img src=" + imageSrc5 +" />" +
     //   "<h1>" + title5 + "</h1><p>" + subtext5 + "</p></a></li>")).listview('refresh');
 
-$(".left-panel-data").html($("<li id='username-field' data-icon='false'>Stranger</li><li data-icon='false'><a data-transition='slide' href=" + link1 +"><img id='profile-link' style='margin-top:16px;margin-left:20px;' src='css/global/images/" + imageSrc1 +" />" +
-  "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link2 +"><img src='css/global/images/" + imageSrc2 +" />" +
-  "<h1>" + title2 + "</h1><p>" + subtext2 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link3 +"><img src='css/global/images/" + imageSrc3 +" />" +
-  "<h1>" + title3 + "</h1><p>" + subtext3 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link4 +"><img src='css/global/images/" + imageSrc4 +" />" +
-  "<h1>" + title4 + "</h1><p>" + subtext4 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link5 +"><img src='css/global/images/" + imageSrc5 +" />" +
+$(".left-panel-data").html($("<li id='username-field' data-icon='false'>Stranger</li><li data-icon='false'><a data-transition='slide' href=" + link1 +"><img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc1 +" />" +
+  "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link2 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc2 +" />" +
+  "<h1>" + title2 + "</h1><p>" + subtext2 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link3 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc3 +" />" +
+  "<h1>" + title3 + "</h1><p>" + subtext3 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link4 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc4 +" />" +
+  "<h1>" + title4 + "</h1><p>" + subtext4 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link5 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc5 +" />" +
   "<h1>" + title5 + "</h1><p>" + subtext5 + "</p></a></li><li data-icon='false'><a class='btn' href='javascript:logout()' data-ajax='false' data-role='button'>Logout</a></li>")).listview('refresh');
 
 $('#initialized').text("y");
@@ -97,8 +97,6 @@ function initializeHome() {
 // Resize image div
 var imgHeight = window.innerWidth * 0.32;
 if(imgHeight > 100) imgHeight = 100;
-$('.pet-img-grid').height(imgHeight);
-$('.pet-img-grid').width(imgHeight);
 $('.pet-info').height(imgHeight + 30);
 // Resize image div end
 
@@ -180,14 +178,23 @@ function initializeDetailsPage() {
 
 
 // Facebook Related Functions
-function login(url) {
-  FB.getLoginStatus(function(response) {
-    if (response.status == 'connected') {
-      alert(response);
-      window.location = "home.html";
+function login() {
+  var name;
+  FB.login(function(response) {
+    if(response.authResponse) {
+      alert(response.authResponse);
+      FB.api('/me',function(response) {
+        // var user1= new userProfile(response.first_name, response.last_name,response.email,0,response.link + "/picture");
+        // user1.persist();
+        localStorage.setItem("firstname", response.name);
+        localStorage.setItem("photo", 'http://graph.facebook.com/' + response.id + '/picture');
+        window.location = "home.html";
+      });
     } else {
+      window.location = "index.html";
     }
-  });
+  },
+  { scope: "email" });
 }
 
 function logout() {

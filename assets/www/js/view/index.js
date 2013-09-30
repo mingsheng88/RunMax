@@ -1,6 +1,6 @@
 //initialise
 //if user not exist....
-if (localStorage.getItem("firstname")==false){
+if (!localStorage.getItem("firstname")) {
 	localStorage.setItem("firstname", 'User');
 	localStorage.setItem("lastname", 'New');
 	localStorage.setItem("email", '');

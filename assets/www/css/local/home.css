@@ -3,11 +3,53 @@ body, .content-holder {
   overflow: hidden !important;
 }
 
+/*Total distance*/
+.overall-stats {
+}
+
+.overall-stats-row {
+}
+
+.distance-no-label {
+  margin-top:-10px;
+  padding-bottom: 10px;
+  font-size: 70%;
+}
+
+.distance-no {
+  font-size: 72px;
+}
+
 /*
 Pet info
 */
 .pet-info {
   overflow:hidden;
+}
+
+.pet-list {
+  width:100%;
+  background:ghostwhite;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
+.pet-list-item {
+  float:left;
+  padding:12px;
+  width:100%;
+}
+
+.pet-item-img {
+  width:50px;
+  float:left;
+  margin-top:-12px;
+}
+
+.pet-item-details {
+  float:right;
+  width:75%;
+  padding-top: 4px;
 }
 
 .pet-img-grid {

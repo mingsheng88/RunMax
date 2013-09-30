@@ -22,7 +22,7 @@
   document.addEventListener('deviceready', function() {
     try {
       FB.init({ appId: "555859957794511", nativeInterface: CDV.FB, useCachedDialogs: false });
-      getLoginStatus("home.html", true);
+      // getLoginStatus("home.html", true);
     } catch (e) {
       alert(e);
     }
@@ -45,7 +45,7 @@
       <div class="ui-grid-solo">
         <div class="ui-block-a logo">
           <img src="css/global/images/logo.png" style="width:80%;border-radius:20px;padding-top: 20%;padding-bottom:10%"/>
-          <a href="home.html" data-role="button" class="fb-login" data-theme="c" data-ajax="false">Login via FB</a>
+          <a href="javascript:login()" data-role="button" class="fb-login" data-theme="c" data-ajax="false">Login via FB</a>
           <a href="profile.html" data-role="button" class="registration-link" data-theme="c">Register Now!</a>
         </div>
       </div>
