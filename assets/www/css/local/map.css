@@ -1,6 +1,7 @@
 .map-position {
   /*display: block;*/
   width: 111%;
+  min-width: 200px;
   height: 235px;
   margin-top:-16px;
   margin-bottom:0px;

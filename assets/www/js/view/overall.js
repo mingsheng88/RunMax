@@ -48,14 +48,14 @@ $( document ).on( "pageinit", ".ui-page", function() {
     //   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li>")).listview('refresh');
 
 link2 = "'myruns.html'";
-imageSrc2 = "run.jpg'";
+imageSrc2 = "run.gif'";
 title2 = 'My Runs';
 subtext2 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link2 +"><img src=" + imageSrc2 +" />" +
     //   "<h1>" + title2 + "</h1><p>" + subtext2 + "</p></a></li>")).listview('refresh');
 
 link3 = "'listing-page.html'";
-imageSrc3 = "egg.png'";
+imageSrc3 = "pet.gif'";
 title3 = 'My Pets';
 subtext3 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link3 +"><img src=" + imageSrc3 +" />" +
@@ -63,14 +63,14 @@ subtext3 = 'Lorem ipsum dolor sit amet.';
 
     // To be developed in the future
     link4 = "'#'";
-    imageSrc4 = "egg.png'";
+    imageSrc4 = "hamburger.gif'";
     title4 = 'The Pet Shop';
     subtext4 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link4 +"><img src=" + imageSrc4 +" />" +
     //   "<h1>" + title4 + "</h1><p>" + subtext4 + "</p></a></li>")).listview('refresh');
 
 link5 = "'friends.html'";
-imageSrc5 = "friend.jpg'";
+imageSrc5 = "friend.gif'";
 title5 = 'Training Gym';
 subtext5 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link5 +"><img src=" + imageSrc5 +" />" +
