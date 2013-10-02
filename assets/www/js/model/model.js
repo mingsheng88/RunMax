@@ -24,61 +24,39 @@ function userProfile(firstname, lastname, email,  coins, img, runs, pets, items,
    }
 }
 */
-function pet(petName, age, lastMod, type, energy, fitness) {
-    this.petName = petName;
-    this.age = age;
-    this.lastMod = lastMod;
-    this.type = type;
-    this.energy = energy;
-    this.fitness = fitness;
-
-
-    // Needs one select statement
-    this.getPet = getPet;
-    function getPet(id, evlString) {
-        var sql = 'SELECT * FROM pet WHERE id = ' + id;
-        dao.excuteSelect(sql,[], function(result) {
-            //result[]....
-            eval(evlString);
-        });
-    }
+function pet(petId) {
+    pet = localStorage.getItem("pet" + petId).split(',');
+    this.id = petId;
+    this.petName = pet[0];
+    this.age = pet[1];
+    this.created_at = pet[2];
+    this.lastMod = pet[3];
+    this.type = pet[4];
+    this.energy = pet[5];
+    this.fitness = pet[6];
+    this.dead = pet[7];
 
     this.update = update;
     function update() {
-        var sql = 'UPDATE pet SET petName=?, age=?, lastMod=?, type=?, energy=?, fitness=? WHERE id=1';
-        dao.excute(sql, [this.petName,this.age,this.lastMod,this.type,this.energy,this.fitness]);
+        pet = localStorage.getItem('pet' + petId).split(',');
+        pet[0] = this.petName;
+        pet[1] = this.age;
+        pet[2] = this.created_at;
+        pet[3] = this.lastMod;
+        pet[4] = this.type;
+        pet[5] = this.energy;
+        pet[6] = this.fitness;
+        pet[7] = this.dead;
+        localStorage.setItem('pet' , pet);
     }
+}
 
-    this.persist = persist;
-    function persist() {
-        var sql = 'INSERT INTO pet (age, type, energy, fitness) VALUES (?,?,?,?)';
-        dao.excute(sql, [0,this.type,50,50]);
-    }
-
-    this.feedPet = feedPet;
-    function feedPet(id, itemId) {
-        var item = dao.getItem(itemId);
-        var sql = "UPDATE pet SET energy=?, fitness=?, lastMod=? WHERE id=?";
-        // Needs to find a way to get the "this.energy". It should be from session.
-        dao.excute(sql, [(this.energy - item[1]), (this.fitness - item[2]), new Date(now), id]);
-    }
-
-    // Pet Accessors
-    this.getActivePet = getActivePet;
-    function getActivePet() {
-        try {
-            // Get user's active pet's ID
-            var sql="SELECT * FROM userProfile";
-            var res = dao.excute(sql,[1]);
-            var id = res.rows.item(0);
-
-            // Use the pet ID to find the specific pet
-            res = dao.execute("SELECT * FROM pet WHERE id = ?", [id]);
-            return res;
-        } catch(e) {
-            alert(e);
-            return "No active pet";
-        }
+function updatePets() {
+    for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
+        this.pet = localStorage.getItem("pet" + i).split(',');
+        updateStats(pet);
+        updateAge(pet);
+        updateDeathStatus(pet);
     }
 
     // Tested. 
@@ -95,12 +73,15 @@ function pet(petName, age, lastMod, type, energy, fitness) {
         // Energy drops at the rate of 40 / week | 5 / day
         var energyDrop = Math.floor(difference/15120000);
 
+        this.pet[3] = new Date(now);
+        this.pet[5] = this.pet[5] - energyDrop;
+        this.pet[6] = this.pet[6] - fitnessDrop;
+
         // Update drop values
         // update ui
-        var sql = "UPDATE pet SET energy=?, fitness=?, lastMod=? WHERE id=?";
-        dao.excute(sql, [(this.energy - energyDrop), (this.fitness - fitnessDrop), new Date(now), this.id]);
-
-        return [fitnessDrop, fitnessDrop];
+        // var sql = "UPDATE pet SET energy=?, fitness=?, lastMod=? WHERE id=?";
+        // dao.excute(sql, [(this.energy - energyDrop), (this.fitness - fitnessDrop), new Date(now), this.id]);
+        // return [fitnessDrop, fitnessDrop];
     }
 
     // Need to work on img field
@@ -113,95 +94,56 @@ function pet(petName, age, lastMod, type, energy, fitness) {
         // Can consider adding a "Birthday" variable for accuracy
         // For now, adding days to age, ignoring denominators smaller than 3 hours
         var growth = Math.floor(Math.floor(difference/10800000) / 8);
-        alert(growth);
 
-        var newAge = this.age + growth;
+        var newAge = this.pet[1] + growth;
         // Assuming max age of about 2 months
         // Pet will evolve 
         var typeNow = Math.floor(newAge / 20);
         // Pet evolves if the type now > type before
         if (typeNow > type) {
-            // Pet is evolving
-            // Will come up with a more elegant way to notify
-            // Probably in the form of a jQuery Mobile dialog. 
-            alert("Your pet is... evolving!");
-            // this.evolvePet("TO DECIDE HOW TO GET USER AGREEMENT... (Or whether there should even be such a function", fitness, typeNow, id);
+            alert("Congratulations! It seems like " + this.pet[0] + " has evolved~~");
+            this.evolvePet();
         }
 
         // Finally update age to the correct one
-        var sql = "UPDATE pet SET age=?, lastMod=? WHERE id=?";
-        dao.excute(sql, [newAge, new Date(now), this.id]);
+        // var sql = "UPDATE pet SET age=?, lastMod=? WHERE id=?";
+        // dao.excute(sql, [newAge, new Date(now), this.id]);
+        this.pet[1] = newAge;
+        this.pet[3] = new Date(now);
     }
 
     // img field not in yet
-    function evolvePet(userAgreement, fitness, type, id) {
+    function evolvePet() {
         if(userAgreement) {
-            var sql = "UPDATE pet SET type=?, img=? WHERE id=?";
+            // var sql = "UPDATE pet SET type=?, img=? WHERE id=?";
 
             // If fitness >= 70, type = fit.
             // If 70 >= fitness >= 40, type = normal
             // If fitness < 40, type = unfit
             if(fitness >= 70)
-                dao.excute(sql, [type, monsters[type][3]], id);
-            else if (fitness >= 40)
-                dao.excute(sql, [type, monsters[type][2]], id);
-            else
-                dao.excute(sql, [type, monsters[type][1]], id);
+                this.pet[4] += 3;
+                // dao.excute(sql, [type, monsters[type][3]], id);
+                else if (fitness >= 40)
+                    this.pet[4] += 2;
+                // dao.excute(sql, [type, monsters[type][2]], id);
+                else
+                    this.pet[4] += 1;
+                // dao.excute(sql, [type, monsters[type][1]], id);
+            }
         }
-    }
 
-    this.checkDeath = checkDeath;
-    function checkDeath() {
+        this.checkDeath = checkDeath;
+        function checkDeath() {
         // If (old age) 
         // or (no food for 4 weeks from birth of pet)
         // or (heart attack from obesity)
-        if (this.age > 75 || this.energy < -30 || this.fitness < -30) {
+        if (this.pet[1] > 75 || this.pet[5] < -30 || this.pet[6] < -30) {
             // Death: how to simulate?
+            // var sql = "UPDATE pet SET dead=? WHERE id=?";
+            // dao.excute(sql, [1, this.id]);
+            this.pet[7] = true;
+            alert("Your pet... has died.. :(");
         }
-    }
-
-    // To test, change "this.id" from each field to 1 and run the DBTEST page.
-    this.updatePet = updatePet;
-    function updatePet() {
-        this.updateStats();
-        this.updateAge();
-        this.checkDeath();
-    }
-    // Pet Accessors end
-}
-
-
-// function item(type, name, energy, fitness) {
-// this.type = type;
-// this.name = name;
-// this.energy = energy;
-// this.fitness = fitness;
-function item(type) {
-    this.type = type;
-    items = dao.getItem(type);
-    this.name = items[0];
-    this.energy = items[1];
-    this.fitness = items[2];
-
-    this.persist = persist;
-    function persist() {
-        var sql = 'INSERT INTO ownedItems (itemId) VALUES (?)';
-        dao.excute(sql, [this.type]);
-    }
-
-    this.getUserItems = getUserItems;
-    function getUserItems(evlString) {
-        var sql = 'SELECT * FROM ownedItems';
-        dao.excuteSelect(sql,[], function(result) {
-            //result[]....
-            eval(evlString);
-        });
-    }
-
-    this.deleteItem = deleteItem;
-    function deleteItem(itemId) {
-        var sql = 'DELETE FROM ownedItems WHERE id = ?';
-        dao.excute(sql, [itemId]);
     }
 }
 

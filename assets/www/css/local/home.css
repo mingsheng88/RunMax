@@ -24,13 +24,13 @@ body, .content-holder {
 Pet info
 */
 .pet-info {
-  overflow:hidden;
+  overflow:auto;
 }
 
 .pet-list {
   width:100%;
   background:ghostwhite;
-  overflow-y:auto;
+  overflow-y:hidden;
   overflow-x:hidden;
 }
 

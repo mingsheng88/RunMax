@@ -271,25 +271,20 @@ function getURLParameter(name) {
 
 // Listing-page.HTML
 function initializeListingPage() {
-  // item.getUserItems("
-  //   $('#listing-ul').append('<li><a href=\"#\"><img src=\"css/global/images/image.png\" /></a></li>'');
-  // ");
-  // alert("HERE");
-  var actions = addObjectToUnorderedList('listing-ul', '#', 'sushi.gif', 'Sushi', 'Delicacies of the sea!') +
-  addObjectToUnorderedList('listing-ul', '#', 'icecream.jpg', 'Ice-Cream', 'Cheer up!') +
-  addObjectToUnorderedList('listing-ul', '#', 'dumbbell.png', 'Dumbbells', 'Get fit~!') +
-  addObjectToUnorderedList('listing-ul', '#', 'image.png', 'Lorem ipsum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, possimus.') +
-  addObjectToUnorderedList('listing-ul', '#', 'image.png', 'Lorem ipsum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, possimus.') +
-  addObjectToUnorderedList('listing-ul', '#', 'image.png', 'Lorem ipsum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, possimus.');
-  var items = new item(1);
-  items.getUserItems(actions);
+  var action = "";
+  for (i = 0; i < 6; i++) {
+    tmp = JSON.parse(localStorage.getItem('item' + i));
+    if(tmp[5] !== 0)
+      action += addObjectToUnorderedList('#', tmp[3], tmp[0], tmp[4]);
+  }
+  $('#listing-ul').html(action).listview('refresh');
 }
 // Listing-page.HTML end
 
 
 // Addition of content to unordered list for listing pages
-function addObjectToUnorderedList(id, url, img, header, content) {
-  return '$("#' + id + '").append(\'<li><a href="' + url + '"><img src="css/global/images/' + img + '" /><h1>' + header + '</h1><p>' + content + '</p></a></li>\').listview("refresh");';
+function addObjectToUnorderedList(url, img, header, content) {
+  return '<li><a href="' + url + '"><img src="css/global/images/' + img + '" /><h1>' + header + '</h1><p>' + content + '</p></a></li>';
 }
 // Addition of content to unordered list for listing pages end
 

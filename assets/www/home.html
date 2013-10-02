@@ -15,7 +15,6 @@
   <script src="js/global/facebook-js-sdk.js"></script>
   <script src="js/global/cordova.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry"></script>
-
   <!-- Load everywhere end -->
 
 
@@ -25,6 +24,7 @@
     // executes when HTML-Document is loaded and DOM is ready
     try {
       FB.init({ appId: "555859957794511", nativeInterface: CDV.FB, useCachedDialogs: false });
+
       // getName();
       if (localStorage.getItem('photo')) {
         $("#username-field").text(localStorage.getItem('firstname'));
@@ -73,162 +73,62 @@
             <img src="css/global/images/image.png" alt="">
           </div>
           <div style="width:45%;display:inline-block;">
-            <div class="distance-no">95</div>
+            <div id="distance-completed" class="distance-no">95</div>
             <div class="distance-no-label">km completed</div>
           </div>
           <div style="width:45%;display:inline-block;">
-            <div class="distance-no">14</div>
+            <div id="runs-completed" class="distance-no">14</div>
             <div class="distance-no-label">runs completed</div>
           </div>
           <div class="ptop-15 pbottom-10" style="width:45%;display:inline-block;">
-            <div class="distance-no">33</div>
+            <div id="coins-collected" class="distance-no">33</div>
             <div class="distance-no-label">coins collected</div>
           </div>
           <div style="width:45%;display:inline-block;">
-            <div class="distance-no">4</div>
+            <div id="pets-in-total" class="distance-no">4</div>
             <div class="distance-no-label">pets in total</div>
           </div>
         </div>
       </div>
 
-
       <div class="pet-list">
         <!-- Pet info -->
-        <div class="pet-info ptop-10 pleft-20">
-          <a data-rel="popup" href="#popupMenu" data-position-to="window" data-transition="pop">
-            <div>
-              <img class="pet-img-grid" src="css/global/images/baby.gif" style="width:65px;margin-top: -12px;"/>
-            </div>
-            <div class="pets-stats-icon">
-              <img class="hunger-icon ptop-5" src="css/global/images/hunger.jpg" style=""/>
-              <img class="fitness-icon ptop-5" src="css/global/images/fitness.jpg" style=""/>
-            </div>
-            <div class="pet-stats-grid pleft-10">
-              <!-- Progress bars -->
-              <label for="slider-mini" class="slider-font">Lorem.</label>
-              <input type="range" name="slider-mini" id="slider-mini" value="65" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />
-              <label for="slider-mini" class="slider-font">Lorem ipsum.</label>
-              <input type="range" name="slider-mini" id="slider-mini" value="34" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />
-              <!-- Progress bars end -->
-            </div>
-          </a>
-        </div>
+        <script>
+        s = "";
+        monsters = localStorage.getItem('monsters').split(',');
+        for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
+          tmp = localStorage.getItem('pet' + i).split(',');
+          s += '\
+            <div class="pet-info ptop-10 pleft-20">\
+              <a data-rel="popup" href="#popupMenu-' + i + '" data-position-to="window" data-transition="pop">\
+                <div>\
+                  <img class="pet-img-grid" src="css/global/images/' + monsters[tmp[4]] + '" style="width:65px;margin-top: -12px;"/>\
+                </div>\
+                <div class="pets-stats-icon">\
+                  <img class="hunger-icon ptop-5" src="css/global/images/hunger.jpg" style=""/>\
+                  <img class="fitness-icon ptop-5" src="css/global/images/fitness.jpg" style=""/>\
+                </div>\
+                <div class="pet-stats-grid pleft-10">\
+                  <!-- Progress bars -->\
+                  <label for="slider-mini" class="slider-font">Lorem.</label>\
+                  <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[5] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />\
+                  <label for="slider-mini" class="slider-font">Lorem ipsum.</label>\
+                  <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[6] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />\
+                  <!-- Progress bars end -->\
+                </div>\
+              </a>\
+            </div>\
+            <div data-role="popup" id="popupMenu-' + i + '" data-theme="b" data-overlay-theme="b">\
+              <ul data-role="listview" data-inset="true" style="min-width:210px;">\
+                <li data-role="list-divider">Choose an action</li>\
+                <li><a href="#">Feed</a></li>\
+                <li><a href="#">Bring For Run</a></li>\
+              </ul>\
+            </div>';
+        }
+        $('.pet-list').html(s);
+        </script>
         <!-- Pet info end -->
-        <!-- Pet info -->
-        <div class="pet-info ptop-10 pleft-20">
-          <div>
-            <img class="pet-img-grid" src="css/global/images/fit.gif" style="width:65px;margin-top: -12px;"/>
-          </div>
-          <div class="pets-stats-icon">
-            <img class="hunger-icon ptop-5" src="css/global/images/hunger.jpg" style=""/>
-            <img class="fitness-icon ptop-5" src="css/global/images/fitness.jpg" style=""/>
-          </div>
-          <div class="pet-stats-grid pleft-10">
-            <!-- Progress bars -->
-            <label for="slider-mini" class="slider-font">Lorem.</label>
-            <input type="range" name="slider-mini" id="slider-mini" value="65" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />
-            <label for="slider-mini" class="slider-font">Lorem ipsum.</label>
-            <input type="range" name="slider-mini" id="slider-mini" value="34" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />
-            <!-- Progress bars end -->
-          </div>
-        </div>
-        <!-- Pet info end -->
-        <!-- Pet info -->
-        <div class="pet-info ptop-10 pleft-20">
-          <div>
-            <img class="pet-img-grid" src="css/global/images/fit2.gif" style="width:65px;margin-top: -12px;"/>
-          </div>
-          <div class="pets-stats-icon">
-            <img class="hunger-icon ptop-5" src="css/global/images/hunger.jpg" style=""/>
-            <img class="fitness-icon ptop-5" src="css/global/images/fitness.jpg" style=""/>
-          </div>
-          <div class="pet-stats-grid pleft-10">
-            <!-- Progress bars -->
-            <label for="slider-mini" class="slider-font">Lorem.</label>
-            <input type="range" name="slider-mini" id="slider-mini" value="65" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />
-            <label for="slider-mini" class="slider-font">Lorem ipsum.</label>
-            <input type="range" name="slider-mini" id="slider-mini" value="34" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />
-            <!-- Progress bars end -->
-          </div>
-        </div>
-        <!-- Pet info end -->
-        <!-- Pet info -->
-        <div class="pet-info ptop-10 pleft-20">
-          <div>
-            <img class="pet-img-grid" src="css/global/images/fat.gif" style="width:65px;margin-top: -12px;"/>
-          </div>
-          <div class="pets-stats-icon">
-            <img class="hunger-icon ptop-5" src="css/global/images/hunger.jpg" style=""/>
-            <img class="fitness-icon ptop-5" src="css/global/images/fitness.jpg" style=""/>
-          </div>
-          <div class="pet-stats-grid pleft-10">
-            <!-- Progress bars -->
-            <label for="slider-mini" class="slider-font">Lorem.</label>
-            <input type="range" name="slider-mini" id="slider-mini" value="65" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />
-            <label for="slider-mini" class="slider-font">Lorem ipsum.</label>
-            <input type="range" name="slider-mini" id="slider-mini" value="34" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />
-            <!-- Progress bars end -->
-          </div>
-        </div>
-        <!-- Pet info end -->
-        <!-- Pet info -->
-        <div class="pet-info ptop-10 pleft-20">
-          <div>
-            <img class="pet-img-grid" src="css/global/images/fat2.gif" style="width:65px;margin-top: -12px;"/>
-          </div>
-          <div class="pets-stats-icon">
-            <img class="hunger-icon ptop-5" src="css/global/images/hunger.jpg" style=""/>
-            <img class="fitness-icon ptop-5" src="css/global/images/fitness.jpg" style=""/>
-          </div>
-          <div class="pet-stats-grid pleft-10">
-            <!-- Progress bars -->
-            <label for="slider-mini" class="slider-font">Lorem.</label>
-            <input type="range" name="slider-mini" id="slider-mini" value="65" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />
-            <label for="slider-mini" class="slider-font">Lorem ipsum.</label>
-            <input type="range" name="slider-mini" id="slider-mini" value="34" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />
-            <!-- Progress bars end -->
-          </div>
-        </div>
-        <!-- Pet info end -->
-        <div data-role="popup" id="popupMenu" data-theme="b" data-overlay-theme="b">
-          <ul data-role="listview" data-inset="true" style="min-width:210px;">
-            <li data-role="list-divider">Choose an action</li>
-            <li><a href="#">View details</a></li>
-            <li><a href="#">Edit</a></li>
-            <li><a href="#">Disable</a></li>
-            <li><a href="#">Delete</a></li>
-          </ul>
-        </div>
-        <div class="pet-list-item">
-          <img src="css/global/images/fit.gif" class="pet-item-img">
-          <div class="pet-item-details">
-            <b>Pet Name</b>
-          </div>
-        </div>
-        <div class="pet-list-item">
-          <img src="css/global/images/fit2.gif" class="pet-item-img">
-          <div class="pet-item-details">
-            <b>Pet Name</b>
-          </div>
-        </div>
-        <div class="pet-list-item">
-          <img src="css/global/images/fat.gif" class="pet-item-img">
-          <div class="pet-item-details">
-            <b>Pet Name</b>
-          </div>
-        </div>
-        <div class="pet-list-item">
-          <img src="css/global/images/fat2.gif" class="pet-item-img">
-          <div class="pet-item-details">
-            <b>Pet Name</b>
-          </div>
-        </div>
-        <div class="pet-list-item">
-          <img src="css/global/images/baby.gif" class="pet-item-img">
-          <div class="pet-item-details">
-            <b>Pet Name</b>
-          </div>
-        </div>
       </div>
     </div>
 
