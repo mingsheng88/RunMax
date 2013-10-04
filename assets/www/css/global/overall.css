@@ -17,7 +17,7 @@
 }
 /* Content styling. */
 body, .content-holder {
-  overflow: hidden !important;
+  overflow: auto !important;
 }
 dl { 
   font-family: "Times New Roman", Times, serif; padding: 1em; 

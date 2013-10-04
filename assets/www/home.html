@@ -60,7 +60,7 @@
     <div data-role="header" class="primary-header" data-theme="b" data-position="fixed">
       <h1>Home</h1>
       <a href="#left-panel" data-theme="a" data-icon="arrow-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
-      <a href="#right-panel" data-theme="a" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open right panel</a>
+      <!--<a href="#right-panel" data-theme="a" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open right panel</a>-->
     </div>
     <!-- Header end -->
 
@@ -96,6 +96,7 @@
         <script>
         s = "";
         monsters = localStorage.getItem('monsters').split(',');
+        var event= localStorage.getItem("event");
         for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
           tmp = localStorage.getItem('pet' + i).split(',');
           s += '\
@@ -105,8 +106,8 @@
                   <img class="pet-img-grid" src="css/global/images/' + monsters[tmp[4]] + '" style="width:65px;margin-top: -12px;"/>\
                 </div>\
                 <div class="pets-stats-icon">\
-                  <img class="hunger-icon ptop-5" src="css/global/images/hunger.jpg" style=""/>\
-                  <img class="fitness-icon ptop-5" src="css/global/images/fitness.jpg" style=""/>\
+                  <img class="hunger-icon ptop-5" src="css/global/images/hunger.gif" style=""/>\
+                  <img class="fitness-icon ptop-5" src="css/global/images/fitness.gif" style=""/>\
                 </div>\
                 <div class="pet-stats-grid pleft-10">\
                   <!-- Progress bars -->\
@@ -122,7 +123,7 @@
               <ul data-role="listview" data-inset="true" style="min-width:210px;">\
                 <li data-role="list-divider">Choose an action</li>\
                 <li><a href="#">Feed</a></li>\
-                <li><a href="#">Bring For Run</a></li>\
+                <li><a href="running-map.html?petSelection='+'pet' + i+'&events='+event+'">Bring For Run</a></li>\
               </ul>\
             </div>';
         }
@@ -133,6 +134,7 @@
     </div>
 
     <!-- Left Panel -->
+
     <div data-role="panel" id="left-panel" data-theme="b" class="ui-left-panel">
       <!-- http://jquerymobile.com/demos/1.1.1/docs/lists/lists-themes.html -->
       <ul data-role="listview" data-theme="b" class="left-panel-data">
@@ -140,48 +142,6 @@
       <span id="initialized" style="float:none; display:none;">n</span>
     </div>
     <!-- Left Panel end -->
-
-
-    <!-- Right Panel -->
-    <div data-role="panel" id="right-panel" data-position="right" data-theme="b" class="ui-right-panel">
-      <ul data-role="listview" data-theme="b" class="right-panel-data">
-        <li data-icon="false">Run Setup</li>
-      </ul>
-      <!-- Form -->
-      <form action="running-map.html" data-ajax="false" method="get" id="setup-run">
-
-        <!-- Text -->
-        <p class="ptop-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur.</p>
-        <!-- Text end -->
-
-        <!-- Pet selection -->
-        <div data-role="fieldcontain">
-          <label for="pet-selection">Run with: </label>
-          <select data-native-menu="false" id="pet-selection" name="petSelection" data-theme="c">
-            <option value="a">Pet A</option>
-            <option value="b">Pet B</option>
-            <option value="c">Pet C</option>
-          </select>
-        </div>
-        <!-- Pet selection end -->
-
-        <!-- Additional option -->
-        <div data-role="fieldcontain" class="containing-element ptop-10">
-          <label for="events">Events?</label>
-          <select data-role="slider" id="events" name="events" data-theme="c">
-            <option value="no"> No </option>
-            <option value="yes"> Yes </option>
-          </select>
-        </div>
-        <!-- Additional option end -->
-
-        <div data-role="fieldcontain" class="ui-hide-label">
-          <input type="submit" value="Start run!"  data-theme="c">
-        </div>
-      </form>
-      <!-- Form end -->
-    </div>
-    <!-- Right Panel end -->
   </div>
 </body>
 </html>
