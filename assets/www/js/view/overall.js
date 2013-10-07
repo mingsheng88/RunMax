@@ -40,15 +40,22 @@ $( document ).on( "pageinit", ".ui-page", function() {
 
   // Load left panel
   $(function() {
+	  var link0 = "'home.html'";
+	    var imageSrc0 = "icons/home.png'";
+	    var title0 = 'Home';
+	    var subtext0 = 'Lorem ipsum dolor sit amet.';
+	    // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
+	    //   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li>")).listview('refresh');
+
     var link1 = "'profile.html'";
-    var imageSrc1 = "profile.gif'";
+    var imageSrc1 = "icons/profile.png'";
     var title1 = 'Profile';
     var subtext1 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
     //   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li>")).listview('refresh');
 
 link2 = "'myruns.html'";
-imageSrc2 = "run.gif'";
+imageSrc2 = "icons/run.png'";
 title2 = 'My Runs';
 subtext2 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link2 +"><img src=" + imageSrc2 +" />" +
@@ -63,23 +70,30 @@ subtext3 = 'Lorem ipsum dolor sit amet.';
 
     // To be developed in the future
     link4 = "'#'";
-    imageSrc4 = "hamburger.gif'";
+    imageSrc4 = "icons/shop.png'";
     title4 = 'The Pet Shop';
     subtext4 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link4 +"><img src=" + imageSrc4 +" />" +
     //   "<h1>" + title4 + "</h1><p>" + subtext4 + "</p></a></li>")).listview('refresh');
 
 link5 = "'friends.html'";
-imageSrc5 = "friend.gif'";
+imageSrc5 = "icons/gym.png'";
 title5 = 'Training Gym';
 subtext5 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link5 +"><img src=" + imageSrc5 +" />" +
     //   "<h1>" + title5 + "</h1><p>" + subtext5 + "</p></a></li>")).listview('refresh');
 
-$(".left-panel-data").html($("<li id='username-field' data-icon='false'>Stranger</li><li data-icon='false'><a data-transition='slide' href=" + link1 +"><img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc1 +" />" +
+$(".left-panel-data").html($("<li id='username-field' data-icon='false'>Stranger</li>"+
+"<li data-icon='false'><a data-transition='slide' href=" + link0 +">"+
+"<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc0 +" />" +
+"<h1>" + title0 + "</h1><p>" + subtext0 + "</p>"+
+ "<li data-icon='false'><a data-transition='slide' href=" + link1 +">"+
+ "<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc1 +" />" +
   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link2 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc2 +" />" +
-  "<h1>" + title2 + "</h1><p>" + subtext2 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link3 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc3 +" />" +
-  "<h1>" + title3 + "</h1><p>" + subtext3 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link4 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc4 +" />" +
+  "<h1>" + title2 + "</h1><p>" + subtext2 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link3 +">" +
+  //"<img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc3 +" />" +
+  //"<h1>" + title3 + "</h1><p>" + subtext3 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link4 +">"+
+  "<img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc4 +" />" +
   "<h1>" + title4 + "</h1><p>" + subtext4 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link5 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc5 +" />" +
   "<h1>" + title5 + "</h1><p>" + subtext5 + "</p></a></li><li data-icon='false'><a class='btn' href='javascript:logout()' data-ajax='false' data-role='button'>Logout</a></li>")).listview('refresh');
 

@@ -69,9 +69,10 @@
     <div data-role="content" class="content-holder" data-theme="a">
       <div class="overall-stats">
         <div class="overall-stats-row" style="text-align: center;">
+        	<!-- 
           <div style="width:100%;text-align: center;">
             <img src="css/global/images/image.png" alt="">
-          </div>
+          </div> -->
           <div style="width:45%;display:inline-block;">
             <div id="distance-completed" class="distance-no">95</div>
             <div class="distance-no-label">km completed</div>
@@ -99,12 +100,16 @@
         var event= localStorage.getItem("event");
         for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
           tmp = localStorage.getItem('pet' + i).split(',');
+          var petName=tmp[0].replace("[","");
+          petName=petName.replace("\"","");
+          petName=petName.replace("\"","");
           s += '\
             <div class="pet-info ptop-10 pleft-20">\
               <a data-rel="popup" href="#popupMenu-' + i + '" data-position-to="window" data-transition="pop">\
                 <div>\
                   <img class="pet-img-grid" src="css/global/images/' + monsters[tmp[4]] + '" style="width:65px;margin-top: -12px;"/>\
-                </div>\
+               	  <span>'+petName+'</span>\
+                 </div>\
                 <div class="pets-stats-icon">\
                   <img class="hunger-icon ptop-5" src="css/global/images/hunger.gif" style=""/>\
                   <img class="fitness-icon ptop-5" src="css/global/images/fitness.gif" style=""/>\
