@@ -40,17 +40,24 @@ $( document ).on( "pageinit", ".ui-page", function() {
 
   // Load left panel
   $(function() {
-	  var link0 = "'home.html'";
-	    var imageSrc0 = "icons/home.png'";
-	    var title0 = 'Home';
-	    var subtext0 = 'Lorem ipsum dolor sit amet.';
+   var name = "Stranger";
+   var link0 = "'home.html'";
+   var imageSrc0 = "";
+   if (localStorage.getItem('photo')) {
+    name = localStorage.getItem('firstname');
+    imageSrc0 = localStorage.getItem('photo');
+  } else {
+    imageSrc0 = "css/global/images/icons/home.png";
+  }
+  var title0 = 'Home';
+  var subtext0 = 'Lorem ipsum dolor sit amet.';
 	    // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
 	    //   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li>")).listview('refresh');
 
-    var link1 = "'profile.html'";
-    var imageSrc1 = "icons/profile.png'";
-    var title1 = 'Profile';
-    var subtext1 = 'Lorem ipsum dolor sit amet.';
+var link1 = "'profile.html'";
+var imageSrc1 = "icons/profile.png'";
+var title1 = 'Profile';
+var subtext1 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
     //   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li>")).listview('refresh');
 
@@ -83,12 +90,12 @@ subtext5 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link5 +"><img src=" + imageSrc5 +" />" +
     //   "<h1>" + title5 + "</h1><p>" + subtext5 + "</p></a></li>")).listview('refresh');
 
-$(".left-panel-data").html($("<li id='username-field' data-icon='false'>Stranger</li>"+
-"<li data-icon='false'><a data-transition='slide' href=" + link0 +">"+
-"<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc0 +" />" +
-"<h1>" + title0 + "</h1><p>" + subtext0 + "</p>"+
- "<li data-icon='false'><a data-transition='slide' href=" + link1 +">"+
- "<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc1 +" />" +
+$(".left-panel-data").html($("<li id='username-field' data-icon='false'>" + name + "</li>"+
+  "<li data-icon='false'><a data-transition='slide' href=" + link0 +">"+
+  "<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='" + imageSrc0 +"' />" +
+  "<h1>" + title0 + "</h1><p>" + subtext0 + "</p>"+
+  "<li data-icon='false'><a data-transition='slide' href=" + link1 +">"+
+  "<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc1 +" />" +
   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link2 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc2 +" />" +
   "<h1>" + title2 + "</h1><p>" + subtext2 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link3 +">" +
   //"<img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc3 +" />" +
@@ -98,6 +105,7 @@ $(".left-panel-data").html($("<li id='username-field' data-icon='false'>Stranger
   "<h1>" + title5 + "</h1><p>" + subtext5 + "</p></a></li><li data-icon='false'><a class='btn' href='javascript:logout()' data-ajax='false' data-role='button'>Logout</a></li>")).listview('refresh');
 
 $('#initialized').text("y");
+
 });
   // Load left panel end
 });
@@ -162,11 +170,12 @@ $(".run-listing").height(leftoverHeight);
 function initializeProfile() {
   if(1==1) {
     $('.primary-header-text').text("My Profile");
-// $('#username').text("Lorem ipsum.");
-// $('#email').text("Lorem@Ipsum.com");
-}
-else
-  $('.primary-header-text').text("Registration");
+    $('#username').val(localStorage.getItem('firstname'));
+    $('#email').val(localStorage.getItem('email'));
+    $('#weight').val(localStorage.getItem('weight'));
+  }
+  else
+    $('.primary-header-text').text("Registration");
 }
 // Profile / Registration.html JS end
 
@@ -196,7 +205,6 @@ function login() {
   var name;
   FB.login(function(response) {
     if(response.authResponse) {
-      alert(response.authResponse);
       FB.api('/me',function(response) {
         // var user1= new userProfile(response.first_name, response.last_name,response.email,0,response.link + "/picture");
         // user1.persist();
@@ -255,24 +263,6 @@ function getAppUsers() {
   });
 }
 
-// FB.Event.subscribe('auth.login', function(response) {
-//   alert('auth.login event');
-// });
-
-// FB.Event.subscribe('auth.logout', function(response) {
-//   alert('auth.logout event');
-// });
-
-// FB.Event.subscribe('auth.sessionChange', function(response) {
-//   alert('auth.sessionChange event');
-// });
-
-// FB.Event.subscribe('auth.statusChange', function(response) {
-//   alert('auth.statusChange event');
-// });
-// Facebook Related Functions end
-
-
 
 // Getting parameters
 function getURLParameter(name) {
@@ -286,27 +276,59 @@ function getURLParameter(name) {
 // Listing-page.HTML
 function initializeListingPage() {
   var action = "";
+  var pet = getUrlVars()["petSelection"];
   for (i = 0; i < 6; i++) {
     tmp = JSON.parse(localStorage.getItem('item' + i));
-    if(tmp[5] !== 0)
-      action += addObjectToUnorderedList('#', tmp[3], tmp[0], tmp[4]);
+    if(tmp[5] !== 0) {
+      var newUrl = "javascript:feedPet('" + pet + "', " + i + ")";
+      action += addObjectToUnorderedList(newUrl, tmp[3], tmp[0], tmp[4], tmp[5]);
+    }
   }
   $('#listing-ul').html(action).listview('refresh');
+  if ($('#listing-ul').html() == "") {
+    $('#listing-ul').html("<li><h1>Oops.. Your inventory is empty!</h1><p>How about going for a run to earn some items? =D</p></li><li><a href='running-map.html?petSelection=" + pet + "&events=" + event + "' class='btn'>Bring " + JSON.parse(localStorage.getItem(pet))[0] + " for a run!</a></li>").listview('refresh');
+  }
 }
 // Listing-page.HTML end
 
 
 // Addition of content to unordered list for listing pages
-function addObjectToUnorderedList(url, img, header, content) {
-  return '<li><a href="' + url + '"><img src="css/global/images/' + img + '" /><h1>' + header + '</h1><p>' + content + '</p></a></li>';
+function addObjectToUnorderedList(url, img, header, content, quantity) {
+  return '<li><a href="' + url + '"><img src="css/global/images/' + img + '" /><h1>' + header + ' (Quantity: ' + quantity + ')</h1><p>' + content + '</p></a></li>';
 }
 // Addition of content to unordered list for listing pages end
 
-function feedPet(petId, itemId) {
-
+function feedPet(petLabel, itemId) {
   // Need to find the way to create item quickly
-  var items = new item(0);
-  items.deleteItem(itemId);
-  var pets = new pet('','','','','');
-  pets.feedPet(petId);
+  var consumedItem = new item(itemId);
+  consumedItem.quantity--;
+  consumedItem.update();
+  var fedPet = new pet(petLabel.charAt(petLabel.length-1));
+  fedPet.energy = fedPet.energy - consumedItem.energy_impact;
+  fedPet.fitness = fedPet.fitness - consumedItem.fitness_impact;
+  fedPet.update();
+  window.location = "home.html";
+}
+
+// get url
+function getUrlVars() {
+  var vars = [], hash;
+  var hashes = window.location.href.slice(
+    window.location.href.indexOf('?') + 1).split('&');
+  for (var i = 0; i < hashes.length; i++) {
+    hash = hashes[i].split('=');
+    vars.push(hash[0]);
+    vars[hash[0]] = hash[1];
+  }
+  return vars;
+}
+
+function updateProfile() {
+  var user = document.forms["profile-form"]["username"].value;
+  var email = document.forms["profile-form"]["email"].value;
+  var weight = document.forms["profile-form"]["weight"].value;
+  localStorage.setItem('username', user);
+  localStorage.setItem('email', email);
+  localStorage.setItem('weight', weight);
+  window.location = "home.html";
 }

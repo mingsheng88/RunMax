@@ -38,7 +38,7 @@ function pet(petId) {
 
     this.update = update;
     function update() {
-        pet = localStorage.getItem('pet' + petId).split(',');
+        pet = localStorage.getItem('pet' + this.id).split(',');
         pet[0] = this.petName;
         pet[1] = this.age;
         pet[2] = this.created_at;
@@ -47,7 +47,7 @@ function pet(petId) {
         pet[5] = this.energy;
         pet[6] = this.fitness;
         pet[7] = this.dead;
-        localStorage.setItem('pet' , pet);
+        localStorage.setItem('pet' + this.id, pet);
     }
 }
 
@@ -155,4 +155,29 @@ function run(distance, coins, startTime, endTime, runWith, calories, coordinates
     this.runWith = runWith;
     this.calories = calories;
     this.coordinates = coordinates;
+}
+
+function item(itemId) {
+    var tmp = JSON.parse(localStorage.getItem('item' + itemId));
+    //Name(s), energy_impact(i), fitness_impact(i), image_location(s), description(s), quantity(i), new(b)  
+    this.id = itemId;
+    this.name = tmp[0];
+    this.energy_impact = tmp[1];
+    this.fitness_impact = tmp[2];
+    this.image_location = tmp[3];
+    this.description = tmp[4];
+    this.quantity = tmp[5];
+    this.isNew = tmp[6];
+
+    this.update = update;
+    function update() {
+        tmp[0] = this.name;
+        tmp[1] = this.energy_impact;
+        tmp[2] = this.fitness_impact;
+        tmp[3] = this.image_location;
+        tmp[4] = this.description;
+        tmp[5] = this.quantity;
+        tmp[6] = this.isNew;
+        localStorage.setItem('item' + this.id, JSON.stringify(tmp));
+    }
 }

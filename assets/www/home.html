@@ -26,10 +26,6 @@
       FB.init({ appId: "555859957794511", nativeInterface: CDV.FB, useCachedDialogs: false });
 
       // getName();
-      if (localStorage.getItem('photo')) {
-        $("#username-field").text(localStorage.getItem('firstname'));
-        $("#profile-link").attr('src', localStorage.getItem('photo'));
-      }
     } catch (e) {
       alert(e);
     }
@@ -104,42 +100,50 @@
           petName=petName.replace("\"","");
           petName=petName.replace("\"","");
           s += '\
-            <div class="pet-info ptop-10 pleft-20">\
-              <a data-rel="popup" href="#popupMenu-' + i + '" data-position-to="window" data-transition="pop">\
-                <div>\
-                  <img class="pet-img-grid" src="css/global/images/' + monsters[tmp[4]] + '" style="width:65px;margin-top: -12px;"/>\
-               	  <span>'+petName+'</span>\
-                 </div>\
-                <div class="pets-stats-icon">\
-                  <img class="hunger-icon ptop-5" src="css/global/images/hunger.gif" style=""/>\
-                  <img class="fitness-icon ptop-5" src="css/global/images/fitness.gif" style=""/>\
-                </div>\
-                <div class="pet-stats-grid pleft-10">\
-                  <!-- Progress bars -->\
-                  <label for="slider-mini" class="slider-font">Lorem.</label>\
-                  <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[5] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />\
-                  <label for="slider-mini" class="slider-font">Lorem ipsum.</label>\
-                  <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[6] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />\
-                  <!-- Progress bars end -->\
-                </div>\
-              </a>\
-            </div>\
-            <div data-role="popup" id="popupMenu-' + i + '" data-theme="b" data-overlay-theme="b">\
-              <ul data-role="listview" data-inset="true" style="min-width:210px;">\
-                <li data-role="list-divider">Choose an action</li>\
-                <li><a href="#">Feed</a></li>\
-                <li><a href="running-map.html?petSelection='+'pet' + i+'&events='+event+'">Bring For Run</a></li>\
-              </ul>\
-            </div>';
+          <div class="pet-info ptop-10 pleft-20">\
+          <a data-rel="popup" href="#popupMenu-' + i + '" data-position-to="window" data-transition="pop">\
+          <div>\
+          <img class="pet-img-grid" src="css/global/images/' + monsters[tmp[4]] + '" style="width:65px;margin-top: -12px;"/>\
+          <span>'+petName+'</span>\
+          </div>\
+          <div class="pets-stats-icon">\
+          <img class="hunger-icon ptop-5" src="css/global/images/hunger.gif" style=""/>\
+          <img class="fitness-icon ptop-5" src="css/global/images/fitness.gif" style=""/>\
+          </div>\
+          <div class="pet-stats-grid pleft-10">\
+          <!-- Progress bars -->\
+          <label for="slider-mini" class="slider-font">Lorem.</label>\
+          <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[5] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />\
+          <label for="slider-mini" class="slider-font">Lorem ipsum.</label>\
+          <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[6] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />\
+          <!-- Progress bars end -->\
+          </div>\
+          </a>\
+          </div>\
+          <div data-role="popup" id="popupMenu-' + i + '" data-theme="b" data-overlay-theme="b">\
+          <ul data-role="listview" data-inset="true" style="min-width:210px;">
+          \
+          <li data-role="list-divider">Choose an action</li>\
+          <li><a href="listing-page.html?' + 'petSelection='+ 'pet' + i + '" data-ajax="false">Feed</a></li>\
+          <li><a href="running-map.html?' + 'petSelection=' + 'pet' + i + '&events=' + event + '">Bring For Run</a></li>\
+          <li><a href="#rename" data-rel="popup" data-position-to="window" data-transition="pop">Rename</a>\
+          </ul>\
+          </div>';
         }
         $('.pet-list').html(s);
         </script>
         <!-- Pet info end -->
       </div>
     </div>
+  
+    
+    <div data-role="popup" data-overlay-theme="b" id="rename" data-theme="b">
+      <ul data-role="listview" data-inset="true" style="min-width:210px;">
+        <li>Hello world</li>
+      </ul>
+    </div>
 
     <!-- Left Panel -->
-
     <div data-role="panel" id="left-panel" data-theme="b" class="ui-left-panel">
       <!-- http://jquerymobile.com/demos/1.1.1/docs/lists/lists-themes.html -->
       <ul data-role="listview" data-theme="b" class="left-panel-data">

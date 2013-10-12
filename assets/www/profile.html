@@ -41,31 +41,28 @@
     <div data-role="content" class="content-holder" data-theme="a">
 
       <!-- Form -->
-      <form action="home.html" method="post" data-ajax="false">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur.</p>
+      <form action="javascript:updateProfile()" id="profile-form" method="post" data-ajax="false">
+        <p>Please enter your desired username, email address and weight. This is only meant to help keep track of your progress!</p>
         
         <!-- Field -->
-        <div data-role="fieldcontain" class="ui-hide-label">
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username" value="" placeholder="Username"/>
+        <div data-role="fieldcontain">
+          <input type="text" name="username" id="username" placeholder="Username" value=""/>
         </div>
         <!-- Field end -->
 
         <!-- Field -->
         <div data-role="fieldcontain" class="ui-hide-label">
-          <label for="username">Email:</label>
-          <input type="text" name="email" id="email" value="" placeholder="email"/>
+          <input type="text" name="email" id="email" placeholder="Email" value=""/>
         </div>
         <!-- Field end -->
 
         <!-- Field -->
         <div data-role="fieldcontain" class="ui-hide-label">
-          <label for="weight">Weight:</label>
-          <input type="number" name="weight" id="weight" value="" placeholder="weight in kg"/>
+          <input type="number" name="weight" id="weight" placeholder="Weight in kg" value=""/>
         </div>
         <!-- Field end -->
         
-        <input type="submit" value="Submit Button" data-ajax="false" />
+        <input type="submit" value="Submit Button" />
       </form>
       <!-- Form end -->
 
