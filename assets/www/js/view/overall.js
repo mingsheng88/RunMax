@@ -324,11 +324,20 @@ function getUrlVars() {
 }
 
 function updateProfile() {
-  var user = document.forms["profile-form"]["username"].value;
-  var email = document.forms["profile-form"]["email"].value;
-  var weight = document.forms["profile-form"]["weight"].value;
-  localStorage.setItem('username', user);
+  var user = document.forms["profile-form"]["firstname"].value.trim();
+  var email = document.forms["profile-form"]["email"].value.trim();
+  var weight = document.forms["profile-form"]["weight"].value.trim();
+  localStorage.setItem('firstname', user);
   localStorage.setItem('email', email);
   localStorage.setItem('weight', weight);
+  window.location = "home.html";
+}
+
+function renamePet() {
+  var newName = document.forms["rename-form"]["newName"].value.trim();
+  var thepet = $("#variable").html();
+  var p = new pet(thepet);
+  p.petName = newName;
+  p.update();
   window.location = "home.html";
 }

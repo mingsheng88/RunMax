@@ -25,29 +25,29 @@ function userProfile(firstname, lastname, email,  coins, img, runs, pets, items,
 }
 */
 function pet(petId) {
-    pet = localStorage.getItem("pet" + petId).split(',');
+    thePet = JSON.parse(localStorage.getItem("pet" + petId));
     this.id = petId;
-    this.petName = pet[0];
-    this.age = pet[1];
-    this.created_at = pet[2];
-    this.lastMod = pet[3];
-    this.type = pet[4];
-    this.energy = pet[5];
-    this.fitness = pet[6];
-    this.dead = pet[7];
+    this.petName = thePet[0];
+    this.age = thePet[1];
+    this.created_at = thePet[2];
+    this.lastMod = thePet[3];
+    this.type = thePet[4];
+    this.energy = thePet[5];
+    this.fitness = thePet[6];
+    this.dead = thePet[7];
 
     this.update = update;
     function update() {
-        pet = localStorage.getItem('pet' + this.id).split(',');
-        pet[0] = this.petName;
-        pet[1] = this.age;
-        pet[2] = this.created_at;
-        pet[3] = this.lastMod;
-        pet[4] = this.type;
-        pet[5] = this.energy;
-        pet[6] = this.fitness;
-        pet[7] = this.dead;
-        localStorage.setItem('pet' + this.id, pet);
+        thePet = localStorage.getItem('pet' + this.id).split(',');
+        thePet[0] = this.petName;
+        thePet[1] = this.age;
+        thePet[2] = this.created_at;
+        thePet[3] = this.lastMod;
+        thePet[4] = this.type;
+        thePet[5] = this.energy;
+        thePet[6] = this.fitness;
+        thePet[7] = this.dead;
+        localStorage.setItem('pet' + this.id, JSON.stringify(thePet));
     }
 }
 

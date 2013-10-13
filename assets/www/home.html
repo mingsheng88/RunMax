@@ -62,7 +62,7 @@
 
 
     <!-- Content -->
-    <div data-role="content" class="content-holder" data-theme="a">
+    <div data-role="content" class="content-holder" id="homepage" data-theme="a">
       <div class="overall-stats">
         <div class="overall-stats-row" style="text-align: center;">
         	<!-- 
@@ -121,12 +121,12 @@
           </a>\
           </div>\
           <div data-role="popup" id="popupMenu-' + i + '" data-theme="b" data-overlay-theme="b">\
-          <ul data-role="listview" data-inset="true" style="min-width:210px;">
-          \
+          <ul data-role="listview" data-inset="true" style="min-width:210px;">\
           <li data-role="list-divider">Choose an action</li>\
           <li><a href="listing-page.html?' + 'petSelection='+ 'pet' + i + '" data-ajax="false">Feed</a></li>\
           <li><a href="running-map.html?' + 'petSelection=' + 'pet' + i + '&events=' + event + '">Bring For Run</a></li>\
-          <li><a href="#rename" data-rel="popup" data-position-to="window" data-transition="pop">Rename</a>\
+          <li><a href="rename-dialog.html" data-rel="dialog" data-transition="pop" data-close-btn="right">Rename</a>\
+          <div id="variable" style="display:none">' + i + '</div></li>\
           </ul>\
           </div>';
         }
@@ -134,13 +134,6 @@
         </script>
         <!-- Pet info end -->
       </div>
-    </div>
-  
-    
-    <div data-role="popup" data-overlay-theme="b" id="rename" data-theme="b">
-      <ul data-role="listview" data-inset="true" style="min-width:210px;">
-        <li>Hello world</li>
-      </ul>
     </div>
 
     <!-- Left Panel -->
