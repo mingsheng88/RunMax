@@ -13,6 +13,7 @@
   <script src="js/global/cdv-plugin-fb-connect.js"></script>
   <script src="js/global/facebook-js-sdk.js"></script>
   <script src="js/global/cordova.js"></script>
+  
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry"></script>
   
   <!-- Load everywhere end -->
@@ -26,6 +27,7 @@
      // initializeMap();
     });
     //window.onresize = initializeMap;
+    loadJS("js/util/date.format.js");
     loadJS("js/view/run.js");
     loadCSS("css/local/map.css");
     </script>
@@ -71,7 +73,7 @@
         </div>
         <div class="">
           <!-- <label> --><b>Calories:</b><!-- </label> -->
-          <span class="info-generic">Loading...</span>
+          <span class="info-generic" id="calories">Loading...</span>
         </div>
         <div class="">
           <!-- <label> --><b>Run With:</b><!-- </label> -->

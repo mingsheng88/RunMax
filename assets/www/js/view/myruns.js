@@ -1,3 +1,4 @@
+/*
 function onloadmethods() {
   onresizemethods();
 }
@@ -19,3 +20,20 @@ function resizeRunListing () {
 
 window.onload = onloadmethods;
 window.onresize = onloadmethods;
+ */
+
+var noRun = localStorage.getItem("runs-completed");
+var str = '<li data-theme="b" data-role="list-divider" class="sec-header-wording">Run Listing</li>';
+for (i = 0; i < noRun; i++) {
+	var tempStr = localStorage.getItem('run' + i);
+	var runJson = JSON.parse(tempStr);
+	 str = str+' <li><a href="runDetail.html?id=run' + i + '">\
+	             <h1>'
+			+ runJson.Run.startTime + '</h1>\
+	             <p>Distance:'
+			+ runJson.Run.totalDistance + ' Km  Time Used:'
+			+ runJson.Run.totalTime + ' min:sec</p>\
+	        	 </a></li>';
+	
+}
+$('.run-listing').html(str);

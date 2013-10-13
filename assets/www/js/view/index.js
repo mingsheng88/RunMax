@@ -9,10 +9,11 @@ if (!localStorage.getItem("firstname")) {
 	localStorage.setItem("event", 'yes');
 	localStorage.setItem("weight", 60.0);
 
+
 	// s = string, i = int, d = date, b = boolean
 	// 0        1                 2                  3                  4								5 6
   // Name(s), energy_impact(i), fitness_impact(i), image_location(s), description(s), quantity(i),new(b)  
-  	item0 = ["Apple", 10, 2, "apple.gif", 'A healthy treat for your pet!', 0,false];
+  item0 = ["Apple", 10, 2, "apple.gif", 'A healthy treat for your pet!', 0,false];
   item1 = ["Ice-cream", 4, -1, "icecream.gif", 'Perhaps... something sweet?', 0];
   item2 = ["Hamburger", 37, -8, "burger.gif", 'Oh boy, that looks tasty. Squarish and all!', 0,false];
   item3 = ["Sushi", 30, 4, "sushi.gif", 'Delicacies of the sea!', 0,false];
@@ -25,10 +26,16 @@ if (!localStorage.getItem("firstname")) {
 	localStorage.setItem("item4", JSON.stringify(item4));
 	localStorage.setItem("item5", JSON.stringify(item5));
 
+	
 	// 0            1       2              3            4        5          6           7
 	// Pet Name(s), age(i), created_at(d), last_mod(d), type(i), energy(i), fitness(i), dead(b)
-	localStorage.setItem("pet0", JSON.stringify(["New Pet", 0, new Date(), new Date(), 0, 50, 50, false]));
+	var petName=generate_name('egyptian');
+	localStorage.setItem("pet0", JSON.stringify([petName, 0, new Date(), new Date(), 0, 50, 50, false]));
 	localStorage.setItem("number-of-pets", 1);
+	
+	petName=generate_name('egyptian');
+	localStorage.setItem("pet1", JSON.stringify([petName, 0, new Date(), new Date(), 0, 50, 50, false]));
+	localStorage.setItem("number-of-pets", 2);
 	// pets = [["New Pet", 0, new Date(), new Date(), 0, 50, 50, false],["New Pet 2", 0, new Date(), new Date(), 0, 50, 50, false]];
 	// localStorage.setItem('pet-list', pets);
 

@@ -1,4 +1,4 @@
-var dao = new dao();
+//var dao = new dao();
 /*
 function userProfile(firstname, lastname, email,  coins, img, runs, pets, items, activepetid) {
     this.firstname = firstname;

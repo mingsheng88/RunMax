@@ -25,6 +25,7 @@ Pet info
 */
 .pet-info {
   overflow:auto;
+  border-radius: 10px;
 }
 
 .pet-list {
@@ -134,4 +135,9 @@ Pet info end
 
 .containing-element .ui-slider-handle {
   display: block !important;
+}
+.homelabel{
+	border: 2px solid #c7c7c7;
+	border-radius: 10px;
+	margin-bottom:5px;
 }

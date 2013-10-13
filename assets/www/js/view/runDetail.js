@@ -11,6 +11,7 @@ var coins = 0;
 var startTime;
 var endTime;
 var petSelection;
+var runId = getUrlVars()["id"];
 var runMap = new google.maps.Map(document.getElementById("runMap"), {
 	zoom : 17,
 	// center : new google.maps.LatLng(lat, lng),
@@ -18,7 +19,7 @@ var runMap = new google.maps.Map(document.getElementById("runMap"), {
 	zoomControl : true,
 	mapTypeId : google.maps.MapTypeId.ROADMAP
 });
-var tempStr = localStorage.getItem('runDetail');
+var tempStr = localStorage.getItem(runId);
 var runJson = JSON.parse(tempStr);
 
 totalDistance = runJson.Run.totalDistance;
@@ -114,35 +115,7 @@ if (monsterData) {
 	}
 }
 
-$("#run_save").bind("tap", function(event, ui) {
-	var r = confirm("Are you sure to save the run?");
-	if (r == true) {
-		var noRun = localStorage.getItem("runs-completed");
-		var dist = localStorage.getItem("distance-completed");
-		var tempStr = localStorage.getItem('runDetail');
-		var totalcoins =localStorage.getItem("coins");
-		localStorage.setItem("run"+noRun,tempStr);
-		noRun++;
-		localStorage.setItem("runs-completed",noRun);
-		dist = Number(dist) + Number(totalDistance);
-		localStorage.setItem("runs-distance-completed",dist);
-		totalcoins=Number(totalcoins)+Number(coins);
-		localStorage.setItem("coins",totalcoins);
-		$.mobile.changePage("home.html");
-		// to update pet, items
-	}	
-});
-$("#run_discard").bind("tap", function(event, ui) {
-	var r = confirm("Are you sure to discard the run?");
-	if (r == true) {
-		var tempStr = localStorage.setItem('runDetail',null);
-		$.mobile.navigate("home.html");
-	}
-	
-});
-
 function resizeMap() {
-	console.log('!!!');
 	google.maps.event.trigger(runMap, 'resize');
 	drawPolyline();
 	runMap.setCenter(new google.maps.LatLng(lat, lng));

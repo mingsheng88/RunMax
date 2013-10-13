@@ -7,6 +7,11 @@ var myPath;
 var totalDistance = 0;
 var runTimer = undefined;
 var totalTime = 0;
+var startTime;
+var endTime;
+
+var calories = 0;
+var weight = localStorage.getItem("weight");
 
 var map = new google.maps.Map(document.getElementById("myMap"), {
 	zoom : 17,
@@ -23,9 +28,13 @@ var marker = new google.maps.Marker({
 });
 
 var enableEvent = getUrlVars()["events"];
+var petId=getUrlVars()["petSelection"];
+var tempStr=localStorage.getItem(petId);
+var petJson=JSON.parse(tempStr);
+var petName=petJson[0];
 var petSelection = getUrlVars()["petSelection"];
 
-$('#petSelection').html(petSelection);
+$('#petSelection').html(petName);
 
 var lastCheckPoint = 0;
 var noItems = 0;
@@ -108,7 +117,7 @@ function captureCheck() {
 		var dist = monsterLoc - (totalDistance * 1000);
 		var timeUsed = totalTime - monsterSpotedTime;
 		// time limit 2 min
-		if (timeUsed > 120000) {
+		if (timeUsed > 120000||dist > 500) {
 			$('#monsterCaptured').html('<font color="red">Escaped!</font>');
 			captureEventStarted = false;
 			var escapedSnd = new Media(
@@ -146,10 +155,13 @@ function captureCheck() {
 	}
 }
 
-var watchRun= navigator.geolocation.watchPosition(function(position) {
+var runStarted=false;
+watchRun = navigator.geolocation.watchPosition(function(position) {
 	lat = position.coords.latitude;
 	lng = position.coords.longitude;
-
+	window.setTimeout(function() {
+		resizeMap();
+	}, 2000);
 	// var accuracy=position.coords.accuracy;
 	// console.log("AccStr!!"+Math.round(position.coords.accuracy)+"!!");
 	var acc = Math.round(position.coords.accuracy);
@@ -160,12 +172,26 @@ var watchRun= navigator.geolocation.watchPosition(function(position) {
 		} else {
 			$('#singal').html('<font color="orange">Okay</font>');
 		}
-		if (typeof runTimer === "undefined") {
+		if ((typeof runTimer === "undefined")&&runStarted==false) {
+			runStarted=true;
+			// run start
 			navigator.notification.vibrate(500);
 			var startSnd = new Media(
 					"file:///android_asset/www/sounds/workoutstarted.mp3");
 			startSnd.play();
-			google.maps.event.trigger(map, 'resize');
+			startTime = dateFormat();
+			//google.maps.event.trigger(map, 'resize');
+			var startMarker = new google.maps.Marker({
+				position : new google.maps.LatLng(lat, lng),
+				icon : {
+					path : google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+					strokeColor : "blue",
+					scale : 3
+				},
+				map : map,
+				title : "Start"
+			});
+
 			runTimer = setInterval(function() {
 				myTimer();
 			}, 1000);
@@ -186,14 +212,18 @@ var watchRun= navigator.geolocation.watchPosition(function(position) {
 		// console.log(lat+" "+lng+ " "+totalTime);
 
 		$('#totalDistance').html(totalDistance + " Km");
+		calories = Math.round(weight * totalDistance);
+		$('#calories').html(calories + " Cal");
 
 		if (totalTime != 0 && totalDistance != 0) {
 			$('#pace').html(
 					formatTime(totalTime / totalDistance) + "(min:sec)/Km");
 
 		}
-		map.setCenter(new google.maps.LatLng(lat, lng));
+		
+		//map.setCenter(new google.maps.LatLng(lat, lng));
 		marker.setPosition(new google.maps.LatLng(lat, lng));
+		map.panTo(new google.maps.LatLng(lat, lng));
 
 	} else {
 
@@ -209,7 +239,10 @@ var watchRun= navigator.geolocation.watchPosition(function(position) {
 });
 
 // setTimeout("window.scrollTo(0,1)", 10); // ナビゲーションバーを消す
-
+function resizeMap() {
+	google.maps.event.trigger(map, 'resize');
+	map.setCenter(new google.maps.LatLng(lat, lng));
+}
 // 連続直線を描画
 function drawPolyline() {
 	myPath = new google.maps.Polyline({
@@ -230,13 +263,7 @@ function clearTrack() {
 	pos = [];
 }
 
-/*
- * // データ読み出し、マップ上に表示 var data = localStorage.getItem("posData"); //
- * データがなければnullがdataに入る if (data){ data = data.split(","); // ,で分割し配列に変換 for(var
- * i=0; i<data.length; i+=2){ lat = data[i]; // 緯度 lng = data[i+1]; // 経度
- * pos.push([lat, lng]); // 座標を配列に追加 polylines.push(new google.maps.LatLng(lat,
- * lng)); // 描画用の配列に座標を追加 } drawPolyline(); // 連続直線を描画する }
- */
+
 // buttons
 $("#run_reset").bind(
 		"tap",
@@ -249,8 +276,8 @@ $("#run_reset").bind(
 						"file:///android_asset/www/sounds/workoutended.mp3");
 				endSnd.play();
 				navigator.notification.vibrate(500);
-				//$.mobile.changePage( "home.html");
-				window.open("home.html","_self")
+				// $.mobile.changePage( "home.html");
+				$.mobile.changePage("home.html", "_self")
 			} else {
 				// x="You pressed Cancel!";
 			}
@@ -268,13 +295,10 @@ $("#run_stop")
 							var endSnd = new Media(
 									"file:///android_asset/www/sounds/workoutended.mp3");
 							endSnd.play();
-							var qureyStr = 'totalDistance=' + totalDistance
-									+ '&pace=' + (totalTime / totalDistance)
-									+ '&petSelection=' + petSelection
-									+ '&totalTime=' + totalTime;
+							endTime=dateFormat();
 							storeTolocal();
 							navigator.notification.vibrate(500);
-							$.mobile.navigate("finishRun.html?" + qureyStr);
+							$.mobile.changePage("finishRun.html");
 						} else {
 						}
 					}
@@ -282,9 +306,20 @@ $("#run_stop")
 
 function storeTolocal() {
 	try {
-		localStorage.setItem("posData", pos.toString());
-		localStorage.setItem("itemPos", itemPos.toString());
-		localStorage.setItem("monCapLocation", monCapLocation.toString());
+		var jStr='{"Run": {'
+			+'"startTime":"'+startTime+'",'
+			+'"endTime":"'+endTime+'",'
+			+'"totalDistance":"'+totalDistance+'",'
+			+'"pace":"'+formatTime(totalTime/totalDistance)+'",'
+			+'"petSelection":"'+petSelection+'",'
+			+'"totalTime":"'+formatTime(totalTime)+'",'
+			+'"coins":"'+calories+'",'
+			+'"posData":"'+pos.toString()+'",'
+			+'"itemPos":"'+itemPos.toString()+'",'
+			+'"monCapLocation":"'+monCapLocation.toString()+'"'
+			+'}}';
+		console.log("!!"+jStr);
+		localStorage.setItem("runDetail",jStr);
 
 	} catch (e) {
 		alert("storage error!");
@@ -304,10 +339,11 @@ function myTimer() {
 
 function myStopFunction() {
 	clearInterval(runTimer);
-	 if (watchRun != null) {
-         navigator.geolocation.clearWatch(watchRun);
-         watchRun = null;
-     }
+	//window.navigator.geolocation.clearWatch( watchRun ); 
+	if (watchRun != null) {
+		navigator.geolocation.clearWatch(watchRun);
+		watchRun = null;
+	}
 }
 
 // Common functions

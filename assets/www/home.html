@@ -46,10 +46,11 @@
       initializeHome();
       // var pet = new pet();
       // pet = pet.getActivePet();
+   
+     
     });
-    window.onresize = initializeHome;
-    
     loadJS("js/view/home.js");
+    window.onresize = initializeHome;
     loadCSS("css/local/home.css");
     </script>
     <!-- Initialization script end -->
@@ -63,8 +64,6 @@
       <!--<a href="#right-panel" data-theme="a" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open right panel</a>-->
     </div>
     <!-- Header end -->
-
-
     <!-- Content -->
     <div data-role="content" class="content-holder" data-theme="a">
       <div class="overall-stats">
@@ -73,21 +72,21 @@
           <div style="width:100%;text-align: center;">
             <img src="css/global/images/image.png" alt="">
           </div> -->
-          <div style="width:45%;display:inline-block;">
-            <div id="distance-completed" class="distance-no">95</div>
-            <div class="distance-no-label">km completed</div>
+          <div style="width:45%;display:inline-block;" class='homelabel'>
+            <div id="distance-completed" class="distance-no">0</div>
+            <div class="distance-no-label">Km completed</div>
           </div>
-          <div style="width:45%;display:inline-block;">
-            <div id="runs-completed" class="distance-no">14</div>
-            <div class="distance-no-label">runs completed</div>
+          <div style="width:45%;display:inline-block;" class='homelabel'>
+            <div id="runs-completed" class="distance-no">0</div>
+            <div class="distance-no-label">Runs completed</div>
           </div>
-          <div class="ptop-15 pbottom-10" style="width:45%;display:inline-block;">
-            <div id="coins-collected" class="distance-no">33</div>
-            <div class="distance-no-label">coins collected</div>
+          <div class="homelabel" style="width:45%;display:inline-block;" >
+            <div id="coins-collected" class="distance-no">0</div>
+            <div class="distance-no-label">Coins collected</div>
           </div>
-          <div style="width:45%;display:inline-block;">
-            <div id="pets-in-total" class="distance-no">4</div>
-            <div class="distance-no-label">pets in total</div>
+          <div style="width:45%;display:inline-block;" class='homelabel'>
+            <div id="pets-in-total" class="distance-no">0</div>
+            <div class="distance-no-label">Rumons in total</div>
           </div>
         </div>
       </div>
@@ -100,25 +99,29 @@
         var event= localStorage.getItem("event");
         for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
           tmp = localStorage.getItem('pet' + i).split(',');
-          var petName=tmp[0].replace("[","");
-          petName=petName.replace("\"","");
-          petName=petName.replace("\"","");
+          //var petName=tmp[0].replace("[","");
+          //petName=petName.replace("\"","");
+          //petName=petName.replace("\"","");
+          var tempStr=localStorage.getItem('pet' + i);
+          //console.log(tempStr);
+          var petJson=JSON.parse(tempStr);
+          //console.log(petJson);
+          var petName=petJson[0];
           s += '\
             <div class="pet-info ptop-10 pleft-20">\
-              <a data-rel="popup" href="#popupMenu-' + i + '" data-position-to="window" data-transition="pop">\
-                <div>\
-                  <img class="pet-img-grid" src="css/global/images/' + monsters[tmp[4]] + '" style="width:65px;margin-top: -12px;"/>\
-               	  <span>'+petName+'</span>\
-                 </div>\
+              <a data-rel="popup" href="#popupMenu-' + i + '" data-position-to="window" data-transition="pop"><span>'+petName+'</span>\
+              	<div>\
+                 <img class="pet-img-grid" src="css/global/images/' + monsters[tmp[4]] + '" style="width:65px;margin-top: -12px;"/>\
+              </div>\
                 <div class="pets-stats-icon">\
                   <img class="hunger-icon ptop-5" src="css/global/images/hunger.gif" style=""/>\
                   <img class="fitness-icon ptop-5" src="css/global/images/fitness.gif" style=""/>\
                 </div>\
                 <div class="pet-stats-grid pleft-10">\
                   <!-- Progress bars -->\
-                  <label for="slider-mini" class="slider-font">Lorem.</label>\
+                  <label for="slider-mini" class="slider-font">Energy</label>\
                   <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[5] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />\
-                  <label for="slider-mini" class="slider-font">Lorem ipsum.</label>\
+                  <label for="slider-mini" class="slider-font">Fitness</label>\
                   <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[6] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />\
                   <!-- Progress bars end -->\
                 </div>\
@@ -127,6 +130,7 @@
             <div data-role="popup" id="popupMenu-' + i + '" data-theme="b" data-overlay-theme="b">\
               <ul data-role="listview" data-inset="true" style="min-width:210px;">\
                 <li data-role="list-divider">Choose an action</li>\
+                <li><a onclick="changeName(\''+'pet' + i+'\',\''+petName+'\')" href="javascript:void(0)">Change Name</a></li>\
                 <li><a href="#">Feed</a></li>\
                 <li><a href="running-map.html?petSelection='+'pet' + i+'&events='+event+'">Bring For Run</a></li>\
               </ul>\
