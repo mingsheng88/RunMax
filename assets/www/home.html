@@ -22,6 +22,8 @@
   <script>
   document.addEventListener('deviceready', function() {
     // executes when HTML-Document is loaded and DOM is ready
+    // Register the event listener
+    document.addEventListener("backbutton", onBackKeyDown, false);
     try {
       FB.init({ appId: "555859957794511", nativeInterface: CDV.FB, useCachedDialogs: false });
 
@@ -34,6 +36,8 @@
       alert(e);
     }
   });
+  function onBackKeyDown() {
+  }
   </script>
   <!-- Check Facebook Login status end -->
 </head> 

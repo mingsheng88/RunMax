@@ -90,9 +90,9 @@ $(document)
 						// "</p></a></li>")).listview('refresh');
 
 						// To be developed in the future
-						link4 = "'#'";
+						link4 = "'itemShop.html'";
 						imageSrc4 = "icons/shop.png'";
-						title4 = 'The Pet Shop';
+						title4 = 'The Item Shop';
 						subtext4 = 'Lorem ipsum dolor sit amet.';
 						// $(".left-panel-data").append($("<li
 						// data-icon='false'><a href=" + link4 +"><img src=" +
@@ -143,37 +143,41 @@ $(document)
 												+ title2
 												+ "</h1><p>"
 												+ subtext2
-												+ "</p></a></li><li data-icon='false'><a data-transition='slide' href="
-												+ link3
-												+ ">"
-												+
+												+ "</p></a></li>"
+												//+"<li data-icon='false'><a data-transition='slide' href="
+												//+ link3
+												//+ ">"
+												//+
 												// "<img
 												// style='margin-top:10px;margin-left:10px;width:60px;'
 												// src='css/global/images/" +
 												// imageSrc3 +" />" +
 												// "<h1>" + title3 + "</h1><p>"
 												// + subtext3 +
-												// "</p></a></li><li
-												// data-icon='false'><a
-												// data-transition='slide'
-												// href=" + link4 +">"+
-												"<img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/"
-												+ imageSrc4
-												+ " />"
+												// "</p></a></li>"
+												+"<li data-icon='false'><a data-transition='slide' href=" + link4 +">"
+												+"<img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/"
+												+ imageSrc4 + " />"
 												+ "<h1>"
 												+ title4
 												+ "</h1><p>"
 												+ subtext4
-												+ "</p></a></li><li data-icon='false'><a data-transition='slide' href="
-												+ link5
-												+ "><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/"
-												+ imageSrc5
-												+ " />"
-												+ "<h1>"
-												+ title5
-												+ "</h1><p>"
-												+ subtext5
-												+ "</p></a></li><li data-icon='false'><a class='btn' href='javascript:logout()' data-ajax='false' data-role='button'>Logout</a></li>"))
+												+ "</p></a></li>"
+												// +"<li data-icon='false'><a
+												// data-transition='slide'
+												// href="
+												// + link5
+												// + "><img
+												// style='margin-top:10px;margin-left:10px;width:60px;'
+												// src='css/global/images/"
+												// + imageSrc5
+												// + " />"
+												// + "<h1>"
+												// + title5
+												// + "</h1><p>"
+												// + subtext5
+												// + "</p></a></li>"
+												+"<li data-icon='false'><a class='btn' href='javascript:logout()' data-ajax='false' data-role='button'>Logout</a></li>"))
 								.listview('refresh');
 
 						$('#initialized').text("y");
