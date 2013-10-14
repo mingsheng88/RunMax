@@ -86,12 +86,12 @@ var noItems = 0;
 if (itemData) {
 	itemData = itemData.split(","); // ,で分割し配列に変換
 	for (var i = 0; i < itemData.length; i += 2) {
-		lat = itemData[i]; // 緯度
-		lng = itemData[i + 1]; // 経度
+		var ilat = itemData[i]; // 緯度
+		var ilng = itemData[i + 1]; // 経度
 		var itemMarker = new google.maps.Marker({
-			position : new google.maps.LatLng(lat, lng),
+			position : new google.maps.LatLng(ilat, ilng),
 			icon : 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-			map : map,
+			map : runMap,
 			title : "Item"
 		});
 		noItems++;
@@ -102,12 +102,12 @@ var monsterData = runJson.Run.monCapLocation;
 if (monsterData) {
 	monsterData = monsterData.split(","); // ,で分割し配列に変換
 	for (var i = 0; i < monsterData.length; i += 2) {
-		lat = monsterData[i]; // 緯度
-		lng = monsterData[i + 1]; // 経度
+		var mlat = monsterData[i]; // 緯度
+		var mlng = monsterData[i + 1]; // 経度
 		var monsterMarker = new google.maps.Marker({
-			position : new google.maps.LatLng(lat, lng),
+			position : new google.maps.LatLng(mlat, mlng),
 			icon : 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-			map : map,
+			map : runMap,
 			title : "Rumon"
 		});
 		$('#monsterCaptured2').html('Yes');
@@ -124,10 +124,45 @@ $("#run_save").bind("tap", function(event, ui) {
 		localStorage.setItem("run"+noRun,tempStr);
 		noRun++;
 		localStorage.setItem("runs-completed",noRun);
-		dist = Number(dist) + Number(totalDistance);
-		localStorage.setItem("runs-distance-completed",dist);
+		dist = parseFloat(dist) + parseFloat(totalDistance);
+		localStorage.setItem("distance-completed",dist.toFixed(1));
 		totalcoins=Number(totalcoins)+Number(coins);
 		localStorage.setItem("coins",totalcoins);
+		
+		var enableEvent= localStorage.getItem("event");
+		if(enableEvent == 'yes'){
+			petId=petSelection.substring(3);
+			var p = new pet(petId);
+			var fitness=p.fitness;
+			var multi=1;
+			if(fitness<=25){
+				multi=2;
+			}
+			else if(fitness<=50&&fitness>25){
+				multi=1.5;
+			}else if(fitness>50&&fitness<=75){
+				multi=1;
+			}else if(fitness<75){
+				multi=0.5;
+			}
+			p.fitness = Math.round(fitness+parseFloat(totalDistance)*multi);
+			p.update();
+			
+			//items
+			//noItems
+			var totalItem=localStorage.getItem("totalItems");
+			
+			for(var i=0;i<noItems;i++){
+				var itemType= Math.floor((Math.random() * totalItem) + 1);
+				var it = new item((itemType-1));
+				it.quantity=it.quantity+1;
+				it.isNew=true;
+				it.update();
+			}
+		}
+		
+		
+		
 		//$.mobile.changePage("home.html");
 		window.location = "home.html";
 		// to update pet, items

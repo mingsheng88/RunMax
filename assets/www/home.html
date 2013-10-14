@@ -96,7 +96,6 @@
         <script>
         s = "";
         monsters = localStorage.getItem('monsters').split(',');
-        var event= localStorage.getItem("event");
         for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
            tmp = localStorage.getItem('pet' + i).split(',');
           //var petName=tmp[0].replace("[","");
@@ -132,7 +131,7 @@
                 <li data-role="list-divider">Choose an action</li>\
                 <li><a onclick="changeName(\''+ i+'\',\''+petName+'\')" href="javascript:void(0)">Change Name</a></li>\
                 <li><a href="listing-page.html?petSelection='+'pet' + i+'" data-ajax="false">Feed</a></li>\
-                <li><a href="running-map.html?petSelection='+'pet' + i+'&events='+event+'">Bring For Run</a></li>\
+                <li><a onclick="goToRun(\'pet'+i+'\')" href="javascript:void(0)">Bring For Run</a></li>\
               </ul>\
             </div>';
 /*

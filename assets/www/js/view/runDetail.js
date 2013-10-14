@@ -87,12 +87,12 @@ var noItems = 0;
 if (itemData) {
 	itemData = itemData.split(","); // ,で分割し配列に変換
 	for (var i = 0; i < itemData.length; i += 2) {
-		lat = itemData[i]; // 緯度
-		lng = itemData[i + 1]; // 経度
+		var ilat = itemData[i]; // 緯度
+		var ilng = itemData[i + 1]; // 経度
 		var itemMarker = new google.maps.Marker({
-			position : new google.maps.LatLng(lat, lng),
+			position : new google.maps.LatLng(ilat, ilng),
 			icon : 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-			map : map,
+			map : runMap,
 			title : "Item"
 		});
 		noItems++;
@@ -103,12 +103,12 @@ var monsterData = runJson.Run.monCapLocation;
 if (monsterData) {
 	monsterData = monsterData.split(","); // ,で分割し配列に変換
 	for (var i = 0; i < monsterData.length; i += 2) {
-		lat = monsterData[i]; // 緯度
-		lng = monsterData[i + 1]; // 経度
+		var mlat = monsterData[i]; // 緯度
+		var mlng = monsterData[i + 1]; // 経度
 		var monsterMarker = new google.maps.Marker({
-			position : new google.maps.LatLng(lat, lng),
+			position : new google.maps.LatLng(mlat, mlng),
 			icon : 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-			map : map,
+			map : runMap,
 			title : "Rumon"
 		});
 		$('#monsterCaptured2').html('Yes');

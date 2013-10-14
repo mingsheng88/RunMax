@@ -20,6 +20,7 @@ function changeName(petId, petName) {
 	}
 }
 // instantiat gps
+var accuracy=500;
 watchRun = navigator.geolocation.watchPosition(function(position) {
 	// latitude = position.coords.latitude;
 	// longitude = position.coords.longitude;
@@ -29,3 +30,14 @@ watchRun = navigator.geolocation.watchPosition(function(position) {
 	maximumAge : 1000,
 	enableHighAccuracy : true
 });
+
+function goToRun(petId){
+	 console.log("!!!"+accuracy);
+	 var event= localStorage.getItem("event");
+	 if(accuracy<=30){
+		 localStorage.setItem("petSelection",petId);
+		 $.mobile.navigate("running-map.html");
+	 }else{
+		 alert("Unable to start run, your GPS signal is too weak.");
+	 }
+}

@@ -27,6 +27,7 @@ if (!localStorage.getItem("firstname")) {
 	localStorage.setItem("item3", JSON.stringify(item3));
 	localStorage.setItem("item4", JSON.stringify(item4));
 	localStorage.setItem("item5", JSON.stringify(item5));
+	localStorage.setItem("totalItems",6);
 
 	
 	// 0            1       2              3            4        5          6           7
