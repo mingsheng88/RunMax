@@ -41,28 +41,30 @@
     <div data-role="content" class="content-holder" data-theme="a">
 
       <!-- Form -->
-      <form action="home.html" method="post" data-ajax="false">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur.</p>
+      <form action="javascript:updateProfile()" id="profile-form" method="post" data-ajax="false">
+        <p>Please enter your desired username, email address and weight. This is only meant to help keep track of your progress!</p>
         
         <!-- Field -->
         <div data-role="fieldcontain" class="ui-hide-label">
           <label for="username">Username:</label>
           <input type="text" name="username" id="username" value="" placeholder="name"/>
         </div>
+
         <!-- Field end -->
 
         <!-- Field -->
-        <div data-role="fieldcontain" class="ui-hide-label">
-          <label for="username">Email:</label>
-          <input type="text" name="email" id="email" value="" placeholder="email"/>
-        </div>
+          <input type="text" name="email" id="email" value=""/>
         <!-- Field end -->
 
         <!-- Field -->
+
         <div data-role="fieldcontain" class="ui-hide-label">
           <label for="weight">Weight:</label>
           <input type="number" name="weight" id="weight" value="" placeholder="weight(kg)"/>
         </div>
+
+         
+
         <!-- Field end -->
         <div data-role="fieldcontain" class="containing-element">
         <label for="events">Enable events?</label>
@@ -73,6 +75,9 @@
         </div>
         <a href="javascript:login()" data-role="button" class="fb-login" data-theme="c" data-ajax="false">Use Facebook Profile</a>
         <input type="submit" value="Save" data-ajax="false" />
+
+        <input type="submit" value="Submit Button" />
+
       </form>
       <!-- Form end -->
 

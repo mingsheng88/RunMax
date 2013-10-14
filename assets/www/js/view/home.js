@@ -5,22 +5,27 @@ $(document).on("pageinit", ".ui-page", function() {
 	$('#pets-in-total').html(localStorage.getItem('number-of-pets'));
 });
 
-
-function changeName(petId,petName) {
+function changeName(petId, petName) {
 	var name = prompt("Please enter Rumon name", petName);
 	if (name != null && name != "") {
-		//to do
-		alert("Rumon name changed.");
+
+		var p = new pet(petId);
+		p.petName = name;
+		p.update();
+		window.location = "home.html";
+
+		//alert("Rumon name changed.");
+	}else{
+		alert("Invalide name.");
 	}
 }
-//instantiat gps
+// instantiat gps
 watchRun = navigator.geolocation.watchPosition(function(position) {
-	//latitude = position.coords.latitude;
-	//longitude = position.coords.longitude;
+	// latitude = position.coords.latitude;
+	// longitude = position.coords.longitude;
 	accuracy = position.coords.accuracy;
 }, function() { /* error */
 }, {
 	maximumAge : 1000,
 	enableHighAccuracy : true
 });
-

@@ -128,7 +128,8 @@ $("#run_save").bind("tap", function(event, ui) {
 		localStorage.setItem("runs-distance-completed",dist);
 		totalcoins=Number(totalcoins)+Number(coins);
 		localStorage.setItem("coins",totalcoins);
-		$.mobile.changePage("home.html");
+		//$.mobile.changePage("home.html");
+		window.location = "home.html";
 		// to update pet, items
 	}	
 });

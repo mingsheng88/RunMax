@@ -1,4 +1,8 @@
 /* Swipe works with mouse as well but often causes text selection. */
+input {
+  -webkit-user-select: auto !important;
+}
+
 #swipe-panel * {
   -webkit-user-select: none;
   -moz-user-select: none;
