@@ -23,7 +23,7 @@ window.onresize = onloadmethods;
  */
 
 var noRun = localStorage.getItem("runs-completed");
-var str = '<li data-theme="b" data-role="list-divider" class="sec-header-wording">Run Listing</li>';
+var str = '<li data-theme="b" data-role="list-divider" class="sec-header-wording"><a>Run Listing</a></li>';
 for (i = 0; i < noRun; i++) {
 	var tempStr = localStorage.getItem('run' + i);
 	var runJson = JSON.parse(tempStr);
@@ -36,4 +36,5 @@ for (i = 0; i < noRun; i++) {
 	        	 </a></li>';
 	
 }
-$('.run-listing').html(str);
+$('#runList').html(str).listview('refresh');
+
