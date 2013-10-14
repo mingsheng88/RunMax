@@ -76,12 +76,6 @@ function updatePets() {
         this.pet[3] = new Date(now);
         this.pet[5] = this.pet[5] - energyDrop;
         this.pet[6] = this.pet[6] - fitnessDrop;
-
-        // Update drop values
-        // update ui
-        // var sql = "UPDATE pet SET energy=?, fitness=?, lastMod=? WHERE id=?";
-        // dao.excute(sql, [(this.energy - energyDrop), (this.fitness - fitnessDrop), new Date(now), this.id]);
-        // return [fitnessDrop, fitnessDrop];
     }
 
     // Need to work on img field

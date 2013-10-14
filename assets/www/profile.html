@@ -23,7 +23,6 @@
     $( document ).on( "pageinit", ".ui-page", function() {
       initializeProfile();
     });
-    window.onresize = initializeProfile;
     </script>
     <!-- Initialization script end -->
     
@@ -46,10 +45,9 @@
         
         <!-- Field -->
         <div data-role="fieldcontain" class="ui-hide-label">
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username" value="" placeholder="name"/>
+          <label for="firstname">Username:</label>
+          <input type="text" name="firstname" id="firstname" value="" placeholder="name"/>
         </div>
-
         <!-- Field end -->
 
         <!-- Field -->
@@ -63,8 +61,6 @@
           <input type="number" name="weight" id="weight" value="" placeholder="weight(kg)"/>
         </div>
 
-         
-
         <!-- Field end -->
         <div data-role="fieldcontain" class="containing-element">
         <label for="events">Enable events?</label>
@@ -73,10 +69,8 @@
             <option value="no"> No </option>
         </select>
         </div>
-        <a href="javascript:login()" data-role="button" class="fb-login" data-theme="c" data-ajax="false">Use Facebook Profile</a>
-        <input type="submit" value="Save" data-ajax="false" />
-
-        <input type="submit" value="Submit Button" />
+        <a href="javascript:login()" data-role="button" class="fb-login" data-theme="c">Use Facebook Profile</a>
+        <input type="submit" value="Save" />
 
       </form>
       <!-- Form end -->

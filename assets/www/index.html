@@ -11,7 +11,7 @@
   <script src="js/global/jquery.mobile-1.4.0.min.js"></script>
   <script src="js/view/overall.js"></script>
   <script type="text/javascript" src="js/util/name_generator.js"></script>
-<script type="text/javascript" src="js/util/egyptian_set.js"></script>
+  <script type="text/javascript" src="js/util/egyptian_set.js"></script>
   <script src="js/view/index.js"></script>
   <script src="js/global/cdv-plugin-fb-connect.js"></script>
   <script src="js/global/facebook-js-sdk.js"></script>
@@ -41,36 +41,38 @@
     </script>
     <!-- Initialization script end -->
 
+    <!-- Header -->
+    <div data-role="header" class="primary-header" data-theme="b" data-position="fixed">
+      <h1>Setup Profile</h1>
+    </div>
+    <!-- Header end -->
 
     <!-- Content -->
-    <div data-role="content">
-      <div class="ui-grid-solo">
-        <div class="ui-block-a logo">
-          <img src="css/global/images/logo.gif" style="width:80%;border-radius:20px;padding-top: 20%;padding-bottom:10%"/>
-          <a href="javascript:login()" data-role="button" class="fb-login" data-theme="c" data-ajax="false">Login via FB</a>
-          <a href="profile.html" data-role="button" class="registration-link" data-theme="c">Register Now!</a>
+    <div data-role="content" class="content-holder" data-theme="c">
+      <!-- Form -->
+      <form action="javascript:updateProfile()" id="profile-form" method="post" data-ajax="false">
+        <p>Please enter your desired username, email address and weight. This is only meant to help keep track of your progress!</p>
+        
+        <div data-role="fieldcontain" class="pbottom--5">
+          <a href="javascript:login()" data-role="button" class="">Setup Using Facebook</a>
         </div>
-      </div>
-      <div class="ui-grid-b">
-        <div class="ui-block-a">
-          <a id="logout-btn" href="#popupBasic" onclick="logout('home.html')" data-mini="true" data-role="button" data-rel="popup" data-position-to="window" data-transition="pop" style="display:none;">Logout</a>
+        
+        <!-- Field -->
+        <div class="ptop-5">
+          <input type="text" name="firstname" id="firstname" value="" placeholder="Name" />
         </div>
-        <div class="ui-block-b">
+        <!-- Field end -->
+        <!-- Field -->
+        <div data-role="fieldcontain" class="setup-parameters">
+          <input type="text" name="email" id="email" placeholder="Email address" value=""/>
         </div>
-        <div class="ui-block-c">
-          <a href="home.html" data-role="button" data-mini="true" class="skip" data-theme="c" data-ajax="false">Skip</a>
-        </div>
-      </div>
+        <!-- Field end -->
+        <input type="submit" value="Save" />
+
+      </form>
+      <!-- Form end -->
     </div>
     <!-- Content end -->
-
-    <!-- Popup -->
-    <div data-role="popup" id="popupBasic" class="ui-content" data-overlay-theme="a" data-theme="b">
-      <p>
-        You have been successfully logged out.
-      </p>
-    </div>
-    <!-- Popup end -->
   </div>
 </body>
 </html>
