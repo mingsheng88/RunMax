@@ -33,6 +33,7 @@
     }
   });
   function onBackKeyDown() {
+	  
   }
   </script>
   <!-- Check Facebook Login status end -->
@@ -44,7 +45,7 @@
     <script>
     $( document ).on( "pageinit", ".ui-page", function() {
       initializeHome();
-      updatePets();
+      // updatePets();
       // var pet = new pet();
       // pet = pet.getActivePet();
       
@@ -97,13 +98,11 @@
         s = "";
         monsters = localStorage.getItem('monsters').split(',');
         for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
-          tmp = localStorage.getItem('pet' + i).split(',');
+          tmp = JSON.parse(localStorage.getItem('pet' + i));
           if(!tmp[7]) {
-            var tempStr=localStorage.getItem('pet' + i);
-            //console.log(tempStr);
-            var petJson=JSON.parse(tempStr);
-            //console.log(petJson);
-            var petName=petJson[0]; 
+            //var tempStr=localStorage.getItem('pet' + i);
+            //var petJson=JSON.parse(tempStr);
+            var petName=tmp[0]; 
             s += '\
             <div class="pet-info ptop-10 pleft-20">\
             <a data-rel="popup" href="#popupMenu-' + i + '" data-position-to="window" data-transition="pop"><span>'+petName+'</span>\
