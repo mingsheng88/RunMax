@@ -47,6 +47,6 @@ if (!localStorage.getItem("firstname")) {
 	//number of runs
 	localStorage.setItem('distance-completed', 0);
 	localStorage.setItem("runs-completed", 0);
-} else if (localStorage.getItem("firstname") != 'User') {
-  window.location = "home.html";
+} else {
+	getLoginStatus("home.html", true);
 }

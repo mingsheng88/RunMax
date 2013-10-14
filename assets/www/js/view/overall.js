@@ -174,7 +174,7 @@ $(".run-listing").height(leftoverHeight);
 function initializeProfile() {
   if(1==1) {
     $('.primary-header-text').text("My Profile");
-    $('#username').val(localStorage.getItem('firstname'));
+    $('#firstname').val(localStorage.getItem('firstname'));
     $('#email').val(localStorage.getItem('email'));
     $('#weight').val(localStorage.getItem('weight'));
   }
@@ -213,6 +213,7 @@ function login() {
         // var user1= new userProfile(response.first_name, response.last_name,response.email,0,response.link + "/picture");
         // user1.persist();
         localStorage.setItem("firstname", response.name);
+        localStorage.setItem("email", response.email);
         localStorage.setItem("photo", 'http://graph.facebook.com/' + response.id + '/picture');
         window.location = "home.html";
       });
@@ -308,9 +309,10 @@ function feedPet(petLabel, itemId) {
   consumedItem.quantity--;
   consumedItem.update();
   var fedPet = new pet(petLabel.charAt(petLabel.length-1));
-  fedPet.energy = fedPet.energy - consumedItem.energy_impact;
-  fedPet.fitness = fedPet.fitness - consumedItem.fitness_impact;
+  fedPet.energy = fedPet.energy + consumedItem.energy_impact;
+  fedPet.fitness = fedPet.fitness + consumedItem.fitness_impact;
   fedPet.update();
+  alert("After eating, your pet has gained " + consumedItem.energy_impact + " energy and " + consumedItem.fitness_impact + " fitness points~");
   window.location = "home.html";
 }
 

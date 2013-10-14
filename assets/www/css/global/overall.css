@@ -3,6 +3,10 @@ input {
   -webkit-user-select: auto !important;
 }
 
+.setup-parameters {
+  margin-top:-15px !important;
+}
+
 #swipe-panel * {
   -webkit-user-select: none;
   -moz-user-select: none;
