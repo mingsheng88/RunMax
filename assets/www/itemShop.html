@@ -21,13 +21,12 @@
 		class="ui-page">
 		<!-- Initialization script -->
 		<script>
-		
 			$(document).on("pageinit", ".ui-page", function() {
 				initializeMyRuns();
 			});
 			window.onresize = initializeMyRuns;
 			loadCSS("css/local/myruns.css");
-			//loadJS("js/view/myruns.js");
+			loadJS("js/view/itemShop.js");
 		</script>
 		<!-- Initialization script end -->
 
@@ -45,18 +44,14 @@
 		<!-- Content -->
 		<div data-role="content" data-theme="a" class="content-holder">
 
-			<!-- Pet info -->
-		<div class="analytics">
-        <div class="ui-grid-a" style="margin-left: auto; margin-right: auto;width:90%;">
-          <div class="analytics-a ui-block-a" style="background:white;border:1px solid black;">
-            Analytics A
-          </div>
-          <div class="analytics-b ui-block-b" style="background:white;border:1px solid black;">
-            Analytics B
-          </div>
-        </div>
-      </div>
-			<!-- Pet info end -->
+			
+	
+				<div id="coins" class="ui-grid-a pbottom-10 ptop-10 "
+					style="margin-left: auto; margin-right: auto; width: 90%; height: 50px;">
+				Loading...
+				</div>
+		
+			
 
 
 			<!-- Listing -->
@@ -65,7 +60,7 @@
         </ul>
       </div> -->
 			<div>
-				<ul id="runList" data-role="listview" data-theme="d"
+				<ul id="itemList" data-role="listview" data-theme="d"
 					class="run-listing">
 					<li data-theme="b" data-role="list-divider"
 						class="sec-header-wording">Items</li>
@@ -77,11 +72,6 @@
             <h1>Lorem ipsum.</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, possimus.</p>
           </a></li>-->
-					<li><a href="">
-							<h1>Lorem ipsum.</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Beatae, eaque!</p>
-					</a></li>
 				</ul>
 			</div>
 			<!-- Listing end -->
@@ -98,6 +88,6 @@
 		</div>
 		<!-- Left Panel end -->
 	</div>
-	
+
 </body>
 </html>

@@ -78,7 +78,7 @@ subtext3 = 'Lorem ipsum dolor sit amet.';
     // To be developed in the future
     link4 = "'itemShop.html'";
     imageSrc4 = "icons/shop.png'";
-    title4 = 'The Pet Shop';
+    title4 = 'The Item Shop';
     subtext4 = 'Lorem ipsum dolor sit amet.';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link4 +"><img src=" + imageSrc4 +" />" +
     //   "<h1>" + title4 + "</h1><p>" + subtext4 + "</p></a></li>")).listview('refresh');
@@ -91,7 +91,7 @@ subtext5 = 'Lorem ipsum dolor sit amet.';
     //   "<h1>" + title5 + "</h1><p>" + subtext5 + "</p></a></li>")).listview('refresh');
 
 $(".left-panel-data").html($("<li id='username-field' data-icon='false'>" + name + "</li>"+
-  "<li data-icon='false'><a data-transition='slide' href=" + link0 +">"+
+  "<li data-icon='false'><a data-transition='slide' data-ajax='false' href=" + link0 +">"+
   "<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='" + imageSrc0 +"' />" +
   "<h1>" + title0 + "</h1><p>" + subtext0 + "</p>"+
   "<li data-icon='false'><a data-transition='slide' href=" + link1 +">"+

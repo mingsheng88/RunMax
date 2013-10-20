@@ -162,6 +162,7 @@ function item(itemId) {
     this.description = tmp[4];
     this.quantity = tmp[5];
     this.isNew = tmp[6];
+    this.price = tmp[7];
 
     this.update = update;
     function update() {
@@ -172,6 +173,7 @@ function item(itemId) {
         tmp[4] = this.description;
         tmp[5] = this.quantity;
         tmp[6] = this.isNew;
+        //tmp[7] = this.price;
         localStorage.setItem('item' + this.id, JSON.stringify(tmp));
     }
 }

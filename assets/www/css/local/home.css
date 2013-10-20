@@ -17,6 +17,7 @@ body, .content-holder {
 }
 
 .distance-no {
+  height: 85px;
   font-size: 72px;
 }
 
@@ -140,4 +141,5 @@ Pet info end
 	border: 2px solid #c7c7c7;
 	border-radius: 10px;
 	margin-bottom:5px;
+	height: 110px;
 }

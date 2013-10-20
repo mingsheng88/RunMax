@@ -29,6 +29,7 @@ totalTime = runJson.Run.totalTime;
 startTime = runJson.Run.startTime;
 endTime = runJson.Run.endTime;
 coins = runJson.Run.coins;
+
 var tempStr = localStorage.getItem(petSelection);
 var petJson = JSON.parse(tempStr);
 var petName = petJson[0];
@@ -130,6 +131,7 @@ $("#run_save").bind("tap", function(event, ui) {
 		localStorage.setItem("coins",totalcoins);
 		
 		var enableEvent= localStorage.getItem("event");
+		var addedFit=0;
 		if(enableEvent == 'yes'){
 			petId=petSelection.substring(3);
 			var p = new pet(petId);
@@ -145,13 +147,13 @@ $("#run_save").bind("tap", function(event, ui) {
 			}else if(fitness<75){
 				multi=0.5;
 			}
+			addedFit=Math.round(parseFloat(totalDistance)*multi);
 			p.fitness = Math.round(fitness+parseFloat(totalDistance)*multi);
 			p.update();
 			
 			//items
 			//noItems
 			var totalItem=localStorage.getItem("totalItems");
-			
 			for(var i=0;i<noItems;i++){
 				var itemType= Math.floor((Math.random() * totalItem) + 1);
 				var it = new item((itemType-1));
@@ -159,12 +161,16 @@ $("#run_save").bind("tap", function(event, ui) {
 				it.isNew=true;
 				it.update();
 			}
+			if (monsterData) {
+				var petName=generate_name('egyptian');
+				var totalPet=localStorage.getItem("number-of-pets");
+				localStorage.setItem("pet0", JSON.stringify([petName, 0, new Date(), new Date(), 0, 50, 50, false]));
+				localStorage.setItem("number-of-pets", (totalPet+1));
+			}
 		}
-		
-		
-		
 		//$.mobile.changePage("home.html");
-		window.location = "home.html";
+		localStorage.setItem("finishedRun",'true');
+		window.location = "home.html?rumonName="+$('#petSelection2').html()+"&addedFit="+addedFit;
 		// to update pet, items
 	}	
 });
