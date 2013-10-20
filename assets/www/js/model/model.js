@@ -56,7 +56,7 @@ function updatePets() {
         this.pet = localStorage.getItem("pet" + i).split(',');
         updateStats(pet);
         updateAge(pet);
-        updateDeathStatus(pet);
+        checkDeath(pet);
     }
 
     // Tested. 
@@ -94,7 +94,7 @@ function updatePets() {
         // Pet will evolve 
         var typeNow = Math.floor(newAge / 20);
         // Pet evolves if the type now > type before
-        if (typeNow > type) {
+        if (typeNow > this.type) {
             alert("Congratulations! It seems like " + this.pet[0] + " has evolved~~");
             this.evolvePet();
         }
