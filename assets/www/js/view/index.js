@@ -40,6 +40,10 @@ if (!localStorage.getItem("firstname")) {
 	petName=generate_name('egyptian');
 	localStorage.setItem("pet1", JSON.stringify([petName, 4, new Date(), new Date(), 2, 50, 50, false]));
 	localStorage.setItem("number-of-pets", 2);
+	
+	petName=generate_name('egyptian');
+	localStorage.setItem("pet2", JSON.stringify([petName, 4, new Date(), new Date(), 1, 50, 50, false]));
+	localStorage.setItem("number-of-pets", 3);
 	// pets = [["New Pet", 0, new Date(), new Date(), 0, 50, 50, false],["New Pet 2", 0, new Date(), new Date(), 0, 50, 50, false]];
 	// localStorage.setItem('pet-list', pets);
 

@@ -25,6 +25,13 @@ var loadJS = function(src) {
 // Swipe Function
 $( document ).on( "pageinit", ".ui-page", function() {
   var $page = $(this);
+  
+  $.extend($.event.special.swipe,{
+	  scrollSupressionThreshold: 100, // More than this horizontal displacement, and we will suppress scrolling.
+	  durationThreshold: 200, // More time than this, and it isn't a swipe.
+	  horizontalDistanceThreshold: 100,  // Swipe horizontal displacement must be more than this.
+	  verticalDistanceThreshold: 1000,  // Swipe vertical displacement must be less than this.
+	});
   $page.on( "swipeleft swiperight", function( e ) {
     // We check if there is no open panel on the page because otherwise
     // a swipe to close the left panel would also open the right panel (and v.v.).
@@ -50,28 +57,28 @@ $( document ).on( "pageinit", ".ui-page", function() {
     imageSrc0 = "css/global/images/icons/home.png";
   }
   var title0 = 'Home';
-  var subtext0 = 'Lorem ipsum dolor sit amet.';
+  var subtext0 = '';
 	    // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
 	    //   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li>")).listview('refresh');
 
 var link1 = "'profile.html'";
 var imageSrc1 = "icons/profile.png'";
 var title1 = 'Profile';
-var subtext1 = 'Lorem ipsum dolor sit amet.';
+var subtext1 = '';
     // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
     //   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li>")).listview('refresh');
 
 link2 = "'myruns.html'";
 imageSrc2 = "icons/run.png'";
 title2 = 'My Runs';
-subtext2 = 'Lorem ipsum dolor sit amet.';
+subtext2 = '';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link2 +"><img src=" + imageSrc2 +" />" +
     //   "<h1>" + title2 + "</h1><p>" + subtext2 + "</p></a></li>")).listview('refresh');
 
 link3 = "'listing-page.html'";
 imageSrc3 = "pet.gif'";
 title3 = 'My Pets';
-subtext3 = 'Lorem ipsum dolor sit amet.';
+subtext3 = '';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link3 +"><img src=" + imageSrc3 +" />" +
     //   "<h1>" + title3 + "</h1><p>" + subtext3 + "</p></a></li>")).listview('refresh');
 
@@ -79,14 +86,14 @@ subtext3 = 'Lorem ipsum dolor sit amet.';
     link4 = "'itemShop.html'";
     imageSrc4 = "icons/shop.png'";
     title4 = 'The Item Shop';
-    subtext4 = 'Lorem ipsum dolor sit amet.';
+    subtext4 = '';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link4 +"><img src=" + imageSrc4 +" />" +
     //   "<h1>" + title4 + "</h1><p>" + subtext4 + "</p></a></li>")).listview('refresh');
 
 link5 = "'friends.html'";
 imageSrc5 = "icons/gym.png'";
 title5 = 'Training Gym';
-subtext5 = 'Lorem ipsum dolor sit amet.';
+subtext5 = '';
     // $(".left-panel-data").append($("<li data-icon='false'><a href=" + link5 +"><img src=" + imageSrc5 +" />" +
     //   "<h1>" + title5 + "</h1><p>" + subtext5 + "</p></a></li>")).listview('refresh');
 

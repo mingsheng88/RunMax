@@ -37,6 +37,9 @@ for (i = 0; i < noRun; i++) {
 	        	 </a></li>';
 	
 }
+setTimeout(function () {
+	$('#runList').html(str).listview('refresh');
+}, 1000);
 
-$('#runList').html(str).listview('refresh');
+
 

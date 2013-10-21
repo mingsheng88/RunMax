@@ -19,7 +19,6 @@ $(document).on(
 function changeName(petId, petName) {
 	var name = prompt("Please enter Rumon name", petName);
 	if (name != null && name != "") {
-
 		var p = new pet(petId);
 		p.petName = name;
 		p.update();
@@ -36,6 +35,11 @@ watchRun = navigator.geolocation.watchPosition(function(position) {
 	// latitude = position.coords.latitude;
 	// longitude = position.coords.longitude;
 	accuracy = position.coords.accuracy;
+	if (accuracy <= 30) {
+		$("#signal").html("<img src='css/global/images/green_dot.png'>");
+	} else {
+		$("#signal").html("<img src='css/global/images/red_dot.png'>");
+	}
 }, function() { /* error */
 }, {
 	maximumAge : 1000,

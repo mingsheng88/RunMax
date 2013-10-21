@@ -1,112 +1,128 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-  <!-- Load everywhere -->
-  <meta name="viewport" content="user-scalable=no,width=device-width" />
-  <link rel="stylesheet" href="css/global/jquery.mobile-1.4.0.min.css" />
-  <link rel="stylesheet" href="css/global/overall.css" />
-  <script src="js/dao/dao.js"></script>
-  <script src="js/model/model.js"></script>
-  <script src="js/global/jquery-1.10.2.min.js"></script>
-  <script src="js/global/jquery.mobile-1.4.0.min.js"></script>
-  <script src="js/view/overall.js"></script>
-  <script src="js/view/home.js"></script>
-  <script src="js/global/cdv-plugin-fb-connect.js"></script>
-  <script src="js/global/facebook-js-sdk.js"></script>
-  <script src="js/global/cordova.js"></script>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry"></script>
-  <!-- Load everywhere end -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Load everywhere -->
+<meta name="viewport" content="user-scalable=no,width=device-width" />
+<link rel="stylesheet" href="css/global/jquery.mobile-1.4.0.min.css" />
+<link rel="stylesheet" href="css/global/overall.css" />
+<script src="js/dao/dao.js"></script>
+<script src="js/model/model.js"></script>
+<script src="js/global/jquery-1.10.2.min.js"></script>
+<script src="js/global/jquery.mobile-1.4.0.min.js"></script>
+<script src="js/view/overall.js"></script>
+<script src="js/view/home.js"></script>
+<script src="js/global/cdv-plugin-fb-connect.js"></script>
+<script src="js/global/facebook-js-sdk.js"></script>
+<script src="js/global/cordova.js"></script>
+<script src="js/global/iscroll.js"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry"></script>
+<!-- Load everywhere end -->
 
 
-  <!-- Check Facebook login status -->
-  <script>
-  document.addEventListener('deviceready', function() {
-    // executes when HTML-Document is loaded and DOM is ready
-    // Register the event listener
-    document.addEventListener("backbutton", onBackKeyDown, false);
-    try {
-      FB.init({ appId: "555859957794511", nativeInterface: CDV.FB, useCachedDialogs: false });
+<!-- Check Facebook login status -->
+<script>
+	document.addEventListener('deviceready', function() {
+		// executes when HTML-Document is loaded and DOM is ready
+		// Register the event listener
+		document.addEventListener("backbutton", onBackKeyDown, false);
+		try {
+			FB.init({
+				appId : "555859957794511",
+				nativeInterface : CDV.FB,
+				useCachedDialogs : false
+			});
 
-      // getName();
-    } catch (e) {
-      alert(e);
-    }
-  });
-  function onBackKeyDown() {
-	  
-  }
-  </script>
-  <!-- Check Facebook Login status end -->
-</head> 
+			// getName();
+		} catch (e) {
+			alert(e);
+		}
+	});
+	function onBackKeyDown() {
+		if($.mobile.activePage.attr("id") == "home"){
+			 navigator.app.exitApp();
+		}else{
+			window.location = "home.html";
+		}
+		
+	}
+</script>
+<!-- Check Facebook Login status end -->
+</head>
 
 <body>
-  <div data-role="page" data-url="swipe-panel" id="swipe-panel" class="ui-page">
-    <!-- Initialization script -->
-    <script>
-    $( document ).on( "pageinit", ".ui-page", function() {
-      initializeHome();
-      // updatePets();
-      // var pet = new pet();
-      // pet = pet.getActivePet();
-      
-      
-    });
-    loadJS("js/view/home.js");
-    loadCSS("css/local/home.css");
-    </script>
-    <!-- Initialization script end -->
-    
+	<div data-role="page" data-url="swipe-panel" id="home"
+		class="ui-page">
+		<!-- Initialization script -->
+		<script>
+			$(document).on("pageinit", ".ui-page", function() {
+				initializeHome();
+				updatePets();
+				// var pet = new pet();
+				// pet = pet.getActivePet();
+
+			});
+			loadJS("js/view/home.js");
+			loadCSS("css/local/home.css");
+		</script>
+		<!-- Initialization script end -->
 
 
-    <!-- Header -->
-    <div data-role="header" class="primary-header" data-theme="b" data-position="fixed">
-      <h1>Home</h1>
-      <a href="#left-panel" data-theme="a" data-icon="arrow-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
-      <!--<a href="#right-panel" data-theme="a" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open right panel</a>-->
-    </div>
-    <!-- Header end -->
-    <!-- Content -->
-    <div data-role="content" class="content-holder" id="homepage" data-theme="a">
-      <div class="overall-stats">
-        <div class="overall-stats-row" style="text-align: center;">
-        	<!-- 
+
+		<!-- Header -->
+		<div data-role="header" class="primary-header" data-theme="b"
+			data-position="fixed">
+			<h1>Home</h1>
+			<a href="#left-panel" data-theme="b" data-icon="arrow-r"
+				data-iconpos="notext" data-shadow="false" data-iconshadow="false"
+				class="ui-icon-nodisc">Menu</a>
+			<!--<a href="#right-panel" data-theme="b" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open right panel</a>-->
+		</div>
+		<!-- Header end -->
+		<!-- Content -->
+		<div data-role="content" class="content-holder" id="homepage"
+			data-theme="a">
+			<div class="overall-stats">
+				<div class="overall-stats-row" style="text-align: center;">
+					<!-- 
           <div style="width:100%;text-align: center;">
             <img src="css/global/images/image.png" alt="">
           </div> -->
-          <div style="width:45%;display:inline-block;" class='homelabel'>
-            <div id="distance-completed" class="distance-no">0</div>
-            <div class="distance-no-label">Km completed</div>
-          </div>
-          <div style="width:45%;display:inline-block;" class='homelabel'>
-            <div id="runs-completed" class="distance-no">0</div>
-            <div class="distance-no-label">Runs completed</div>
-          </div>
-          <div class="homelabel" style="width:45%;display:inline-block;" >
-            <div id="coins-collected" class="distance-no">0</div>
-            <div class="distance-no-label">Coins collected</div>
-          </div>
-          <div style="width:45%;display:inline-block;" class='homelabel'>
-            <div id="pets-in-total" class="distance-no">0</div>
-            <div class="distance-no-label">Rumons in total</div>
-          </div>
-        </div>
-      </div>
+					<div style="width: 45%; display: inline-block;" class='homelabel'>
+						<div id="distance-completed" class="distance-no">0</div>
+						<div class="distance-no-label">Km completed</div>
+					</div>
+					<div style="width: 45%; display: inline-block;" class='homelabel'>
+						<div id="runs-completed" class="distance-no">0</div>
+						<div class="distance-no-label">Runs completed</div>
+					</div>
+					<div class="homelabel" style="width: 45%; display: inline-block;">
+						<div id="coins-collected" class="distance-no">0</div>
+						<div class="distance-no-label">Coins collected</div>
+					</div>
+					<div style="width: 45%; display: inline-block;" class='homelabel'>
+						<div id="pets-in-total" class="distance-no">0</div>
+						<div class="distance-no-label">Rumons in total</div>
+					</div>
+				</div>
+			</div>
 
-      <div class="pet-list">
-        <!-- Pet info -->
-        <script>
-        s = "";
-        monsters = localStorage.getItem('monsters').split(',');
-        for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
-          tmp = JSON.parse(localStorage.getItem('pet' + i));
-          if(!tmp[7]) {
-            //var tempStr=localStorage.getItem('pet' + i);
-            //var petJson=JSON.parse(tempStr);
-            var petName=tmp[0]; 
-            s += '\
-            <div class="pet-info ptop-10 pleft-20">\
-            <a data-rel="popup" href="#popupMenu-' + i + '" data-position-to="window" data-transition="pop"><span>'+petName+'</span>\
+			<div style="overflow:scroll;" class="pet-list">
+				<!-- Pet info -->
+				<script>
+					s = "";
+					monsters = localStorage.getItem('monsters').split(',');
+					for (i = 0; i < localStorage.getItem('number-of-pets'); i++) {
+						tmp = JSON.parse(localStorage.getItem('pet' + i));
+						if (!tmp[7]) {
+							//var tempStr=localStorage.getItem('pet' + i);
+							//var petJson=JSON.parse(tempStr);
+							var petName = tmp[0];
+							s += '\
+            <div id="scroller" class="pet-info ptop-10 pleft-20">\
+            <a data-rel="popup" href="#popupMenu-' + i + '" data-position-to="window" data-transition="pop"><span>'
+									+ petName
+									+ '</span>\
             <div>\
             <img class="pet-img-grid" src="css/global/images/' + monsters[tmp[4]] + '" style="width:65px;margin-top: -12px;"/>\
             </div>\
@@ -127,27 +143,33 @@
             <div data-role="popup" id="popupMenu-' + i + '" data-theme="b" data-overlay-theme="b">\
             <ul data-role="listview" data-inset="true" style="min-width:210px;">\
             <li data-role="list-divider">Choose an action</li>\
-            <li><a href="listing-page.html?petSelection='+'pet' + i+'" data-ajax="false">Feed</a></li>\
-            <li><a onclick="goToRun(\'pet'+i+'\')" href="javascript:void(0)">Bring For Run</a></li>\
-            <li><a onclick="changeName(\''+ i+'\',\''+petName+'\')" href="javascript:void(0)">Change Name</a></li>\
+            <li><a href="listing-page.html?petSelection='
+									+ 'pet'
+									+ i
+									+ '" data-ajax="false">Feed</a></li>\
+            <li><a onclick="goToRun(\'pet'
+									+ i
+									+ '\')" href="javascript:void(0)">Bring For Run <span id="signal"></span></a></li>\
+            <li><a onclick="changeName('+ i+ ',\''+ petName+ '\')" href="javascript:void(0)">Change Name</a></li>\
             </ul>\
             </div>';
-          }
-        }
-        $('.pet-list').html(s);
-        </script>
-        <!-- Pet info end -->
-      </div>
-    </div>
-
-    <!-- Left Panel -->
-    <div data-role="panel" id="left-panel" data-theme="b" class="ui-left-panel">
-      <!-- http://jquerymobile.com/demos/1.1.1/docs/lists/lists-themes.html -->
-      <ul data-role="listview" data-theme="b" class="left-panel-data">
-      </ul>
-      <span id="initialized" style="float:none; display:none;">n</span>
-    </div>
-    <!-- Left Panel end -->
-  </div>
+						}
+					}
+					$('.pet-list').html(s);
+				</script>
+				<!-- Pet info end -->
+			</div>
+		</div>
+	
+		<!-- Left Panel -->
+		<div data-role="panel" id="left-panel" data-theme="b"
+			class="ui-left-panel">
+			<!-- http://jquerymobile.com/demos/1.1.1/docs/lists/lists-themes.html -->
+			<ul data-role="listview" data-theme="b" class="left-panel-data">
+			</ul>
+			<span id="initialized" style="float: none; display: none;">n</span>
+		</div>
+		<!-- Left Panel end -->
+	</div>
 </body>
 </html>
