@@ -58,7 +58,7 @@
 			$(document).on("pageinit", ".ui-page", function() {
 				initializeHome();
 				updatePets();
-				// var pet = new pet();
+				// var pet = new rumon();
 				// pet = pet.getActivePet();
 
 			});
@@ -110,8 +110,9 @@
 			<div style="overflow:scroll;" class="pet-list">
 				<!-- Pet info -->
 				<script>
-					s = "";
+					var s = "";
 					monsters = localStorage.getItem('monsters').split(',');
+          var j = 0;
 					for (i = 0; i < localStorage.getItem('number-of-pets'); i++) {
 						tmp = JSON.parse(localStorage.getItem('pet' + i));
 						if (!tmp[7]) {
@@ -133,9 +134,9 @@
             <div class="pet-stats-grid pleft-10">\
             <!-- Progress bars -->\
             <label for="slider-mini" class="slider-font">Energy</label>\
-            <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[5] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />\
+            <input type="range" name="slider-mini" id="slider-energy-' + i + '" value="' + tmp[5] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />\
             <label for="slider-mini" class="slider-font">Fitness</label>\
-            <input type="range" name="slider-mini" id="slider-mini" value="' + tmp[6] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />\
+            <input type="range" name="slider-mini" id="slider-fitness-' + i + '" value="' + tmp[6] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />\
             <!-- Progress bars end -->\
             </div>\
             </a>\
@@ -153,8 +154,14 @@
             <li><a onclick="changeName('+ i+ ',\''+ petName+ '\')" href="javascript:void(0)">Change Name</a></li>\
             </ul>\
             </div>';
-						}
+						} else {
+              j++;
+            }
 					}
+          if(j == localStorage.getItem('number-of-pets')) {
+            s = '<div id="scroller" class="pet-info ptop-60 pleft-20 ta-center">\
+            Looks like you have no pets at the moment! <br>Go for a run now to catch one?</div>';
+          }
 					$('.pet-list').html(s);
 				</script>
 				<!-- Pet info end -->

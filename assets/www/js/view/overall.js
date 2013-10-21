@@ -49,13 +49,10 @@ $( document ).on( "pageinit", ".ui-page", function() {
   $(function() {
    var name = "Stranger";
    var link0 = "'home.html'";
-   var imageSrc0 = "";
+   var imageSrc0 = "css/global/images/icons/home.png";
    if (localStorage.getItem('photo')) {
     name = localStorage.getItem('firstname');
-    imageSrc0 = localStorage.getItem('photo');
-  } else {
-    imageSrc0 = "css/global/images/icons/home.png";
-  }
+  } 
   var title0 = 'Home';
   var subtext0 = '';
 	    // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
@@ -63,6 +60,11 @@ $( document ).on( "pageinit", ".ui-page", function() {
 
 var link1 = "'profile.html'";
 var imageSrc1 = "icons/profile.png'";
+   if (localStorage.getItem('photo')) {
+    imageSrc1 = localStorage.getItem('photo');
+  } else {
+    imageSrc1 = "css/global/images/icons/profile.png";
+  }
 var title1 = 'Profile';
 var subtext1 = '';
     // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
@@ -102,7 +104,7 @@ $(".left-panel-data").html($("<li id='username-field' data-icon='false'>" + name
   "<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='" + imageSrc0 +"' />" +
   "<h1>" + title0 + "</h1><p>" + subtext0 + "</p>"+
   "<li data-icon='false'><a data-transition='slide' href=" + link1 +">"+
-  "<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc1 +" />" +
+  "<img id='profile-link' style='margin-top:10px;margin-left:10px;width:60px;' src='" + imageSrc1 +"' />" +
   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li><li data-icon='false'><a data-transition='slide' href=" + link2 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc2 +" />" +
   "<h1>" + title2 + "</h1><p>" + subtext2 + "</p></a></li>"+
   //"<li data-icon='false'><a data-transition='slide' href=" + link3 +">" +
@@ -113,7 +115,7 @@ $(".left-panel-data").html($("<li id='username-field' data-icon='false'>" + name
   "<h1>" + title4 + "</h1><p>" + subtext4 + "</p></a></li>"
   //+"<li data-icon='false'><a data-transition='slide' href=" + link5 +"><img style='margin-top:10px;margin-left:10px;width:60px;' src='css/global/images/" + imageSrc5 +" />" +
   //"<h1>" + title5 + "</h1><p>" + subtext5 + "</p></a></li>"
-  +"<li data-icon='false'><a class='btn' href='javascript:logout()' data-ajax='false' data-role='button'>Logout</a></li>")).listview('refresh');
+  +" ")).listview('refresh');
 
 $('#initialized').text("y");
 
@@ -179,14 +181,11 @@ $(".run-listing").height(leftoverHeight);
 
 // Profile / Registration.html JS
 function initializeProfile() {
-  if(1==1) {
-    $('.primary-header-text').text("My Profile");
-    $('#firstname').val(localStorage.getItem('firstname'));
-    $('#email').val(localStorage.getItem('email'));
-    $('#weight').val(localStorage.getItem('weight'));
-  }
-  else
-    $('.primary-header-text').text("Registration");
+  $('.primary-header-text').text("My Profile");
+  $('#firstname').val(localStorage.getItem('firstname'));
+  $('#email').val(localStorage.getItem('email'));
+  $('#weight').val(localStorage.getItem('weight'));
+  $('#event').val(localStorage.getItem('event')).slider("refresh");
 }
 // Profile / Registration.html JS end
 
@@ -315,7 +314,7 @@ function feedPet(petLabel, itemId) {
   var consumedItem = new item(itemId);
   consumedItem.quantity--;
   consumedItem.update();
-  var fedPet = new pet(petLabel.charAt(petLabel.length-1));
+  var fedPet = new rumon(petLabel.charAt(petLabel.length-1));
   fedPet.energy = fedPet.energy + consumedItem.energy_impact;
   fedPet.fitness = fedPet.fitness + consumedItem.fitness_impact;
   fedPet.update();
@@ -340,16 +339,18 @@ function updateProfile() {
   var user = document.forms["profile-form"]["firstname"].value.trim();
   var email = document.forms["profile-form"]["email"].value.trim();
   var weight = document.forms["profile-form"]["weight"].value.trim();
+  var events = document.forms["profile-form"]["event"].value.trim();
   localStorage.setItem('firstname', user);
   localStorage.setItem('email', email);
   localStorage.setItem('weight', weight);
+  localStorage.setItem('event', events);
   window.location = "home.html";
 }
 /*
 function renamePet() {
   var newName = document.forms["rename-form"]["newName"].value.trim();
   var thepet = $("#variable").html();
-  var p = new pet(thepet);
+  var p = new rumon(thepet);
   p.petName = newName;
   p.update();
   window.location = "home.html";

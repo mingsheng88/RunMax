@@ -51,7 +51,7 @@
         <!-- Field end -->
 
         <!-- Field -->
-          <input type="text" name="email" id="email" value=""/>
+          <input type="text" name="email" id="email" value="" placeholder="email"/>
         <!-- Field end -->
 
         <!-- Field -->
@@ -63,15 +63,15 @@
 
         <!-- Field end -->
         <div data-role="fieldcontain" class="containing-element">
-        <label for="events">Enable events?</label>
-        <select data-role="slider" id="events" data-theme="b">
-        	<option value="yes"> Yes </option>
+          <label for="event">Enable events?</label>
+          <select data-role="slider" name="event" id="event" data-theme="b">
+            <option value="yes"> Yes </option>
             <option value="no"> No </option>
-        </select>
+          </select>
         </div>
         <a href="javascript:login()" data-role="button" class="fb-login" data-theme="c">Use Facebook Profile</a>
         <input type="submit" value="Save" />
-
+        <a class='btn' href='javascript:logout()' data-ajax='false' data-role='button'>Logout</a>
       </form>
       <!-- Form end -->
 

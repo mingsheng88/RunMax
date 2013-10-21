@@ -134,7 +134,7 @@ $("#run_save").bind("tap", function(event, ui) {
 		var addedFit=0;
 		if(enableEvent == 'yes'){
 			petId=petSelection.substring(3);
-			var p = new pet(petId);
+			var p = new rumon(petId);
 			var fitness=p.fitness;
 			var multi=1;
 			if(fitness<=25){

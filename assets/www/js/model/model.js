@@ -24,7 +24,7 @@ function userProfile(firstname, lastname, email,  coins, img, runs, pets, items,
    }
 }
 */
-function pet(petId) {
+function rumon(petId) {
     thePet = JSON.parse(localStorage.getItem("pet" + petId));
     this.id = petId;
     this.petName = thePet[0];
@@ -38,7 +38,7 @@ function pet(petId) {
 
     this.update = update;
     function update() {
-        thePet = localStorage.getItem('pet' + this.id).split(',');
+        thePet = JSON.parse(localStorage.getItem('pet' + this.id));
         thePet[0] = this.petName;
         thePet[1] = this.age;
         thePet[2] = this.created_at;
@@ -53,10 +53,15 @@ function pet(petId) {
 
 function updatePets() {
     for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
-        this.pet = localStorage.getItem("pet" + i).split(',');
+        // this.pet = JSON.parse(localStorage.getItem("pet" + i));
+        var petpet = new rumon(i);
         updateStats();
         updateAge();
         checkDeath();
+        petpet.update();
+        $('#slider-energy-' + i).val(petpet.energy);
+        $('#slider-fitness-' + i).val(petpet.fitness);
+        $('#age' + i).val(petpet.age);
     }
 
     // Tested. 
@@ -65,7 +70,7 @@ function updatePets() {
     function updateStats() {
         // Get time now and compare it to the last modified time of the pet
         var now = new Date().getTime();
-        var lastModified = new Date(this.lastMod).getTime();
+        var lastModified = new Date(petpet.lastMod).getTime();
         var difference = now - lastModified;
 
         // Fitness drops at the rate of 15 / week | 2 / day
@@ -73,9 +78,9 @@ function updatePets() {
         // Energy drops at the rate of 40 / week | 5 / day
         var energyDrop = Math.floor(difference/15120000);
 
-        this.pet[3] = new Date(now);
-        this.pet[5] = this.pet[5] - energyDrop;
-        this.pet[6] = this.pet[6] - fitnessDrop;
+        petpet.lastMod = new Date(now);
+        petpet.energy = petpet.energy - energyDrop;
+        petpet.fitness = petpet.fitness - fitnessDrop;
     }
 
     // Need to work on img field
@@ -83,47 +88,45 @@ function updatePets() {
     function updateAge() {
         // Get time now and compare it to the last modified time of the pet
         var now = new Date().getTime();
-        var lastModified = Date.parse(this.lastMod);
+        var lastModified = Date.parse(petpet.lastMod);
         var difference = now - lastModified;
         // Can consider adding a "Birthday" variable for accuracy
         // For now, adding days to age, ignoring denominators smaller than 3 hours
         var growth = Math.floor(Math.floor(difference/10800000) / 8);
 
-        var newAge = this.pet[1] + growth;
+        var newAge = petpet.age + growth;
         // Assuming max age of about 2 months
         // Pet will evolve 
         var typeNow = Math.floor(newAge / 20);
         // Pet evolves if the type now > type before
-        if (typeNow > this.type) {
-            alert("Congratulations! It seems like " + this.pet[0] + " has evolved~~");
-            this.evolvePet();
+        if (typeNow > petpet.type) {
+            alert("Congratulations! It seems like " + petpet.petName + " has evolved~~");
+            petpet.evolvePet();
         }
 
         // Finally update age to the correct one
         // var sql = "UPDATE pet SET age=?, lastMod=? WHERE id=?";
         // dao.excute(sql, [newAge, new Date(now), this.id]);
-        this.pet[1] = newAge;
-        this.pet[3] = new Date(now);
+        this.age = newAge;
+        this.lastMod = new Date(now);
     }
 
     // img field not in yet
     function evolvePet() {
-        if(userAgreement) {
-            // var sql = "UPDATE pet SET type=?, img=? WHERE id=?";
+        // var sql = "UPDATE pet SET type=?, img=? WHERE id=?";
 
-            // If fitness >= 70, type = fit.
-            // If 70 >= fitness >= 40, type = normal
-            // If fitness < 40, type = unfit
-            if(fitness >= 70)
-                this.pet[4] += 3;
-                // dao.excute(sql, [type, monsters[type][3]], id);
-                else if (fitness >= 40)
-                    this.pet[4] += 2;
-                // dao.excute(sql, [type, monsters[type][2]], id);
-                else
-                    this.pet[4] += 1;
-                // dao.excute(sql, [type, monsters[type][1]], id);
-            }
+        // If fitness >= 70, type = fit.
+        // If 70 >= fitness >= 40, type = normal
+        // If fitness < 40, type = unfit
+        if(petpet.fitness >= 70)
+            petpet.type += 3;
+            // dao.excute(sql, [type, monsters[type][3]], id);
+            else if (petpet.fitness >= 40)
+                petpet.type += 2;
+            // dao.excute(sql, [type, monsters[type][2]], id);
+            else
+                petpet.type += 1;
+            // dao.excute(sql, [type, monsters[type][1]], id);
         }
 
         this.checkDeath = checkDeath;
@@ -131,12 +134,12 @@ function updatePets() {
         // If (old age) 
         // or (no food for 4 weeks from birth of pet)
         // or (heart attack from obesity)
-        if (this.pet[1] > 75 || this.pet[5] < -30 || this.pet[6] < -30) {
+        if (petpet.age > 75 || petpet.energy < -30 || petpet.fitness < -30) {
             // Death: how to simulate?
             // var sql = "UPDATE pet SET dead=? WHERE id=?";
             // dao.excute(sql, [1, this.id]);
-            this.pet[7] = true;
-            alert("Your pet... has died.. :(");
+            petpet.dead = true;
+            alert("Your pet... has passed on.. :(");
         }
     }
 }
