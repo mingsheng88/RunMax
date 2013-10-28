@@ -1,7 +1,4 @@
-$(document).bind("mobileinit", function () {
-  $.event.special.tap.tapholdThreshold = 1000,
-  $.event.special.swipe.durationThreshold = 999;
-});
+
 
 var loadCSS = function(href) {
   var cssLink = $("<link>");
@@ -26,35 +23,31 @@ var loadJS = function(src) {
 $( document ).on( "pageinit", ".ui-page", function() {
   var $page = $(this);
   
-  $.extend($.event.special.swipe,{
-	  scrollSupressionThreshold: 100, // More than this horizontal displacement, and we will suppress scrolling.
-	  durationThreshold: 200, // More time than this, and it isn't a swipe.
-	  horizontalDistanceThreshold: 100,  // Swipe horizontal displacement must be more than this.
-	  verticalDistanceThreshold: 1000,  // Swipe vertical displacement must be less than this.
-	});
-  $page.on( "swipeleft swiperight", function( e ) {
-    // We check if there is no open panel on the page because otherwise
-    // a swipe to close the left panel would also open the right panel (and v.v.).
-    // We do this by checking the data that the framework stores on the page element (panel: open).
-    if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
-      if ( e.type === "swiperight" ) {
-        $( ".ui-left-panel" ).panel( "open" );
-      } else if ( e.type === "swipeleft" ) {
-        $( ".ui-right-panel" ).panel( "open" );
-      }
-    }
-  });
+ //  $.extend($.event.special.swipe,{
+	//   scrollSupressionThreshold: 100, // More than this horizontal displacement, and we will suppress scrolling.
+	//   durationThreshold: 200, // More time than this, and it isn't a swipe.
+	//   horizontalDistanceThreshold: 100,  // Swipe horizontal displacement must be more than this.
+	//   verticalDistanceThreshold: 1000,  // Swipe vertical displacement must be less than this.
+	// });
+
+  // $page.on( "swiperight", function( e ) {
+  //   // We check if there is no open panel on the page because otherwise
+  //   // a swipe to close the left panel would also open the right panel (and v.v.).
+  //   // We do this by checking the data that the framework stores on the page element (panel: open).
+  //   if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+  //     if ( e.type === "swiperight" ) {
+  //       $( ".ui-left-panel" ).panel( "open" );
+  //     } 
+  //   }
+  // });
 
   // Load left panel
   $(function() {
-   var name = "Stranger";
+   var name = localStorage.getItem('firstname');
    var link0 = "'home.html'";
    var imageSrc0 = "css/global/images/icons/home.png";
-   if (localStorage.getItem('photo')) {
-    name = localStorage.getItem('firstname');
-  } 
-  var title0 = 'Home';
-  var subtext0 = '';
+   var title0 = 'Home';
+   var subtext0 = '';
 	    // $(".left-panel-data").append($("<li data-icon='false'><a data-transition='slide' href=" + link1 +"><img src=" + imageSrc1 +" />" +
 	    //   "<h1>" + title1 + "</h1><p>" + subtext1 + "</p></a></li>")).listview('refresh');
 

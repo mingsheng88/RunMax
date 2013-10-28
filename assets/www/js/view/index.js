@@ -6,7 +6,7 @@ if (!localStorage.getItem("firstname")) {
 	localStorage.setItem("email", '');
 	localStorage.setItem("img", '');
 	localStorage.setItem("coins",5000);
-	localStorage.setItem("event", 'no');
+	localStorage.setItem("event", 'yes');
 	localStorage.setItem("weight", 60.0);
 	localStorage.setItem("finishedRun",'false');
 

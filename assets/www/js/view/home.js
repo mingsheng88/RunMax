@@ -18,15 +18,19 @@ $(document).on(
 
 function changeName(petId, petName) {
 	var name = prompt("Please enter Rumon name", petName);
-	if (name != null && name != "") {
+	
+	if (name == null) {
+	}
+	else {
+		if (name != "") {
 		var p = new rumon(petId);
 		p.petName = name;
 		p.update();
 		window.location = "home.html";
+	} else{
+		alert("Invalid name!");
+	}
 
-		// alert("Rumon name changed.");
-	} else {
-		alert("Invalide name.");
 	}
 }
 // instantiat gps
