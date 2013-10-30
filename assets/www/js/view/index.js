@@ -48,7 +48,7 @@ if (!localStorage.getItem("firstname")) {
 	// localStorage.setItem('pet-list', pets);
 
 	// type listing
-	localStorage.setItem('monsters', ["baby.gif", "fat.gif", "fat2.gif", "fat3.gif", "fit.gif", "fit2.gif", "fit3.gif"]);
+	localStorage.setItem('monsters', JSON.stringify(["baby.gif", "fat.gif", "fat2.gif", "fat3.gif", "fit.gif", "fit2.gif", "fit3.gif"]));
 
 	//number of runs
 	localStorage.setItem('distance-completed', 0);

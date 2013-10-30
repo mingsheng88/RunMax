@@ -49,19 +49,44 @@ function rumon(petId) {
         thePet[7] = this.dead;
         localStorage.setItem('pet' + this.id, JSON.stringify(thePet));
     }
+
+    // img field not in yet
+    this.evolvePet = evolvePet;
+    function evolvePet() {
+        // var sql = "UPDATE pet SET type=?, img=? WHERE id=?";
+
+        // If fitness >= 70, type = fit.
+        // If 70 >= fitness >= 40, type = normal
+        // If fitness < 40, type = unfit
+        if(this.fitness >= 70 && this.type < 7)
+            this.type += 3;
+            // dao.excute(sql, [type, monsters[type][3]], id);
+        else if (this.fitness >= 40 && this.type < 7)
+            this.type += 2;
+            // dao.excute(sql, [type, monsters[type][2]], id);
+        else if (this.type < 7)
+            this.type += 1;
+        // dao.excute(sql, [type, monsters[type][1]], id);
+    }
 }
 
 function updatePets() {
     for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
         // this.pet = JSON.parse(localStorage.getItem("pet" + i));
+
         var petpet = new rumon(i);
-        updateStats();
-        updateAge();
-        checkDeath();
-        petpet.update();
-        $('#slider-energy-' + i).val(petpet.energy);
-        $('#slider-fitness-' + i).val(petpet.fitness);
-        $('#age' + i).val(petpet.age);
+        if (petpet.dead == false) {
+            updateStats();
+            updateAge();
+            checkDeath();
+            petpet.update();
+            $('#slider-energy-' + i).val(petpet.energy);
+            $('#slider-fitness-' + i).val(petpet.fitness);
+            $('#pet-name-field-' + i).html(petpet.name + " (age: " + petpet.age + ")");
+            $('#pet-img-' + i).attr('src', "css/global/images/" + monsters[petpet.type]);
+            if(petpet.dead)
+                $('#scroller-' + i).attr('style', "display:none;");
+        }
     }
 
     // Tested. 
@@ -74,9 +99,9 @@ function updatePets() {
         var difference = now - lastModified;
 
         // Fitness drops at the rate of 15 / week | 2 / day
-        var fitnessDrop = Math.floor(difference/40320000);
+        var fitnessDrop = Math.floor(difference/40320000*24*100); // 200 per hour
         // Energy drops at the rate of 40 / week | 5 / day
-        var energyDrop = Math.floor(difference/15120000);
+        var energyDrop = Math.floor(difference/15120000*24*100); // 500 per hour
 
         petpet.lastMod = new Date(now);
         petpet.energy = petpet.energy - energyDrop;
@@ -88,58 +113,47 @@ function updatePets() {
     function updateAge() {
         // Get time now and compare it to the last modified time of the pet
         var now = new Date().getTime();
-        var lastModified = Date.parse(petpet.lastMod);
-        var difference = now - lastModified;
+        var created_at = Date.parse(petpet.created_at);
+        var difference = now - created_at;
         // Can consider adding a "Birthday" variable for accuracy
-        // For now, adding days to age, ignoring denominators smaller than 3 hours
-        var growth = Math.floor(Math.floor(difference/10800000) / 8);
+        // For now, adding days to age, ignoring denominators smaller than 3 hours (age = 1 --> 3 hours, 2 --> 6)
+        // var growth = Math.floor(Math.floor(difference/10800000) / 8); 
+        var newAge = Math.floor(Math.floor(difference/10800000 * 3 * 60 * 120) / 8); // 120 min 1 age 
 
-        var newAge = petpet.age + growth;
+        petpet.age = newAge;
         // Assuming max age of about 2 months
         // Pet will evolve 
         var typeNow = Math.floor(newAge / 20);
         // Pet evolves if the type now > type before
         if (typeNow > petpet.type) {
-            alert("Congratulations! It seems like " + petpet.petName + " has evolved~~");
+            alert("Congratulations! " + petpet.petName + " has evolved!");
             petpet.evolvePet();
         }
 
         // Finally update age to the correct one
         // var sql = "UPDATE pet SET age=?, lastMod=? WHERE id=?";
         // dao.excute(sql, [newAge, new Date(now), this.id]);
-        this.age = newAge;
-        this.lastMod = new Date(now);
+        petpet.age = newAge;
+        petpet.lastMod = new Date(now);
     }
 
-    // img field not in yet
-    function evolvePet() {
-        // var sql = "UPDATE pet SET type=?, img=? WHERE id=?";
-
-        // If fitness >= 70, type = fit.
-        // If 70 >= fitness >= 40, type = normal
-        // If fitness < 40, type = unfit
-        if(petpet.fitness >= 70)
-            petpet.type += 3;
-            // dao.excute(sql, [type, monsters[type][3]], id);
-            else if (petpet.fitness >= 40)
-                petpet.type += 2;
-            // dao.excute(sql, [type, monsters[type][2]], id);
-            else
-                petpet.type += 1;
-            // dao.excute(sql, [type, monsters[type][1]], id);
-        }
-
-        this.checkDeath = checkDeath;
-        function checkDeath() {
+    this.checkDeath = checkDeath;
+    function checkDeath() {
         // If (old age) 
         // or (no food for 4 weeks from birth of pet)
         // or (heart attack from obesity)
-        if (petpet.age > 75 || petpet.energy < -30 || petpet.fitness < -30) {
+        if (petpet.energy < -30) {
             // Death: how to simulate?
             // var sql = "UPDATE pet SET dead=? WHERE id=?";
             // dao.excute(sql, [1, this.id]);
             petpet.dead = true;
-            alert("Your pet... has passed on.. :(");
+            alert("Your pet " + petpet.name + " has starved to death!... :(");
+        } else if (petpet.fitness < -30) {
+            petpet.dead = true;
+            alert("Your pet " + petpet.name + " has succumbed to heart attack due to obesity!... :(");
+        } else if (petpet.age > 63) {
+            petpet.dead = true;
+            alert("Your pet " + petpet.name + " just took its last bit and byte and has passed on due to old age... Even though it has died, we will keep it in our records! Don't worry, you might be able to see it again in our next update! :)");
         }
     }
 }

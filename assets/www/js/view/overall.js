@@ -148,7 +148,7 @@ var leftoverHeight = window.innerHeight - $(".primary-header").innerHeight() - $
 $(".run-listing").height(leftoverHeight);
 // Resize run listing end
 
-$("#username-field").text("Stranger");
+$("#username-field").text(localStorage.getItem('firstname'));
 }
 // Home.html JS end
 
@@ -326,6 +326,14 @@ function getUrlVars() {
     vars[hash[0]] = hash[1];
   }
   return vars;
+}
+
+function setupProfile() {
+  var user = document.forms["profile-form"]["firstname"].value.trim();
+  var email = document.forms["profile-form"]["email"].value.trim();
+  localStorage.setItem('firstname', user);
+  localStorage.setItem('email', email);
+  window.location = "home.html";
 }
 
 function updateProfile() {
