@@ -12,7 +12,15 @@ $(document).on(
 			if(localStorage.getItem('coins')>999){
 				$('#coins-collected').css( "font-size", "50px !important" );
 			}
-			$('#pets-in-total').html(localStorage.getItem('number-of-pets'));
+			var noPet=Number(localStorage.getItem("number-of-pets"));
+			var totalPet=0;
+			for(var i=0; i<noPet; i++){
+				var p = new rumon(i);
+				if (p.dead==false){
+					totalPet++;
+				}
+			}
+			$('#pets-in-total').html(totalPet);
 			
 		});
 
@@ -51,7 +59,6 @@ watchRun = navigator.geolocation.watchPosition(function(position) {
 });
 
 function goToRun(petId) {
-	console.log("!!!" + accuracy);
 	var event = localStorage.getItem("event");
 	if (accuracy <= 30) {
 		localStorage.setItem("petSelection", petId);
@@ -67,8 +74,11 @@ window.setTimeout(function() {
 		localStorage.setItem("finishedRun",'false');
 		var petName = getUrlVars()["rumonName"];
 		var addedFit = getUrlVars()["addedFit"];
-		alert("Rumon " + petName + "'s fitness has increased by "
-				+ addedFit + ".");
+		if(petName!="Non"){
+			alert("Rumon " + petName + "'s fitness has increased by "
+					+ addedFit + ".");
+		}
+		
 	}
 }, 1000);
 

@@ -29,10 +29,13 @@ totalTime = runJson.Run.totalTime;
 startTime = runJson.Run.startTime;
 endTime = runJson.Run.endTime;
 coins = runJson.Run.coins;
+var petName="Non";
+if(petSelection!="Non"){
+	var tempStr = localStorage.getItem(petSelection);
+	var petJson = JSON.parse(tempStr);
+	petName = petJson[0];
+}
 
-var tempStr = localStorage.getItem(petSelection);
-var petJson = JSON.parse(tempStr);
-var petName = petJson[0];
 $(document).ready(function() {
 	$('#totalDistance2').html(totalDistance + 'Km');
 	$('#pace2').html(pace + " (min:sec)/Km");
@@ -132,7 +135,7 @@ $("#run_save").bind("tap", function(event, ui) {
 		
 		var enableEvent= localStorage.getItem("event");
 		var addedFit=0;
-		if(enableEvent == 'yes'){
+		if(enableEvent == 'yes'&&petSelection!="Non"){
 			petId=petSelection.substring(3);
 			var p = new rumon(petId);
 			var fitness=p.fitness;
@@ -167,6 +170,7 @@ $("#run_save").bind("tap", function(event, ui) {
 				localStorage.setItem("pet0", JSON.stringify([petName, 0, new Date(), new Date(), 0, 50, 50, false]));
 				localStorage.setItem("number-of-pets", (totalPet+1));
 			}
+			
 		}
 		//$.mobile.changePage("home.html");
 		localStorage.setItem("finishedRun",'true');

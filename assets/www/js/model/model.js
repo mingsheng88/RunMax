@@ -82,7 +82,7 @@ function updatePets() {
             petpet.update();
             $('#slider-energy-' + i).val(petpet.energy);
             $('#slider-fitness-' + i).val(petpet.fitness);
-            $('#pet-name-field-' + i).html(petpet.name + " (age: " + petpet.age + ")");
+            $('#pet-name-field-' + i).html(petpet.petName + " (age: " + petpet.age + ")");
             $('#pet-img-' + i).attr('src', "css/global/images/" + monsters[petpet.type]);
             if(petpet.dead)
                 $('#scroller-' + i).attr('style', "display:none;");
@@ -147,14 +147,21 @@ function updatePets() {
             // var sql = "UPDATE pet SET dead=? WHERE id=?";
             // dao.excute(sql, [1, this.id]);
             petpet.dead = true;
-            alert("Your pet " + petpet.name + " has starved to death!... :(");
+            var noPet=Number($('#pets-in-total').html());
+            $('#pets-in-total').html(noPet-1);
+            alert("Your pet " + petpet.petName + " has starved to death!... :(");
         } else if (petpet.fitness < -30) {
             petpet.dead = true;
-            alert("Your pet " + petpet.name + " has succumbed to heart attack due to obesity!... :(");
+            var noPet=Number($('#pets-in-total').html());
+            $('#pets-in-total').html(noPet-1);
+            alert("Your pet " + petpet.petName + " has succumbed to heart attack due to obesity!... :(");
         } else if (petpet.age > 63) {
             petpet.dead = true;
-            alert("Your pet " + petpet.name + " just took its last bit and byte and has passed on due to old age... Even though it has died, we will keep it in our records! Don't worry, you might be able to see it again in our next update! :)");
+            var noPet=Number($('#pets-in-total').html());
+            $('#pets-in-total').html(noPet-1);
+            alert("Your pet " + petpet.petName + " just took its last bit and byte and has passed on due to old age... Even though it has died, we will keep it in our records! Don't worry, you might be able to see it again in our next update! :)");
         }
+        
     }
 }
 

@@ -30,9 +30,13 @@ totalTime = runJson.Run.totalTime;
 startTime = runJson.Run.startTime;
 endTime = runJson.Run.endTime;
 coins = runJson.Run.coins;
-var tempStr = localStorage.getItem(petSelection);
-var petJson = JSON.parse(tempStr);
-var petName = petJson[0];
+var petName="Non";
+if(petSelection!="Non"){
+	var tempStr = localStorage.getItem(petSelection);
+	var petJson = JSON.parse(tempStr);
+	petName = petJson[0];
+}
+
 $(document).ready(function() {
 	$('#totalDistance2').html(totalDistance + 'Km');
 	$('#pace2').html(pace + " (min:sec)/Km");

@@ -155,7 +155,7 @@ var r = confirm("Are you sure to exit Rumon?");
             <li><a href="listing-page.html?petSelection='
 									+ 'pet'
 									+ i
-									+ '" data-ajax="false">Feed</a></li>\
+									+ '" data-ajax="false">Use Items</a></li>\
             <li><a onclick="goToRun(\'pet'
 									+ i
 									+ '\')" href="javascript:void(0)">Bring For Run</a></li>\
@@ -166,13 +166,23 @@ var r = confirm("Are you sure to exit Rumon?");
               j++;
             }
 					}
-          if(j == localStorage.getItem('number-of-pets')) {
-            s = '<div id="scroller" class="pet-info ptop-60 pleft-20 ta-center">\
-            Looks like you have no pets at the moment! <br>Go for a run now to catch one?</div>';
+					console.log("!"+j)
+		  var noPet=Number(localStorage.getItem("number-of-pets"));
+		  var totalPet=0;
+					for(var i=0; i<noPet; i++){
+						var p = new rumon(i);
+						if (p.dead==false){
+							totalPet++;
+						}
+					}
+          if(totalPet==0||s=="") {
+            s = '<div id="scroller" onclick="goToRun(null)" class="pet-info ptop-60 pleft-20 ta-center">\
+            Looks like you have no pets at the moment! <br>Touch here to run and catch one now?</div>';
           }
+          /*
           if (s=="") {
             s = "You don't seem to have any active pet!"
-          }
+          }*/
 					$('.pet-list').html(s);
 				</script>
 				<!-- Pet info end -->

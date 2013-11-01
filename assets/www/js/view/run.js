@@ -29,14 +29,19 @@ var marker = new google.maps.Marker({
 
 
 var enableEvent= localStorage.getItem("event");
-var petSelection = null;
+var petSelection = "Non";
 if(enableEvent == 'yes'){
-	var petId = localStorage.getItem("petSelection");;
-	var tempStr = localStorage.getItem(petId);
-	var petJson = JSON.parse(tempStr);
-	var petName = petJson[0];
-    petSelection = petId;
-	$('#petSelection').html(petName);
+	var petId = localStorage.getItem("petSelection");
+	if(petId!=null){
+		var tempStr = localStorage.getItem(petId);
+		var petJson = JSON.parse(tempStr);
+		var petName = petJson[0];
+	    petSelection = petId;
+		$('#petSelection').html(petName);
+	}else{
+		$('#petSelection').html("Non");
+	}
+	
 }
 
 
