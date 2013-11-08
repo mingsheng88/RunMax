@@ -58,15 +58,16 @@ function rumon(petId) {
         // If fitness >= 70, type = fit.
         // If 70 >= fitness >= 40, type = normal
         // If fitness < 40, type = unfit
-        if(this.fitness >= 70 && this.type < 7)
-            this.type += 3;
-            // dao.excute(sql, [type, monsters[type][3]], id);
-        else if (this.fitness >= 40 && this.type < 7)
-            this.type += 2;
-            // dao.excute(sql, [type, monsters[type][2]], id);
-        else if (this.type < 7)
-            this.type += 1;
-        // dao.excute(sql, [type, monsters[type][1]], id);
+
+        // if not max-level
+        if(this.type < 7) { 
+            if(this.fitness >= 70)
+                this.type += 3;
+            else if (this.fitness >= 40)
+                this.type += 2;
+            else
+                this.type += 1;
+        }
     }
 }
 

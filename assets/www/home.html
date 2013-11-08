@@ -176,8 +176,9 @@ var r = confirm("Are you sure to exit Rumon?");
 						}
 					}
           if(totalPet==0||s=="") {
-            s = '<div id="scroller" onclick="goToRun(null)" class="pet-info ptop-60 pleft-20 ta-center">\
-            Looks like you have no pets at the moment! <br>Touch here to run and catch one now?</div>';
+            s = '<div id="scroller" class="pet-info ptop-60 pleft-20 ta-center">\
+            <b>You have no pets at the moment.</b> <br><br>\
+            <button onclick="goToRun(null)">Touch here to run and catch one now?</button></div>';
           }
           /*
           if (s=="") {

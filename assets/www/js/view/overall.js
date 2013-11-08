@@ -290,7 +290,7 @@ function initializeListingPage() {
   }
   $('#listing-ul').html(action).listview('refresh');
   if ($('#listing-ul').html() == "") {
-    $('#listing-ul').html("<li><h1>Oops.. Your inventory is empty!</h1><p>How about going for a run to earn some items? =D</p></li><li><a href='running-map.html?petSelection=" + pet + "&events=" + event + "' class='btn'>Bring " + JSON.parse(localStorage.getItem(pet))[0] + " for a run!</a></li>").listview('refresh');
+    $('#listing-ul').html("<li><h1>Oops.. Your inventory is empty!</h1><p></p></li><li><a href='home.html' class='btn'>Click here to go back</a></li>").listview('refresh');
   }
 }
 // Listing-page.HTML end
