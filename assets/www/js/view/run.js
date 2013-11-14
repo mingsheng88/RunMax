@@ -60,7 +60,7 @@ if (enableEvent == 'yes') {
 var itemPos = [];
 
 function runEvent() {
-	var itemChance=70;
+	var itemChance=50;
 	var monsterChance=30;
     if	(noOfPet==0){
     	monsterChance=30;
@@ -77,13 +77,14 @@ function runEvent() {
     }
 	
 	if (enableEvent == 'yes') {
-		console.log("displace " + ((totalDistance * 1000) - lastCheckPoint));
+		
 		// happen evey 100m for now
 		if (((totalDistance * 1000) - lastCheckPoint) > 100) {
 			var tmp = (totalDistance * 1000) / 100;
 			lastCheckPoint = Math.floor(tmp) * 100;
 			var chance = Math.floor((Math.random() * 100) + 1);
 			// possibility change here!! 69%chance
+			console.log("chance:"+chance+"   !");
 			if (chance <= itemChance) {
 				itemPos.push([ lat, lng ]);
 				var itemMarker = new google.maps.Marker(
@@ -145,7 +146,7 @@ function captureCheck() {
 		var dist = monsterLoc - (totalDistance * 1000);
 		var timeUsed = totalTime - monsterSpotedTime;
 		// time limit 2 min
-		if (timeUsed > 120000 || dist > 500) {
+		if (timeUsed > 120000 || dist > 200) {
 			$('#monsterCaptured').html('<font color="red">Escaped!</font>');
 			captureEventStarted = false;
 			var escapedSnd = new Media(
@@ -326,6 +327,7 @@ $("#run_stop")
 							storeTolocal();
 							navigator.notification.vibrate(500);
 							$.mobile.changePage("finishRun.html");
+							//window.location ="finishRun.html";
 						} else {
 						}
 					}

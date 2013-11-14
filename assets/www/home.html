@@ -121,6 +121,7 @@ var r = confirm("Are you sure to exit Rumon?");
 					var s = "";
 					monsters = JSON.parse(localStorage.getItem('monsters'));
           var j = 0;
+          //alert(localStorage.getItem('number-of-pets'));
 					for (i = 0; i < localStorage.getItem('number-of-pets'); i++) {
 						tmp = JSON.parse(localStorage.getItem('pet' + i));
 						if (!tmp[7]) {
@@ -142,9 +143,9 @@ var r = confirm("Are you sure to exit Rumon?");
             <div class="pet-stats-grid pleft-10">\
             <!-- Progress bars -->\
             <label for="slider-mini" class="slider-font">Energy</label>\
-            <input type="range" name="slider-mini" id="slider-energy-' + i + '" value="' + tmp[5] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />\
+            <input type="range" name="slider-mini" id="slider-energy-' + i + '" value="' + (tmp[5] < 0 ? 0 : tmp[5]) + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-one" />\
             <label for="slider-mini" class="slider-font">Fitness</label>\
-            <input type="range" name="slider-mini" id="slider-fitness-' + i + '" value="' + tmp[6] + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />\
+            <input type="range" name="slider-mini" id="slider-fitness-' + i + '" value="' + (tmp[6] < 0 ? 0 : tmp[6]) + '" min="0" max="100" data-highlight="true" data-mini="true" data-theme="a" class="slider-two" />\
             <!-- Progress bars end -->\
             </div>\
             </a>\

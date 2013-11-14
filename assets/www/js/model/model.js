@@ -100,9 +100,9 @@ function updatePets() {
         var difference = now - lastModified;
 
         // Fitness drops at the rate of 15 / week | 2 / day
-        var fitnessDrop = Math.floor(difference/40320000*24*100); // 200 per hour
+        var fitnessDrop = Math.floor(difference/40320000*24*100/2); // 200 per hour
         // Energy drops at the rate of 40 / week | 5 / day
-        var energyDrop = Math.floor(difference/15120000*24*100); // 500 per hour
+        var energyDrop = Math.floor(difference/15120000*24*100/2/2); // 500 per hour
 
         petpet.lastMod = new Date(now);
         petpet.energy = petpet.energy - energyDrop;
@@ -119,7 +119,7 @@ function updatePets() {
         // Can consider adding a "Birthday" variable for accuracy
         // For now, adding days to age, ignoring denominators smaller than 3 hours (age = 1 --> 3 hours, 2 --> 6)
         // var growth = Math.floor(Math.floor(difference/10800000) / 8); 
-        var newAge = Math.floor(Math.floor(difference/10800000 * 3 * 60 * 120) / 8); // 120 min 1 age 
+        var newAge = Math.floor(Math.floor(difference/10800000 * 3 * 60 * 120 / 6) / 8); // 20 min 1 age 
 
         petpet.age = newAge;
         // Assuming max age of about 2 months

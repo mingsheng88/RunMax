@@ -80,7 +80,7 @@ window.setTimeout(function() {
 		}
 		
 	}
-}, 1000);
+}, 2500);
 
 function getUrlVars() {
 	var vars = [], hash;

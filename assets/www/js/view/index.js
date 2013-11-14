@@ -5,7 +5,7 @@ if (!localStorage.getItem("firstname")) {
 	localStorage.setItem("lastname", 'New');
 	localStorage.setItem("email", '');
 	localStorage.setItem("img", '');
-	localStorage.setItem("coins",5000);
+	localStorage.setItem("coins",1000);
 	localStorage.setItem("event", 'yes');
 	localStorage.setItem("weight", 60.0);
 	localStorage.setItem("finishedRun",'false');
@@ -15,7 +15,7 @@ if (!localStorage.getItem("firstname")) {
 
 	// 0        1                 2                  3                  4								5            6
   // Name(s), energy_impact(i), fitness_impact(i), image_location(s), description(s), quantity(i), new(b)  
-  item0 = ["Apple", 10, 2, "apple.gif", 'A healthy treat for your pet!', 1, false,200];
+  item0 = ["Apple", 10, 2, "apple.gif", 'A healthy treat for your pet!', 0, false,200];
   item1 = ["Ice-cream", 4, -1, "icecream.gif", 'Perhaps... something sweet?', 0,false, 100];
   item2 = ["Hamburger", 37, -8, "hamburger.gif", 'Oh boy, that looks tasty. Squarish and all!', 0, false, 300];
   item3 = ["Sushi", 30, 4, "sushi.gif", 'Delicacies of the sea!', 0, false, 300];
@@ -33,8 +33,8 @@ if (!localStorage.getItem("firstname")) {
 	
 	// 0            1       2              3            4        5          6           7
 	// Pet Name(s), age(i), created_at(d), last_mod(d), type(i), energy(i), fitness(i), dead(b)
-	var petName=generate_name('egyptian');
-	localStorage.setItem("pet0", JSON.stringify([petName, 0, new Date(), new Date(), 0, 50, 50, false]));
+	//var petName=generate_name('egyptian');
+	localStorage.setItem("pet0", JSON.stringify(["FirstRumon", 0, new Date(), new Date(), 0, 50, 50, false]));
 	localStorage.setItem("number-of-pets", 1);
 	
 	// petName=generate_name('egyptian');
@@ -53,6 +53,8 @@ if (!localStorage.getItem("firstname")) {
 	//number of runs
 	localStorage.setItem('distance-completed', 0);
 	localStorage.setItem("runs-completed", 0);
-} else {
+}
+
+if(localStorage.getItem("firstname") != "User") {
 	window.location = "home.html";
 }

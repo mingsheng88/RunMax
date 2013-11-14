@@ -290,7 +290,7 @@ function initializeListingPage() {
   }
   $('#listing-ul').html(action).listview('refresh');
   if ($('#listing-ul').html() == "") {
-    $('#listing-ul').html("<li><h1>Oops.. Your inventory is empty!</h1><p></p></li><li><a href='home.html' class='btn'>Click here to go back</a></li>").listview('refresh');
+    $('#listing-ul').html("<li><h1>Oops.. Your inventory is empty!</h1><p></p></li><li><a href='home.html' class='btn' data-ajax='false'>Click here to go back</a></li>").listview('refresh');
   }
 }
 // Listing-page.HTML end

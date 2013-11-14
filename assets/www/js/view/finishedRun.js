@@ -165,10 +165,11 @@ $("#run_save").bind("tap", function(event, ui) {
 				it.update();
 			}
 			if (monsterData) {
-				var petName=generate_name('egyptian');
+				//var petName=generate_name('egyptian');
 				var totalPet=localStorage.getItem("number-of-pets");
-				localStorage.setItem("pet0", JSON.stringify([petName, 0, new Date(), new Date(), 0, 50, 50, false]));
-				localStorage.setItem("number-of-pets", (totalPet+1));
+				localStorage.setItem("pet"+totalPet, JSON.stringify(["NewRumon", 0, new Date(), new Date(), 0, 50, 50, false]));
+				totalPet=Number(totalPet)+1;
+				localStorage.setItem("number-of-pets", totalPet);
 			}
 			
 		}
