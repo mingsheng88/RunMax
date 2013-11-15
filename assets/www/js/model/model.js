@@ -1,29 +1,3 @@
-//var dao = new dao();
-/*
-function userProfile(firstname, lastname, email,  coins, img, runs, pets, items, activepetid) {
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.email = email;
-    this.img = img;
-    this.pets = pets;
-    this.items = items;
-    this.coins = coins;
-    this.activepetid = activepetid;
-    this.persist = persist;
-    this.getUser = getUser;
-    function persist() {
-        var sql = 'UPDATE userProfile SET firstname=?, lastname=?, email=?, img=?, coins=?, activepetid=? WHERE id=1';
-        dao.excute(sql, [this.firstname,this.lastname,this.email,this.img,this.coins,this.activepetid]);
-    }
-    function getUser(evlString) {
-        var sql = 'SELECT * FROM userProfile';
-        dao.excuteSelect(sql,[], function(result) {
-            //result[]....
-            eval(evlString);
-        });
-   }
-}
-*/
 function rumon(petId) {
     thePet = JSON.parse(localStorage.getItem("pet" + petId));
     this.id = petId;
@@ -53,12 +27,6 @@ function rumon(petId) {
     // img field not in yet
     this.evolvePet = evolvePet;
     function evolvePet() {
-        // var sql = "UPDATE pet SET type=?, img=? WHERE id=?";
-
-        // If fitness >= 70, type = fit.
-        // If 70 >= fitness >= 40, type = normal
-        // If fitness < 40, type = unfit
-
         // if not max-level
         if(this.type < 7) { 
             if(this.fitness >= 70)
@@ -73,8 +41,6 @@ function rumon(petId) {
 
 function updatePets() {
     for(i = 0; i < localStorage.getItem('number-of-pets'); i++) {
-        // this.pet = JSON.parse(localStorage.getItem("pet" + i));
-
         var petpet = new rumon(i);
         if (petpet.dead == false) {
             updateStats();
@@ -116,9 +82,6 @@ function updatePets() {
         var now = new Date().getTime();
         var created_at = Date.parse(petpet.created_at);
         var difference = now - created_at;
-        // Can consider adding a "Birthday" variable for accuracy
-        // For now, adding days to age, ignoring denominators smaller than 3 hours (age = 1 --> 3 hours, 2 --> 6)
-        // var growth = Math.floor(Math.floor(difference/10800000) / 8); 
         var newAge = Math.floor(Math.floor(difference/10800000 * 3 * 60 * 120 / 6) / 8); // 20 min 1 age 
 
         petpet.age = newAge;
@@ -131,9 +94,6 @@ function updatePets() {
             petpet.evolvePet();
         }
 
-        // Finally update age to the correct one
-        // var sql = "UPDATE pet SET age=?, lastMod=? WHERE id=?";
-        // dao.excute(sql, [newAge, new Date(now), this.id]);
         petpet.age = newAge;
         petpet.lastMod = new Date(now);
     }
@@ -144,9 +104,6 @@ function updatePets() {
         // or (no food for 4 weeks from birth of pet)
         // or (heart attack from obesity)
         if (petpet.energy < -30) {
-            // Death: how to simulate?
-            // var sql = "UPDATE pet SET dead=? WHERE id=?";
-            // dao.excute(sql, [1, this.id]);
             petpet.dead = true;
             var noPet=Number($('#pets-in-total').html());
             $('#pets-in-total').html(noPet-1);
@@ -198,7 +155,6 @@ function item(itemId) {
         tmp[4] = this.description;
         tmp[5] = this.quantity;
         tmp[6] = this.isNew;
-        //tmp[7] = this.price;
         localStorage.setItem('item' + this.id, JSON.stringify(tmp));
     }
 }

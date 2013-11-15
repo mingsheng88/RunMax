@@ -24,14 +24,11 @@
 		<!-- Initialization script -->
 		<script>
 			$(document).on("pageinit", ".ui-page", function() {
-				// initializeMap();
 			});
-			//window.onresize = initializeMap;
 			loadJS("js/view/runDetail.js");	
 			loadCSS("css/local/map.css");
 		</script>
 		<!-- Initialization script end -->
-		<!--<script type="text/javascript" src="js/global/jquery.timer.js"></script>-->
 		<!-- Header -->
 		<div data-role="header" class="primary-header" data-theme="b" data-position="fixed">
 			<h1>Run Details</h1>
@@ -46,57 +43,39 @@
 			<!-- Listing -->
 			<div class="run-info">				
 				<div class="ptop-20">
-					<!-- <label class=""> -->
 					<b>Start Time:</b>
-					<!-- </label> -->
 					<span class="info-generic" id="startTime">Loading...</span>
 				</div>
 				<div class="">
-					<!-- <label class=""> -->
 					<b>End Time:</b>
-					<!-- </label> -->
 					<span class="info-generic" id="endTime">Loading...</span>
 				</div>
 				<div class="">
-					<!-- <label class=""> -->
 					<b>Time Used:</b>
-					<!-- </label> -->
 					<span class="info-generic" id="totalTime2">Loading...</span>
 				</div>
 				<div class="">
-					<!-- <label class=""> -->
 					<b>Distance:</b>
-					<!-- </label> -->
 					<span class="info-generic" id="totalDistance2">Loading...</span>
 				</div>
 				<div class="">
-					<!-- <label> -->
 					<b>Pace:</b>
-					<!-- </label> -->
 					<span class="info-generic" id="pace2">Loading...</span>
 				</div>
 				<div class="">
-					<!-- <label> -->
 					<b>Coins(Calories):</b>
-					<!-- </label> -->
 					<span class="info-generic" id="coins">Loading...</span>
 				</div>
 				<div class="">
-					<!-- <label> -->
 					<b>Run With:</b>
-					<!-- </label> -->
 					<span class="info-generic" id="petSelection2">Loading...</span>
 				</div>
 				<div class="">
-					<!-- <label> -->
 					<b>Items Obtained:</b>
-					<!-- </label> -->
 					<span class="info-generic" id="noItems2">0</span>
 				</div>
 				<div class="">
-					<!-- <label> -->
 					<b>Rumon Captured:</b>
-					<!-- </label> -->
 					<span class="info-generic" id="monsterCaptured2">No</span>
 				</div>
 			</div>

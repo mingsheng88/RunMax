@@ -24,19 +24,15 @@
     <!-- Initialization script -->
     <script>
     $( document ).on( "pageinit", ".ui-page", function() {
-     // initializeMap();
     });
-    //window.onresize = initializeMap;
     loadJS("js/util/date.format.js");
     loadJS("js/view/run.js");
     loadCSS("css/local/map.css");
     </script>
     <!-- Initialization script end -->
-    <!--<script type="text/javascript" src="js/global/jquery.timer.js"></script>-->
     <!-- Header -->
     <div data-role="header" class="primary-header" data-theme="b">
       <h1>Run Ongoing</h1>
-     <!--<a href="#" data-role="button" data-rel="back" data-icon="arrow-l">Back</a>--> 
     </div>
     <!-- End Header -->
 
@@ -49,42 +45,37 @@
       </div>
 
       <!-- Listing -->
-      <!-- <div>
-        <ul data-role="listview" data-theme="a">
-          <li data-theme="a" data-role="list-divider" class="sec-header-wording">Run Listing</li> 
-        </ul>
-      </div> -->
       <div class="run-info">
         <div class="pbottom-5 emphasis ptop-20">
-          <!-- <label class=""> --><b>Time Elapsed:</b><!-- </label> -->
+          <b>Time Elapsed:</b>
           <span class="info-generic" id="stopwatch">Loading...</span>
         </div>
         <div class="">
-          <!-- <label> --><b>Signal Strength:</b><!-- </label> -->
+          <b>Signal Strength:</b>
           <span class="info-generic" id="singal">Loading...</span>
         </div>
         <div class="">
-          <!-- <label class=""> --><b>Distance:</b><!-- </label> -->
+          <b>Distance:</b>
           <span class="info-generic"id="totalDistance">Loading...</span>
         </div>
         <div class="">
-          <!-- <label> --><b>Pace:</b><!-- </label> -->
+          <b>Pace:</b>
           <span class="info-generic" id="pace">Loading...</span>
         </div>
         <div class="">
-          <!-- <label> --><b>Calories:</b><!-- </label> -->
+          <b>Calories:</b>
           <span class="info-generic" id="calories">Loading...</span>
         </div>
         <div class="">
-          <!-- <label> --><b>Run With:</b><!-- </label> -->
+          <b>Run With:</b>
           <span class="info-generic" id="petSelection">Loading...</span>
         </div>
         <div class="">
-          <!-- <label> --><b>Items Obtained:</b><!-- </label> -->
+          <b>Items Obtained:</b>
           <span class="info-generic" id="noItems">Loading...</span>
         </div>
          <div class="pbottom-10">
-          <!-- <label> --><b>Rumon Captured:</b><!-- </label> -->
+          <b>Rumon Captured:</b>
           <span class="info-generic" id="monsterCaptured">No</span>
         </div>
       </div>

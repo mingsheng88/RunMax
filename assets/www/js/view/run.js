@@ -15,7 +15,6 @@ var weight = localStorage.getItem("weight");
 
 var map = new google.maps.Map(document.getElementById("myMap"), {
 	zoom : 17,
-	// center : new google.maps.LatLng(lat, lng),
 	disableDefaultUI : true,
 	zoomControl : true,
 	mapTypeId : google.maps.MapTypeId.ROADMAP
@@ -132,7 +131,6 @@ function captureEventInit() {
 	var spottedSnd = new Media("file:///android_asset/www/sounds/spotted.mp3");
 	spottedSnd.play();
 	navigator.notification.vibrate(1000);
-	// console.log('caputre event started!!!! m loc:'+monsterLoc);
 }
 
 var monCapLocation = [];
@@ -228,17 +226,15 @@ watchRun = navigator.geolocation.watchPosition(function(position) {
 		runEvent();
 		captureCheck();
 
-		// map.setCenter(new google.maps.LatLng(lat, lng)); // 現在地を地図の中心にする
-		pos.push([ lat, lng ]); // 座標を配列に追加
+		pos.push([ lat, lng ]); 
 		polylines.push(new google.maps.LatLng(lat, lng));
 		if (!(typeof myPath === "undefined")) {
 			myPath.setMap(null);
 		}
-		drawPolyline(); // 連続直線を描画する
+		drawPolyline(); 
 		var dist = google.maps.geometry.spherical.computeLength(myPath
 				.getPath().getArray());
 		totalDistance = Math.round(dist) / 1000;
-		// console.log(lat+" "+lng+ " "+totalTime);
 
 		$('#totalDistance').html(totalDistance + " Km");
 		calories = Math.round(weight * totalDistance);
@@ -250,7 +246,6 @@ watchRun = navigator.geolocation.watchPosition(function(position) {
 
 		}
 
-		// map.setCenter(new google.maps.LatLng(lat, lng));
 		marker.setPosition(new google.maps.LatLng(lat, lng));
 		map.panTo(new google.maps.LatLng(lat, lng));
 
@@ -267,25 +262,21 @@ watchRun = navigator.geolocation.watchPosition(function(position) {
 	timeout : 30 * 1000
 });
 
-// setTimeout("window.scrollTo(0,1)", 10); // ナビゲーションバーを消す
 function resizeMap() {
 	google.maps.event.trigger(map, 'resize');
 	map.setCenter(new google.maps.LatLng(lat, lng));
 }
-// 連続直線を描画
 function drawPolyline() {
 	myPath = new google.maps.Polyline({
 		path : polylines,
-		strokeColor : "#ff0000", // 赤色
-		strokeOpacity : 0.5, // 50%の透明度
+		strokeColor : "#ff0000",
+		strokeOpacity : 0.5,
 		strokeWeight : 5
-	// 線の太さ(px)
 	});
-	myPath.setMap(map); // 連続直線を描画する
+	myPath.setMap(map); 
 
 }
 
-// ボタンがクリックされたら軌跡を全て削除
 function clearTrack() {
 	myPath.setMap(null);
 	polylines = [];
@@ -304,10 +295,8 @@ $("#run_reset").bind(
 						"file:///android_asset/www/sounds/workoutended.mp3");
 				endSnd.play();
 				navigator.notification.vibrate(500);
-				// $.mobile.changePage( "home.html");
 				$.mobile.changePage("home.html", "_self")
 			} else {
-				// x="You pressed Cancel!";
 			}
 
 		});
@@ -327,7 +316,6 @@ $("#run_stop")
 							storeTolocal();
 							navigator.notification.vibrate(500);
 							$.mobile.changePage("finishRun.html");
-							//window.location ="finishRun.html";
 						} else {
 						}
 					}
@@ -344,7 +332,6 @@ function storeTolocal() {
 				+ '"posData":"' + pos.toString() + '",' + '"itemPos":"'
 				+ itemPos.toString() + '",' + '"monCapLocation":"'
 				+ monCapLocation.toString() + '"' + '}}';
-		//console.log("!!" + jStr);
 		localStorage.setItem("runDetail", jStr);
 
 	} catch (e) {
@@ -354,7 +341,6 @@ function storeTolocal() {
 }
 
 function myTimer() {
-	// console.log('!!!!'+totalTime);
 	if (totalTime < 0) {
 		totalTime = 0;
 	} else {
@@ -365,7 +351,6 @@ function myTimer() {
 
 function myStopFunction() {
 	clearInterval(runTimer);
-	// window.navigator.geolocation.clearWatch( watchRun );
 	if (watchRun != null) {
 		navigator.geolocation.clearWatch(watchRun);
 		watchRun = null;
@@ -384,8 +369,6 @@ function formatTime(time) {
 	time = time / 10;
 	var min = parseInt(time / 6000), sec = parseInt(time / 100) - (min * 60), hundredths = pad(
 			time - (sec * 100) - (min * 6000), 2);
-	// return (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2) + ":" +
-	// hundredths;
 	return (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2);
 }
 

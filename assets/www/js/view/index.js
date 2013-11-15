@@ -10,9 +10,6 @@ if (!localStorage.getItem("firstname")) {
 	localStorage.setItem("weight", 60.0);
 	localStorage.setItem("finishedRun",'false');
 
-
-	// s = string, i = int, d = date, b = boolean
-
 	// 0        1                 2                  3                  4								5            6
   // Name(s), energy_impact(i), fitness_impact(i), image_location(s), description(s), quantity(i), new(b)  
   item0 = ["Apple", 10, 2, "apple.gif", 'A healthy treat for your pet!', 0, false,200];
@@ -36,16 +33,6 @@ if (!localStorage.getItem("firstname")) {
 	//var petName=generate_name('egyptian');
 	localStorage.setItem("pet0", JSON.stringify(["FirstRumon", 0, new Date(), new Date(), 0, 50, 50, false]));
 	localStorage.setItem("number-of-pets", 1);
-	
-	// petName=generate_name('egyptian');
-	// localStorage.setItem("pet1", JSON.stringify([petName, 0, new Date(), new Date(), 2, 50, 50, false]));
-	// localStorage.setItem("number-of-pets", 2);
-	
-	// petName=generate_name('egyptian');
-	// localStorage.setItem("pet2", JSON.stringify([petName, 0, new Date(), new Date(), 1, 50, 50, false]));
-	// localStorage.setItem("number-of-pets", 3);
-	// pets = [["New Pet", 0, new Date(), new Date(), 0, 50, 50, false],["New Pet 2", 0, new Date(), new Date(), 0, 50, 50, false]];
-	// localStorage.setItem('pet-list', pets);
 
 	// type listing
 	localStorage.setItem('monsters', JSON.stringify(["baby.gif", "fat.gif", "fat2.gif", "fat3.gif", "fit.gif", "fit2.gif", "fit3.gif"]));

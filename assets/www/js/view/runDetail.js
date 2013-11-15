@@ -14,7 +14,6 @@ var petSelection;
 var runId = getUrlVars()["id"];
 var runMap = new google.maps.Map(document.getElementById("runMap"), {
 	zoom : 17,
-	// center : new google.maps.LatLng(lat, lng),
 	disableDefaultUI : true,
 	zoomControl : true,
 	mapTypeId : google.maps.MapTypeId.ROADMAP
@@ -49,10 +48,10 @@ $(document).ready(function() {
 
 var data = runJson.Run.posData;
 if (data) {
-	data = data.split(","); // ,で分割し配列に変換
+	data = data.split(","); 
 	for (var i = 0; i < data.length; i += 2) {
-		lat = data[i]; // 緯度
-		lng = data[i + 1]; // 経度
+		lat = data[i]; 
+		lng = data[i + 1];
 		if (i == 0) {
 			var startMarker = new google.maps.Marker({
 				position : new google.maps.LatLng(lat, lng),
@@ -77,8 +76,8 @@ if (data) {
 			});
 
 		}
-		pos.push([ lat, lng ]); // 座標を配列に追加
-		polylines.push(new google.maps.LatLng(lat, lng)); // 描画用の配列に座標を追加
+		pos.push([ lat, lng ]);
+		polylines.push(new google.maps.LatLng(lat, lng)); 
 	}
 
 	var runTimer = window.setTimeout(function() {
@@ -89,10 +88,10 @@ if (data) {
 var itemData = runJson.Run.itemPos;
 var noItems = 0;
 if (itemData) {
-	itemData = itemData.split(","); // ,で分割し配列に変換
+	itemData = itemData.split(","); 
 	for (var i = 0; i < itemData.length; i += 2) {
-		var ilat = itemData[i]; // 緯度
-		var ilng = itemData[i + 1]; // 経度
+		var ilat = itemData[i]; 
+		var ilng = itemData[i + 1];
 		var itemMarker = new google.maps.Marker({
 			position : new google.maps.LatLng(ilat, ilng),
 			icon : 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
@@ -105,10 +104,10 @@ if (itemData) {
 }
 var monsterData = runJson.Run.monCapLocation;
 if (monsterData) {
-	monsterData = monsterData.split(","); // ,で分割し配列に変換
+	monsterData = monsterData.split(",");
 	for (var i = 0; i < monsterData.length; i += 2) {
-		var mlat = monsterData[i]; // 緯度
-		var mlng = monsterData[i + 1]; // 経度
+		var mlat = monsterData[i]; 
+		var mlng = monsterData[i + 1];
 		var monsterMarker = new google.maps.Marker({
 			position : new google.maps.LatLng(mlat, mlng),
 			icon : 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
@@ -128,12 +127,11 @@ function resizeMap() {
 function drawPolyline() {
 	myPath = new google.maps.Polyline({
 		path : polylines,
-		strokeColor : "#ff0000", // 赤色
-		strokeOpacity : 0.5, // 50%の透明度
+		strokeColor : "#ff0000",
+		strokeOpacity : 0.5, 
 		strokeWeight : 5
-	// 線の太さ(px)
 	});
-	myPath.setMap(runMap); // 連続直線を描画する
+	myPath.setMap(runMap); 
 }
 // get url
 function getUrlVars() {
@@ -158,7 +156,5 @@ function formatTime(time) {
 	time = time / 10;
 	var min = parseInt(time / 6000), sec = parseInt(time / 100) - (min * 60), hundredths = pad(
 			time - (sec * 100) - (min * 6000), 2);
-	// return (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2) + ":" +
-	// hundredths;
 	return (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2);
 }

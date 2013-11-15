@@ -1,33 +1,17 @@
 var totalItem = localStorage.getItem("totalItems");
 var str = '<li data-theme="b" data-role="list-divider" class="sec-header-wording"><a>Items</a></li>';
-// var str='';
 for (i = 0; i < totalItem; i++) {
 	var it = new item((i));
 	str = str + '<li><a onclick="buyItem(' + i
-			+ ')" href="javascript:void(0)"><img src="css/global/images/'
-			+ it.image_location + '" /><h1>' + it.name + ' (Price: ' + it.price
-			+ ' )</h1><p>' + it.description + '</p></a></li>';
+		+ ')" href="javascript:void(0)"><img src="css/global/images/'
++ it.image_location + '" /><h1>' + it.name + ' (Price: ' + it.price
+	+ ' )</h1><p>' + it.description + '</p></a></li>';
 }
-// var test="test";
-// str = str+'<li><a onclick="buyItem('+0+')" href="javascript:void(0)"><img
-// src="css/global/images/' + 'test' + '" /><h1>' + test + ' (Price: '+100+'
-// )</h1><p>' + test + '</p></a></li>';
-// str = str+'<li><a onclick="buyItem('+0+')" href="javascript:void(0)"><img
-// src="css/global/images/' + test + '" /><h1>' + test + ' (Price: '+100+'
-// )</h1><p>' + test + '</p></a></li>';
-// str = str+'<li><a onclick="buyItem('+0+')" href="javascript:void(0)"><img
-// src="css/global/images/' + test + '" /><h1>' + test + ' (Price: '+100+'
-// )</h1><p>' + test + '</p></a></li>';
-// str = str+'<li><a onclick="buyItem('+0+')" href="javascript:void(0)"><img
-// src="css/global/images/' + test + '" /><h1>' + test + ' (Price: '+100+'
-// )</h1><p>' + test + '</p></a></li>';
 
-
-	
-	setTimeout(function () {
-		$('#coins').html("Coins owned: " + localStorage.getItem('coins'));
-		$('#itemList').html(str).listview('refresh');
-	}, 1000);
+setTimeout(function () {
+	$('#coins').html("Coins owned: " + localStorage.getItem('coins'));
+	$('#itemList').html(str).listview('refresh');
+}, 1000);
 
 function buyItem(itemId) {
 	var it = new item((itemId));
