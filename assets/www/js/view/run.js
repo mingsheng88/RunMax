@@ -234,7 +234,11 @@ watchRun = navigator.geolocation.watchPosition(function(position) {
 		drawPolyline(); 
 		var dist = google.maps.geometry.spherical.computeLength(myPath
 				.getPath().getArray());
-		totalDistance = Math.round(dist) / 1000;
+		
+		var newDistance=Math.round(dist) / 1000;
+		if((newDistance-totalDistance)<1){
+				totalDistance = newDistance;
+		}
 
 		$('#totalDistance').html(totalDistance + " Km");
 		calories = Math.round(weight * totalDistance);
